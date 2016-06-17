@@ -1,10 +1,21 @@
-# fixme - the load process here seems a bit bizarre
+autoload -U compinit compaudit && compaudit
 
 unsetopt menu_complete   # do not autoselect the first completion entry
 unsetopt flowcontrol
 setopt auto_menu         # show completion menu on succesive tab press
 setopt complete_in_word
 setopt always_to_end
+
+# completion ignore
+## vim
+zstyle ":completion:*:*:*vim:*:*files" ignored-patterns \
+    "*?.o" "*?.hi" "*?.aux" "*?.pdf" "*?.gz" "*?.log" "*?.out" "*?.aes" "*?.toc"
+## open
+zstyle ":completion:*:*:open:*:*files" ignored-patterns \
+    "*?.tex" "*?.gz" "*?.aes"
+
+################################################################################
+# TODO: FIXME
 
 WORDCHARS=''
 

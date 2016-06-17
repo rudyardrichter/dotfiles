@@ -1,4 +1,3 @@
-# Changing/making/removing directory
 setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushdminus
@@ -20,14 +19,7 @@ alias 8='cd -8'
 alias 9='cd -9'
 
 alias md='mkdir -p'
-alias rd=rmdir
 alias d='dirs -v | head -10'
-
-# List directory contents
-alias lsa='ls -lah'
-alias l='ls -lah'
-alias ll='ls -lh'
-alias la='ls -lAh'
 
 # Push and pop directories on directory stack
 alias pu='pushd'
