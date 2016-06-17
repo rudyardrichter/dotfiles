@@ -1,3 +1,3 @@
-reduce .zsh/lib/compfix.zsh
-reduce .zsh/lib/misc.zsh
-figure out termsupport.zsh
+reduce zsh/lib/compfix.zsh
+reduce zsh/lib/misc.zsh
+figure out termsupportzsh
