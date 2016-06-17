@@ -1,7 +1,7 @@
 ################################################################################
 
 # SETTINGS
-export ZSH=/Users/rudyard/.zsh
+export ZSH=/Users/rudyard/dotfiles/zsh
 THEME=arete
 
 ################################################################################
@@ -10,6 +10,8 @@ THEME=arete
 for file in $ZSH/lib/*.zsh; do
     source $file
 done
+# Completion
+autoload -U compaudit compinit && compinit -d "${ZSH_COMPDUMP}"
 # Theme
 autoload -Uz colors && colors
 source $ZSH/themes/$THEME.zsh
