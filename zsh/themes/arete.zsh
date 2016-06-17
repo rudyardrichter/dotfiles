@@ -46,16 +46,18 @@ git_status () {
 git_prompt () {
   local _result=""
   local _branch=$(git_branch)
-  if [[ "${_branch}x" != "x" ]]; then
+  if [ "${_branch}" ]; then
     _result="[%{$fg[white]%}$_branch"
     local _status=$(git_status)
-    if [[ "${_status}x" != "x" ]]; then
+    if [ "${_status}" ]; then
       _result="$_result $_status"
     fi
     _result="$_result%{$reset_color%}]"
   fi
   echo $_result
 }
+
+autoload -Uz git_branch git_status git_prompt
 
 if [[ $EUID -eq 0 ]]; then
   _USERNAME="%{$fg_bold[red]%}%n%{$reset_color%}@%m"
@@ -66,27 +68,11 @@ else
 fi
 
 setopt prompt_subst
-PROMPT="$_PROMPT%{$reset_color%} "
+#PROMPT="$_PROMPT%{$reset_color%} "
 
-# username and path
-_LEFT="$_USERNAME %{$fg_bold[white]%}%~%{$reset_color%}"
-# timestamp
-_RIGHT="%* "
-
-arete_precmd () {
-  local STR=$_LEFT$_RIGHT
-  local zero='%([BSUbfksu]|([FB]|){*})'
-  local LENGTH=${#${(S%%)STR//$~zero/}}
-  local SPACES=""
-  (( LENGTH = ${COLUMNS} - $LENGTH - 1 ))
-
-  for i in {0..$LENGTH}
-    do
-      SPACES="$SPACES "
-    done
-
-  print -rP "$_LEFT$SPACES$_RIGHT"
-}
+# username, path, and prompt
+PROMPT="$_USERNAME %{$fg_bold[white]%}%~%{$reset_color%}
+$_PROMPT%{$reset_color%} "
 
 N="%{$fg_bold[white]%}N%{$reset_color%}"
 I="%{$fg[yellow]%}I%{$reset_color%}"
@@ -97,15 +83,10 @@ function zle-keymap-select {
 }
 zle -N zle-keymap-select
 
-function zle-line-finish {
-    mode=$I
-}
+function zle-line-finish { mode=$I }
 zle -N zle-line-finish
 
 RPROMPT='$(git_prompt)[${mode}]'
 
-autoload -Uz git_branch
-autoload -Uz git_status
-autoload -Uz git_prompt
-autoload -Uz add-zsh-hook
-add-zsh-hook precmd arete_precmd
+#autoload -Uz add-zsh-hook
+#add-zsh-hook precmd arete_precmd
