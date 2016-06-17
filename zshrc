@@ -3,7 +3,6 @@
 # SETTINGS
 export ZSH=/Users/rudyard/.zsh
 THEME=arete
-plugins=(git)
 
 ################################################################################
 
@@ -32,6 +31,7 @@ bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
+bindkey '^j' vi-cmd-mode
 bindkey -M vicmd v edit-command-line
 # no delay between vi mode switches
 set -s escape-time 0
