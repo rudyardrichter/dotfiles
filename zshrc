@@ -1,6 +1,7 @@
 ################################################################################
 
 # SETTINGS
+export EDITOR='vim'
 export ZSH=/Users/rudyard/dotfiles/zsh
 THEME=arete
 
@@ -11,7 +12,7 @@ for file in $ZSH/lib/*.zsh; do
     source $file
 done
 # Completion
-autoload -U compaudit compinit && compinit -d "${ZSH_COMPDUMP}"
+autoload -Uz compinit && compinit -d ~/.zcompdump
 # Theme
 autoload -Uz colors && colors
 source $ZSH/themes/$THEME.zsh
@@ -23,7 +24,6 @@ eval `gdircolors $ZSH/colors/dircolors.ansi-dark`
 # tab completion colors
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-export EDITOR='vim'
 # use vi mode
 bindkey -v
 # fix things
