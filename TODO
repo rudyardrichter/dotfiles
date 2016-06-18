@@ -1,3 +1,2 @@
-reduce zsh/lib/compfix.zsh
-reduce zsh/lib/misc.zsh
 figure out termsupportzsh
+fix pkill completion

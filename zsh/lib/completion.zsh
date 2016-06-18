@@ -14,6 +14,9 @@ zstyle ":completion:*:*:*vim:*:*files" ignored-patterns \
 zstyle ":completion:*:*:open:*:*files" ignored-patterns \
     "*?.tex" "*?.gz" "*?.aes"
 
+# tab completion colors
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
 ################################################################################
 # TODO: FIXME
 
@@ -33,8 +36,6 @@ else
     zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
   fi
 fi
-
-zstyle ':completion:*' list-colors ''
 
 # should this be in keybindings?
 bindkey -M menuselect '^o' accept-and-infer-next-history

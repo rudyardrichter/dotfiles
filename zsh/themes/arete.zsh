@@ -1,6 +1,5 @@
 git_branch () {
-  ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
-  ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
+  ref=$(command git symbolic-ref HEAD 2> /dev/null) || ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
   echo "${ref#refs/heads/}"
 }
 
@@ -68,9 +67,6 @@ else
 fi
 
 setopt prompt_subst
-#PROMPT="$_PROMPT%{$reset_color%} "
-
-# username, path, and prompt
 PROMPT="$_USERNAME %{$fg_bold[white]%}%~%{$reset_color%}
 $_PROMPT%{$reset_color%} "
 
@@ -87,6 +83,3 @@ function zle-line-finish { mode=$I }
 zle -N zle-line-finish
 
 RPROMPT='$(git_prompt)[${mode}]'
-
-#autoload -Uz add-zsh-hook
-#add-zsh-hook precmd arete_precmd

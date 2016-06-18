@@ -1,11 +1,23 @@
 ################################################################################
 
-# SETTINGS
+# MAIN SETTINGS
 export EDITOR='vim'
+export PAGER='less'
+export LESS='-R'
 export ZSH=/Users/rudyard/dotfiles/zsh
 THEME=arete
 
+export PATH="/Users/rudyard/Library/Haskell/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:/usr/texbin:/Users/rudyard/bin:$GEM_HOME/bin"
+
 ################################################################################
+
+# setopts
+setopt interactivecomments
+setopt long_list_jobs
+
+################################################################################
+
+# AUTOMATED SETTINGS
 
 # Libraries
 for file in $ZSH/lib/*.zsh; do
@@ -17,13 +29,8 @@ autoload -Uz compinit && compinit -d ~/.zcompdump
 autoload -Uz colors && colors
 source $ZSH/themes/$THEME.zsh
 
-export PATH="/Users/rudyard/Library/Haskell/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:/usr/texbin:/Users/rudyard/bin:$GEM_HOME/bin"
-
 # ls colors
 eval `gdircolors $ZSH/colors/dircolors.ansi-dark`
-# tab completion colors
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-
 # use vi mode
 bindkey -v
 # fix things
@@ -45,3 +52,10 @@ function TRAPINT() {
     mode=$I
     return $((128 + $1))
 }
+
+# define LC_CTYPE if necessary
+if [[ -z "$LC_CTYPE" && -z "$LC_ALL" ]]; then
+    export LC_CTYPE=${LANG%%:*} # pick the first entry from LANG
+fi
+
+################################################################################
