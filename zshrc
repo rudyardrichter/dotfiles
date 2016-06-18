@@ -14,6 +14,11 @@ export PATH="/Users/rudyard/Library/Haskell/bin:/usr/local/bin:/usr/bin:/bin:/us
 # setopts
 setopt interactivecomments
 setopt long_list_jobs
+unsetopt menu_complete
+unsetopt flowcontrol
+setopt auto_menu
+setopt complete_in_word
+setopt always_to_end
 
 ################################################################################
 
@@ -23,14 +28,14 @@ setopt long_list_jobs
 for file in $ZSH/lib/*.zsh; do
     source $file
 done
-# Completion
-autoload -Uz compinit && compinit -d ~/.zcompdump
 # Theme
 autoload -Uz colors && colors
 source $ZSH/themes/$THEME.zsh
 
-# ls colors
+# ls colors & tab completion colors
 eval `gdircolors $ZSH/colors/dircolors.ansi-dark`
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
 # use vi mode
 bindkey -v
 # fix things
@@ -57,5 +62,12 @@ function TRAPINT() {
 if [[ -z "$LC_CTYPE" && -z "$LC_ALL" ]]; then
     export LC_CTYPE=${LANG%%:*} # pick the first entry from LANG
 fi
+
+################################################################################
+
+# Completion
+autoload -Uz compaudit compinit
+compaudit
+compinit
 
 ################################################################################

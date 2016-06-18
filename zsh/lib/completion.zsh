@@ -1,11 +1,3 @@
-autoload -U compinit compaudit && compaudit
-
-unsetopt menu_complete   # do not autoselect the first completion entry
-unsetopt flowcontrol
-setopt auto_menu         # show completion menu on succesive tab press
-setopt complete_in_word
-setopt always_to_end
-
 # completion ignore
 ## vim
 zstyle ":completion:*:*:*vim:*:*files" ignored-patterns \
@@ -13,9 +5,6 @@ zstyle ":completion:*:*:*vim:*:*files" ignored-patterns \
 ## open
 zstyle ":completion:*:*:open:*:*files" ignored-patterns \
     "*?.tex" "*?.gz" "*?.aes"
-
-# tab completion colors
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 ################################################################################
 # TODO: FIXME
@@ -55,17 +44,6 @@ zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-dir
 # Use caching so that commands like apt and dpkg complete are useable
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
-
-# Don't complete uninteresting users
-zstyle ':completion:*:*:*:users' ignored-patterns \
-        adm amanda apache at avahi avahi-autoipd beaglidx bin cacti canna \
-        clamav daemon dbus distcache dnsmasq dovecot fax ftp games gdm \
-        gkrellmd gopher hacluster haldaemon halt hsqldb ident junkbust kdm \
-        ldap lp mail mailman mailnull man messagebus  mldonkey mysql nagios \
-        named netdump news nfsnobody nobody nscd ntp nut nx obsrun openvpn \
-        operator pcap polkitd postfix postgres privoxy pulse pvm quagga radvd \
-        rpc rpcuser rpm rtkit scard shutdown squid sshd statd svn sync tftp \
-        usbmux uucp vcsa wwwrun xfs '_*'
 
 # ... unless we really want to.
 zstyle '*' single-ignored show
