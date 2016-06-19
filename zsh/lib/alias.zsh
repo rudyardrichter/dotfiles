@@ -1,13 +1,12 @@
 # Misc
 alias e='mvim'
 alias o='open'
-alias fak='fuck'
 
 # ls
-alias l='gls -A --color=auto'
-alias ll='gls -Ahl -o --color=auto'
-alias lr='gls -AR --color=auto'
-alias ls='gls --color=auto'
+alias l='ls -A --color=auto'
+alias ll='ls -Ahl -o --color=auto'
+alias lr='ls -AR --color=auto'
+alias ls='ls --color=auto'
 
 # git
 alias g='git'
