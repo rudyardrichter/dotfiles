@@ -14,11 +14,11 @@ export PATH="/Users/rudyard/Library/Haskell/bin:/usr/local/bin:/usr/bin:/bin:/us
 # setopts
 setopt interactivecomments
 setopt long_list_jobs
-unsetopt menu_complete
-unsetopt flowcontrol
 setopt auto_menu
 setopt complete_in_word
 setopt always_to_end
+unsetopt menu_complete
+unsetopt flowcontrol
 
 ################################################################################
 
