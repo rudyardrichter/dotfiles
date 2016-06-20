@@ -4,7 +4,7 @@
 export EDITOR='vim'
 export PAGER='less'
 export LESS='-R'
-export ZSH=/Users/rudyard/dotfiles/zsh
+export ZSH=~/dotfiles/zsh
 THEME=arete
 
 export PATH="/Users/rudyard/Library/Haskell/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:/usr/texbin:/Users/rudyard/bin:$GEM_HOME/bin"
@@ -33,7 +33,7 @@ autoload -Uz colors && colors
 source $ZSH/themes/$THEME.zsh
 
 # ls colors & tab completion colors
-eval `gdircolors $ZSH/colors/dircolors.ansi-dark`
+eval `dircolors $ZSH/colors/dircolors.ansi-dark`
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # use vi mode

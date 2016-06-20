@@ -90,8 +90,8 @@ set history=1000                " store cmd history
 set undolevels=1000             " lots of undo memory
 set showcmd                     " show incomplete commands
 set gcr=a:blinkon0              " no cursor blink
-set visualbell                  " visual error instead;
 set noerrorbells                " no beeping
+set novisualbell                " no flashing
 set mouse=a                     " enable mouse
 set cmdheight=1                 " always have cmd bar
 set autoread                    " read external changes
