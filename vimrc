@@ -16,19 +16,8 @@ Plugin 'gmarik/Vundle.vim'
 " my plugins:
 Plugin 'scrooloose/syntastic'     " syntax checker
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'flazz/vim-colorschemes'   " colorscheme package
-Plugin 'morhetz/gruvbox'          " gruvbox colorscheme
-"Plugin 'tpope/vim-fugitive'       " git wrapper
-Plugin 'kien/ctrlp.vim'           " fast file finder
-"Plugin 'itchyny/lightline.vim'
 Plugin 'bling/vim-airline'        " statusline
 Plugin 'vim-airline/vim-airline-themes'
-"Plugin 'Yggdroot/indentLine'      " indent line
-"Plugin 'kchmck/vim-coffee-script' " coffeescript
-"Plugin 'keith/swift.vim'          " swift
-"Plugin 'Valloric/YouCompleteMe'   " autocompletion (large)
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
 
 " close vundle section (don't touch)
 call vundle#end()
@@ -39,12 +28,6 @@ filetype plugin indent on
 
 "source /Users/rudyard/.vim/lightline.vim
 
-" CtrlP
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'c'
-let g:ctrlp_regexp = 1
-
 " Airline
 let g:airline_powerline_fonts = 1
 let g:Powerline_symbols = 'fancy'
@@ -53,29 +36,6 @@ let g:airline_section_z = '%{g:airline_symbols.linenr}%4l:%=%3.v'
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-
-let g:syntastic_html_tidy_ignore_errors = [
-    \ 'plain text isn''t allowed in <head> elements',
-    \ '<base> escaping malformed URI reference',
-    \ 'discarding unexpected <body>',
-    \ '<script> escaping malformed URI reference',
-    \ '</head> isn''t allowed in <body> elements',
-    \ 'missing <li>',
-    \ 'trimming empty <span>'
-    \ ]
-
-let g:syntastic_quiet_messages = {
-    \ "!level":  "errors",
-    \ "type":    "style",
-    \ "regex":   ['dash', 'whitespace'],
-    \ "file:p":  ['.tex'] }
-
-"" indentLine
-"let g:indentLine_enabled = 0
-"let g:indentLine_char = '│'
-
-" UltiSnips
-let g:UltiSnipsSnippetDirectories=["/Users/rudyard/.vim/UltiSnips","/Users/rudyard/.vim/bundle/vim-snippets/UltiSnips"]
 
 
 " ==== General Configuration ====
@@ -232,31 +192,6 @@ call togglebg#map("<F1>")
 "nnoremap <F1> :call SwitchBG()<CR>
 "inoremap <F1> <C-o>:call SwitchBG()<CR>
 
-"function! SwitchBG()
-"    if &bg == "dark"
-"        set bg=light
-"        let g:lightline.colorscheme = 'solarized_light'
-"        call UpdateLightline()
-"    else
-"        set bg=dark
-"        let g:lightline.colorscheme = 'solarized_dark'
-"        call UpdateLightline()
-"    endif
-"endfunction
-"
-"function! UpdateLightline()
-"    call lightline#init()
-"    call lightline#colorscheme()
-"    call lightline#update()
-"endfunction
-
-"function! Solarize()
-"    set bg=dark
-"    "set t_Co=16
-"    "let g:solarized_termcolors=16
-"    colorscheme solarized
-"endfunction
-
 " syntax highlighting
 if has('syntax') && !exists('g:syntax_on')
     syntax enable
@@ -265,15 +200,6 @@ endif
 set t_Co=256
 
 if has("gui_running")
-    "set guifont=Anonymous\ Pro\ for\ Powerline:h13
-    "set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11
-    "set guifont=Inconsolata\ for\ Powerline:h13
-    "set guifont=Fira\ Mono\ for\ Powerline:h12
-    "set guifont=Inconsolata-dz:h11
-    "set guifont=Liberation\ Mono\ for\ Powerline:h12
-    set guifont=Meslo\ LG\ M\ for\ Powerline:h12
-    "set guifont=Roboto\ Mono\ Light\ for\ Powerline:h12
-    "set guifont=Sauce\ Code\ Powerline\ Light:h12
 else
     set term=xterm-256color
     " airline settings for terminal: no separators; no "LN" character
@@ -283,8 +209,3 @@ else
     "let g:airline_right_alt_sep='|'
     let g:airline_section_z = '%4l:%=%3.v'
 endif
-
-
-" ==== Filetype ====
-
-autocmd BufNewFile *.tex set filetype=tex
