@@ -177,7 +177,6 @@ set number                      " show line numbers
 set ruler                       " display cursor position in status
 set cursorline                  " highliht the current line
 set encoding=utf-8              " set text to utf-8 standard
-set lines=50 columns=90         " set window size
 set laststatus=2                " status line
 set guioptions-=r
 set guioptions-=L
@@ -200,6 +199,7 @@ endif
 set t_Co=256
 
 if has("gui_running")
+    set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
 else
     set term=xterm-256color
     " airline settings for terminal: no separators; no "LN" character
