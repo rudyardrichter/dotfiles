@@ -14,9 +14,9 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 """
 " my plugins:
-Plugin 'scrooloose/syntastic'     " syntax checker
+Plugin 'scrooloose/syntastic'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'bling/vim-airline'        " statusline
+Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
 " close vundle section (don't touch)
@@ -25,8 +25,6 @@ filetype plugin indent on
 
 
 " ==== Plugin Settings ====
-
-"source /Users/rudyard/.vim/lightline.vim
 
 " Airline
 let g:airline_powerline_fonts = 1
@@ -63,14 +61,6 @@ set wrap                        " wrap text
 set splitbelow                  " more natural than default
 set splitright                  " ^
 set lazyredraw                  " what it says
-"set scrolloff=3                 " scroll 3 lines at end of screen
-
-
-" ==== Folding ====
-
-"set foldenable
-"set foldlevelstart=0            " don't open any folds at first
-"set foldnestmax=0
 
 
 " ==== Indentation ====
@@ -85,10 +75,6 @@ set tabstop=4
 
 
 " ==== Mappings/Bindings ====
-
-"function! Close()
-"    let char = getline(".")[col(".")-1]
-"    if char == '('
 
 " life is good
 nnoremap ; :
@@ -112,40 +98,8 @@ nnoremap  <Down>  <C-w>j
 nnoremap  <Left>  <C-w>h
 nnoremap  <Right> <C-w>l
 
-" LEADER MAPPINGS:
-""""""""""""""""""""
 let mapleader="\<space>"
 set notimeout
-" a = unbound
-" b = unbound
-" c = ?
-" d = :cd %:h<CR>
-" e = unbound
-" f = unbound
-" g = unbound
-" h = mh#`h
-" i = A
-" j = unbound
-" k = unbound
-" l = unbound
-" m > .tex
-" n >
-"     h = :nohl<CR>
-" o = unbound
-" p = unbound
-" q = gqq
-" r = :%s/\s\+$//<CR> :nohl<CR> :w<CR>
-" s = unbound
-" t = unbound
-" u > LaTeX-Skim...
-" v > vimrc-related
-"     ed = :e $MYVIMRC<CR>:nohl<CR>
-"     sp = :split $MYVIMRC<CR>:nohl<CR>
-"     sc = :source $MYVIMRC<CR>:nohl<CR>
-" w = unbound
-" x = unbound
-" y = unbound
-" z = unbound
 
 " cd
 nnoremap <leader>d :cd %:h<CR>
@@ -181,15 +135,11 @@ set laststatus=2                " status line
 set guioptions-=r
 set guioptions-=L
 
+
 " ==== GUI Options ====
 
 set bg=dark
 colorscheme solarized
-
-" switch between dark and light backgrounds (when available)
-call togglebg#map("<F1>")
-"nnoremap <F1> :call SwitchBG()<CR>
-"inoremap <F1> <C-o>:call SwitchBG()<CR>
 
 " syntax highlighting
 if has('syntax') && !exists('g:syntax_on')
@@ -199,13 +149,8 @@ endif
 set t_Co=256
 
 if has("gui_running")
-    set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
+    set guifont=Source\ Code\ Pro\ for\ Powerline\ 11
 else
     set term=xterm-256color
-    " airline settings for terminal: no separators; no "LN" character
-    "let g:airline_left_sep=''
-    "let g:airline_left_alt_sep='|'
-    "let g:airline_right_sep=''
-    "let g:airline_right_alt_sep='|'
     let g:airline_section_z = '%4l:%=%3.v'
 endif
