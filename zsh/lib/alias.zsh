@@ -1,7 +1,6 @@
 # Misc
 alias e='vim'
 alias o='open'
-alias midway='rudyardrichter@midway.rcc.uchicago.edu'
 
 # ls
 alias l='ls -A --color=auto'
