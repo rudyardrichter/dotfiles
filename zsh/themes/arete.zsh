@@ -8,15 +8,15 @@ git_status () {
   _STATUS=""
   # staged
   if $(echo "$_INDEX" | grep '^[AMRD]. ' &> /dev/null); then
-    _STATUS="$_STATUS%{$fg[green]%}●%{$reset_color%}"
+    _STATUS="$_STATUS%{$fg[green]%}•%{$reset_color%}"
   fi
   # unstaged
   if $(echo "$_INDEX" | grep '^.[MTD] ' &> /dev/null); then
-    _STATUS="$_STATUS%{$fg[yellow]%}●%{$reset_color%}"
+    _STATUS="$_STATUS%{$fg[yellow]%}•%{$reset_color%}"
   fi
   # untracked
   if $(echo "$_INDEX" | command grep -E '^\?\? ' &> /dev/null); then
-    _STATUS="$_STATUS%{$fg[red]%}●%{$reset_color%}"
+    _STATUS="$_STATUS%{$fg[red]%}•%{$reset_color%}"
   fi
   # unmerged
   if $(echo "$_INDEX" | grep '^UU ' &> /dev/null); then
