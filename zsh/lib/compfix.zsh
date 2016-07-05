@@ -1,5 +1,6 @@
-insecure_dirs=( ${(f@):-"$(compaudit 2>/dev/null)"} )
-if (( ! ${#insecure_dirs} )) return
+audit="$(compaudit 2>/dev/null)"
+insecure_dirs=( ${(f@):-$audit} )
+if [[ -z $audit ]] return
 echo "Insecure completion-dependent directories detected:"
 ls -ld "${(@)insecure_dirs}"
 echo "For an easy fix, run:"
