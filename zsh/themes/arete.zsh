@@ -24,7 +24,7 @@ git_status () {
   fi
   # stashed
   if $(command git rev-parse --verify refs/stash >/dev/null 2>&1); then
-    _STATUS="$_STATUS%{$fg_bold[magenta]%}⦿%{$reset_color%}"
+    _STATUS="$_STATUS%{$fg_bold[magenta]%}∘%{$reset_color%}"
   fi
   # ahead
   if $(echo "$_INDEX" | grep '^## .*ahead' &> /dev/null); then

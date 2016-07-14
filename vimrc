@@ -19,9 +19,11 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'EricGebhart/SAS-Vim'
-"Plugin 'SirVer/ultisnips'
-"Plugin 'honza/vim-snippets'
 Plugin 'kien/ctrlp.vim'
+if has('python')
+    Plugin 'SirVer/ultisnips'
+    Plugin 'honza/vim-snippets'
+endif
 " close vundle section (don't touch)
 call vundle#end()
 filetype plugin indent on
