@@ -1,1 +1,1 @@
-/Users/rudyard/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+/home/rudyard/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
