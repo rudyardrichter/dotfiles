@@ -1,0 +1,69 @@
+set tw=80
+let g:tex_flavor='latex'
+set bg=light
+colo lucius
+let g:airline_theme='lucius'
+AirlineRefresh
+
+let g:Tex_DefaultTargetFormat = 'pdf'
+let g:Tex_CompileRule_pdf = 'pdflatex -synctex=1 --interaction=batchmode $*'
+let g:Tex_ViewRule_pdf = 'open -a Skim'
+nnoremap <leader>ul :w<CR>:silent !pdflatex -synctex=1 --interaction=batchmode %<CR><C-L>
+nnoremap <leader>ml :w<CR>:silent !pdflatex -synctex=1 --interaction=batchmode %<CR>:silent !/Applications/Skim.app/Contents/SharedSupport/displayline <C-R>=line('.')<CR> %<.pdf %<CR><C-L>
+
+nnoremap <leader>ba o\begin{align*}<CR>\end{align*}<C-c>
+nnoremap <leader>be o\begin{enumerate}<CR>\item<CR>\item<CR>\end{enumerate}<C-c>kk
+nnoremap <leader>bf o\begin{figure}[!h]<CR>\centering<CR>\caption{}<CR>\end{figure}<C-c>
+nnoremap <leader>bg o\begin{gather*}<CR>\end{gather*}<C-c>
+nnoremap <leader>bi o\begin{itemize}<CR>\item<CR>\item<CR>\end{itemize}<C-c>
+nnoremap <leader>bq o\begin{equation*}<CR>\end{equation*}<C-c>
+nnoremap <leader>bs o\section*{}<C-c>
+nnoremap <leader>bt o\begin{tabular}{}<CR>\toprule<CR>\midrule<CR>\bottomrule<CR>\end{tabular}<C-c>
+
+nnoremap <buffer> <leader>c mc0%<C-c>`c
+
+inoremap <TAB> \
+inoremap \ /
+inoremap ; {
+inoremap : [
+inoremap ' }
+inoremap " ]
+inoremap [ ;
+inoremap ] '
+inoremap { :
+inoremap } "
+inoremap < _
+inoremap > ^
+inoremap _ <
+inoremap ^ >
+inoremap / $
+inoremap $ /
+nnoremap <C-l> <C-c>:w<CR>:silent !pdflatex -synctex=1 --interaction=batchmode %<CR><C-L>
+inoremap <C-l> <C-c>:w<CR>:silent !pdflatex -synctex=1 --interaction=batchmode %<CR><C-L>
+nnoremap <C-x> <C-c>:w<CR>:silent !xelatex --interaction=batchmode --halt-on-error %<CR><C-L>
+inoremap <C-x> <C-c>:w<CR>:silent !xelatex --interaction=batchmode --halt-on-error %<CR><C-L>
+
+function! WC()
+    let filename = expand("%")
+    let cmd = "detex " . filename . " | wc -w | tr -d '[:space:]'"
+    let result = system(cmd)
+    echo result . " words"
+endfunction
+
+function! CodeMaps()
+    iunmap ^
+    iunmap _
+    iunmap [
+    iunmap ]
+    iunmap {
+    iunmap }
+    iunmap ;
+    iunmap '
+    iunmap :
+    iunmap "
+    iunmap <
+    iunmap >
+endfunction
+
+command WC call WC()
+command CodeMaps call CodeMaps()
