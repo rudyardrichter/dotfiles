@@ -19,3 +19,15 @@ function backup() {
     aes-encrypt $tarball
     rm $tarball
 }
+
+function union() {
+    cat $1 $2 | sort | uniq
+}
+
+function intersection() {
+    cat $1 $2 | sort | uniq -d
+}
+
+function difference() {
+    cat $1 $2 $2 | sort | uniq -u
+}

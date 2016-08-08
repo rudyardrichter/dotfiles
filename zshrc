@@ -7,7 +7,7 @@ export LESS='-R'
 export ZSH=~/dotfiles/zsh
 THEME=arete
 
-export PATH="/software/slurm-current-el6-x86_64/bin:/software/git-2.7-el6-x86_64/bin:/software/emacs-24-el6-x86_64/bin:/software/subversion-1.8-el6-x86_64/bin:/software/vim-7.4-el6-x86_64/bin:/software/bin:/srv/adm/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/lpp/mmfs/bin:/home/rudyardrichter/bin"
+export PATH="/home/rudyardrichter/bin:/software/slurm-current-el6-x86_64/bin:/software/git-2.7-el6-x86_64/bin:/software/emacs-24-el6-x86_64/bin:/software/subversion-1.8-el6-x86_64/bin:/software/vim-7.4-el6-x86_64/bin:/software/bin:/srv/adm/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/lpp/mmfs/bin"
 
 ################################################################################
 
@@ -19,6 +19,40 @@ unsetopt flowcontrol
 setopt auto_menu
 setopt complete_in_word
 setopt always_to_end
+setopt extendedglob
+
+################################################################################
+
+# ABBREVIATIONS
+
+typeset -Ag abbreviations
+abbreviations=(
+    "G"        "| grep"
+    "EG"       "| egrep"
+    "AG"       "| agrep"
+    "H"        "| head"
+    "T"        "| tail"
+    "S"        "| sort"
+    "W"        "| wc"
+    "X"        "| xargs"
+)
+
+magic-abbrev-expand() {
+    local MATCH
+    LBUFFER=${LBUFFER%%(#m)[_a-zA-Z0-9]#}
+    LBUFFER+=${abbreviations[$MATCH]:-$MATCH}
+    zle self-insert
+}
+
+no-magic-abbrev-expand() {
+    LBUFFER+=' '
+}
+
+zle -N magic-abbrev-expand
+zle -N no-magic-abbrev-expand
+bindkey " " magic-abbrev-expand
+bindkey "^x " no-magic-abbrev-expand
+bindkey -M isearch " " self-insert
 
 ################################################################################
 
@@ -39,8 +73,8 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # use vi mode
 bindkey -v
 # fix things
-bindkey '^P' up-history
-bindkey '^N' down-history
+bindkey '^P' up-line-or-search
+bindkey '^N' down-line-or-search
 bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word

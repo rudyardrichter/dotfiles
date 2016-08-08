@@ -1,6 +1,6 @@
-# Misc
 alias e='vim'
 alias o='open'
+alias map='xargs -n1'
 
 # ls
 alias l='ls -A --color=auto'
