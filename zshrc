@@ -1,6 +1,7 @@
 ################################################################################
 
 # MAIN SETTINGS
+
 export EDITOR='vim'
 export PAGER='less'
 export LESS='-R'
@@ -11,15 +12,16 @@ export PATH="/home/rudyardrichter/bin:/software/slurm-current-el6-x86_64/bin:/so
 
 ################################################################################
 
-# setopts
+# SETOPT
+
 setopt interactivecomments
 setopt long_list_jobs
-unsetopt menu_complete
-unsetopt flowcontrol
 setopt auto_menu
 setopt complete_in_word
 setopt always_to_end
 setopt extendedglob
+unsetopt menu_complete
+unsetopt flowcontrol
 
 ################################################################################
 
@@ -27,14 +29,16 @@ setopt extendedglob
 
 typeset -Ag abbreviations
 abbreviations=(
-    "G"        "| grep"
-    "EG"       "| egrep"
-    "AG"       "| agrep"
-    "H"        "| head"
-    "T"        "| tail"
-    "S"        "| sort"
-    "W"        "| wc"
-    "X"        "| xargs"
+    "AG"    "| agrep"
+    "EG"    "| egrep"
+    "G"     "| grep"
+    "H"     "| head"
+    "M"     "| map"
+    "S"     "| sed"
+    "T"     "| tail"
+    "U"     "| uniq"
+    "W"     "| wc"
+    "X"     "| xargs"
 )
 
 magic-abbrev-expand() {
@@ -62,6 +66,7 @@ bindkey -M isearch " " self-insert
 for file in $ZSH/lib/*.zsh; do
     source $file
 done
+
 # Theme
 autoload -Uz colors && colors
 source $ZSH/themes/$THEME.zsh
@@ -70,14 +75,15 @@ source $ZSH/themes/$THEME.zsh
 eval `dircolors $ZSH/colors/dircolors.ansi-dark`
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-# use vi mode
-bindkey -v
-# fix things
+bindkey -v   # vi mode
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
 bindkey '^P' up-line-or-search
 bindkey '^N' down-line-or-search
 bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
-bindkey '^w' backward-kill-word
+bindkey '^w' forward-word
+bindkey '^b' backward-word
 bindkey '^r' history-incremental-search-backward
 bindkey '^j' vi-cmd-mode
 bindkey -M vicmd v edit-command-line
@@ -92,14 +98,10 @@ function TRAPINT() {
     return $((128 + $1))
 }
 
-# define LC_CTYPE if necessary
-if [[ -z "$LC_CTYPE" && -z "$LC_ALL" ]]; then
-    export LC_CTYPE=${LANG%%:*} # pick the first entry from LANG
-fi
-
 ################################################################################
 
-# Completion
+# COMPLETION
+
 autoload -Uz compaudit compinit
 compaudit
 compinit

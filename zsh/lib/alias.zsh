@@ -1,6 +1,8 @@
+alias c='clear'
 alias e='vim'
 alias o='open'
 alias map='xargs -n1'
+alias mkdir='mkdir -p'
 
 # ls
 alias l='ls -A --color=auto'
