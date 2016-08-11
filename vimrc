@@ -1,5 +1,6 @@
 " Rudyard Richter's vimrc
 
+
 " use vim settings, not vi
 set nocompatible
 
