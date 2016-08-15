@@ -1,18 +1,9 @@
-################################################################################
-
-# MAIN SETTINGS
-
 export EDITOR='vim'
 export PAGER='less'
 export LESS='-R'
 export ZSH=~/dotfiles/zsh
 THEME=arete
-
 export PATH="/home/rudyardrichter/bin:/software/slurm-current-el6-x86_64/bin:/software/git-2.7-el6-x86_64/bin:/software/emacs-24-el6-x86_64/bin:/software/subversion-1.8-el6-x86_64/bin:/software/vim-7.4-el6-x86_64/bin:/software/bin:/srv/adm/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/lpp/mmfs/bin"
-
-################################################################################
-
-# SETOPT
 
 setopt interactivecomments
 setopt long_list_jobs
@@ -20,52 +11,16 @@ setopt auto_menu
 setopt complete_in_word
 setopt always_to_end
 setopt extendedglob
+setopt append_history
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups # ignore duplication command history list
+setopt hist_ignore_space
+setopt hist_verify
+setopt inc_append_history
+setopt share_history # share command history data
 unsetopt menu_complete
 unsetopt flowcontrol
-
-################################################################################
-
-# ABBREVIATIONS
-
-typeset -Ag abbreviations
-abbreviations=(
-    "AG"    "| agrep"
-    "EG"    "| egrep"
-    "G"     "| grep"
-    "H"     "| head"
-    "M"     "| map"
-    "S"     "| sed"
-    "T"     "| tail"
-    "U"     "| uniq"
-    "W"     "| wc"
-    "X"     "| xargs"
-)
-
-magic-abbrev-expand() {
-    local MATCH
-    LBUFFER=${LBUFFER%%(#m)[_a-zA-Z0-9]#}
-    LBUFFER+=${abbreviations[$MATCH]:-$MATCH}
-    zle self-insert
-}
-
-no-magic-abbrev-expand() {
-    LBUFFER+=' '
-}
-
-zle -N magic-abbrev-expand
-zle -N no-magic-abbrev-expand
-bindkey " " magic-abbrev-expand
-bindkey "^x " no-magic-abbrev-expand
-bindkey -M isearch " " self-insert
-
-################################################################################
-
-# AUTOMATED SETTINGS
-
-# Libraries
-for file in $ZSH/lib/*.zsh; do
-    source $file
-done
 
 # Theme
 autoload -Uz colors && colors
@@ -98,12 +53,10 @@ function TRAPINT() {
     return $((128 + $1))
 }
 
-################################################################################
-
-# COMPLETION
-
 autoload -Uz compaudit compinit
 compaudit
 compinit
 
-################################################################################
+for file in $ZSH/lib/*.zsh; do
+    source $file
+done
