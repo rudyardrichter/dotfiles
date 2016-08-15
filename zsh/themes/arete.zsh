@@ -1,4 +1,4 @@
-git_branch () { echo "$(git symbolic-ref --short HEAD)" }
+git_branch () { echo "$(git symbolic-ref --short HEAD 2> /dev/null)" }
 
 git_status () {
     _INDEX=$(command git status --porcelain -b 2> /dev/null)
