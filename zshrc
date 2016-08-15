@@ -5,22 +5,23 @@ export ZSH=~/dotfiles/zsh
 THEME=arete
 export PATH="/home/rudyardrichter/bin:/software/slurm-current-el6-x86_64/bin:/software/git-2.7-el6-x86_64/bin:/software/emacs-24-el6-x86_64/bin:/software/subversion-1.8-el6-x86_64/bin:/software/vim-7.4-el6-x86_64/bin:/software/bin:/srv/adm/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/lpp/mmfs/bin"
 
-setopt interactivecomments
-setopt long_list_jobs
-setopt auto_menu
-setopt complete_in_word
-setopt always_to_end
-setopt extendedglob
-setopt append_history
-setopt extended_history
-setopt hist_expire_dups_first
-setopt hist_ignore_dups # ignore duplication command history list
-setopt hist_ignore_space
-setopt hist_verify
-setopt inc_append_history
-setopt share_history # share command history data
-unsetopt menu_complete
-unsetopt flowcontrol
+setopt vi                      # allow vi mode
+setopt interactivecomments     # allow comments in shell
+setopt long_list_jobs          # list jobs in long format
+setopt auto_menu               # use menu completion
+setopt complete_in_word        # allow tab completion inside words
+setopt always_to_end           # move cursor to end of word after completion
+setopt extendedglob            # treat '#', '~', and '^' as patterns
+setopt append_history          # append to history rather than replacing
+setopt extended_history        # save timestamp and duration in history
+setopt hist_expire_dups_first  # delete oldest duplicates first
+setopt hist_ignore_dups        # ignore duplication command history list
+setopt hist_ignore_space       # ignore space-prefaced commands for history
+setopt hist_verify             # load (don't run) history expansions
+setopt inc_append_history      # append history lines when they are entered
+setopt share_history           # share command history data
+unsetopt menu_complete         # don't jump to first match in menu
+unsetopt flowcontrol           # disable flow control via start/stop chars
 
 # Theme
 autoload -Uz colors && colors
@@ -30,7 +31,6 @@ source $ZSH/themes/$THEME.zsh
 eval `dircolors $ZSH/colors/dircolors.ansi-dark`
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-bindkey -v   # vi mode
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
 bindkey '^P' up-line-or-search
