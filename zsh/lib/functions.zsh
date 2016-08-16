@@ -19,3 +19,7 @@ function backup() {
     aes-encrypt $tarball
     rm $tarball
 }
+
+function gclmy() {
+    git clone --recursive git@github.com:rudyardrichter/$1.git
+}
