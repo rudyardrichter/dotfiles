@@ -1,5 +1,5 @@
 function zsh_stats() {
-  fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n20
+  fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n30
 }
 
 function aes-encrypt() {
@@ -37,7 +37,7 @@ function mkcd() {
     cd $1
 }
 
-function extract {
+function extract() {
     if [ -z "$1" ]; then
         echo "usage: extract file.(zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz)"
     else
@@ -64,4 +64,11 @@ function extract {
             echo "$1 does not exist"
         fi
     fi
+}
+
+function csv_to_github_table() {
+    sed -r 's/(\S),(\S)/\1 | \2/g; s/^(.*)$/| \1 |/; 1s/(.*)/\1\n\1/' $1 |
+    tr -d '"' |
+    column -t |
+    sed '2s/| /|:/g; 2s/[^|:]/-/g; 2s/| /|:/g; 2s/ //g'
 }

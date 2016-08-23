@@ -97,6 +97,8 @@ vnoremap H ^
 vnoremap L $
 onoremap H ^
 onoremap L $
+nnoremap <C-j> <C-e>
+nnoremap <C-k> <C-y>
 
 " use arrow keys for split navigation
 nnoremap  <Up>    <C-w>k

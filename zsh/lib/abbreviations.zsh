@@ -3,6 +3,7 @@ abbreviations=(
     "AG"    "| agrep"
     "EG"    "| egrep"
     "G"     "| grep"
+    "C"     "| cut"
     "H"     "| head"
     "M"     "| map"
     "S"     "| sed"
