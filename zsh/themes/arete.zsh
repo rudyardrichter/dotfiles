@@ -8,7 +8,7 @@ git_status () {
     # unstaged
     $(echo "$_INDEX" | grep '^.[MTD] ' &> /dev/null) && _STATUS="$_STATUS%{$fg[yellow]%}•%{$reset_color%}"
     # untracked
-    $(echo "$_INDEX" | grep '^\?\? ' &> /dev/null) && _STATUS="$_STATUS%{$fg[red]%}•%{$reset_color%}"
+    $(echo "$_INDEX" | grep '^?? ' &> /dev/null) && _STATUS="$_STATUS%{$fg[red]%}•%{$reset_color%}"
     # unmerged
     $(echo "$_INDEX" | grep '^UU ' &> /dev/null) && _STATUS="$_STATUS%{$fg[red]%}?%{$reset_color%}"
     # stashed
