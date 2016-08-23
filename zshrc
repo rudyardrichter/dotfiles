@@ -3,7 +3,7 @@ export PAGER='less'
 export LESS='-R'
 export ZSH=~/dotfiles/zsh
 THEME=arete
-export PATH="/home/rudyardrichter/bin:/software/slurm-current-el6-x86_64/bin:/software/git-2.7-el6-x86_64/bin:/software/emacs-24-el6-x86_64/bin:/software/subversion-1.8-el6-x86_64/bin:/software/vim-7.4-el6-x86_64/bin:/software/bin:/srv/adm/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/lpp/mmfs/bin"
+export PATH="/home/rudyardrichter/dotfiles/bin:/home/rudyardrichter/bin:/software/slurm-current-el6-x86_64/bin:/software/git-2.7-el6-x86_64/bin:/software/subversion-1.8-el6-x86_64/bin:/software/vim-7.4-el6-x86_64/bin:/software/bin:/srv/adm/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/lpp/mmfs/bin"
 
 setopt vi                      # allow vi mode
 setopt interactivecomments     # allow comments in shell
@@ -20,6 +20,10 @@ setopt hist_ignore_space       # ignore space-prefaced commands for history
 setopt hist_verify             # load (don't run) history expansions
 setopt inc_append_history      # append history lines when they are entered
 setopt share_history           # share command history data
+setopt autocd
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushdminus
 unsetopt menu_complete         # don't jump to first match in menu
 unsetopt flowcontrol           # disable flow control via start/stop chars
 
@@ -42,16 +46,13 @@ bindkey '^b' backward-word
 bindkey '^r' history-incremental-search-backward
 bindkey '^j' vi-cmd-mode
 bindkey -M vicmd v edit-command-line
+bindkey -M vicmd k up-line-or-search
+bindkey -M vicmd j down-line-or-search
+bindkey -M vicmd H beginning-of-line
+bindkey -M vicmd L end-of-line
 # no delay between vi mode switches
 set -s escape-time 0
 export KEYTIMEOUT=1
-
-# fix a couple vi mode bugs
-mode=$I
-function TRAPINT() {
-    mode=$I
-    return $((128 + $1))
-}
 
 autoload -Uz compaudit compinit
 compaudit
