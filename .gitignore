@@ -1,2 +1,4 @@
 .*
+zsh/lib/local_alias.zsh
 vim/bundle
+vim/.netrwhist
