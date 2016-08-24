@@ -1,16 +1,17 @@
 typeset -Ag abbreviations
 abbreviations=(
-    "AG"    "| agrep"
-    "EG"    "| egrep"
-    "G"     "| grep"
-    "C"     "| cut"
-    "H"     "| head"
-    "M"     "| map"
-    "S"     "| sed"
-    "T"     "| tail"
-    "U"     "| uniq"
-    "W"     "| wc"
-    "X"     "| xargs"
+    'AG'    '| agrep'
+    'EG'    '| egrep'
+    'G'     '| grep'
+    'C'     '| cut'
+    'H'     '| head'
+    'L'     '| less'
+    'M'     '| map'
+    'S'     '| sed'
+    'T'     '| tail'
+    'U'     '| uniq'
+    'W'     '| wc'
+    'X'     '| xargs'
 )
 
 magic-abbrev-expand() {
