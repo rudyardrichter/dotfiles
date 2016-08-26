@@ -7,10 +7,11 @@ abbreviations=(
     'H'     '| head'
     'L'     '| less'
     'M'     '| map'
+    'P'     '|'
     'S'     '| sed'
     'T'     '| tail'
     'U'     '| uniq'
-    'W'     '| wc'
+    'W'     '| wc -l'
     'X'     '| xargs'
 )
 
