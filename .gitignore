@@ -1,4 +1,5 @@
 .*
-zsh/lib/local_alias.zsh
+zsh/lib/local.zsh
 vim/bundle
 vim/.netrwhist
+vim/undo
