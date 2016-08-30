@@ -1,0 +1,3 @@
+:set prompt "\ESC[0;36m(%s)\n\ESC[0;34mλ> \ESC[m"
+:def hoogle \str -> return $ ":!hoogle --count=10 \"" ++ str ++ "\""
+:def doc \str -> return $ ":!hoogle --info \"" ++ str ++ "\""
