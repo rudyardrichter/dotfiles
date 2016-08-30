@@ -8,6 +8,7 @@ abbreviations=(
     'L'     '| less'
     'M'     '| map'
     'P'     '|'
+    'QLOG'  '> "Q$(date +%FT%R).log"'
     'S'     '| sed'
     'T'     '| tail'
     'U'     '| uniq'

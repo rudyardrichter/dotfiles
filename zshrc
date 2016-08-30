@@ -1,7 +1,11 @@
 export ZSH=~/dotfiles/zsh
+export THEME=arete
 
-for file in $ZSH/lib/*.zsh; do
-    source $file
+lib_files=( alias compfix completion env functions grep history local opt \
+            termsupport syntax theme key-bindings key abbreviations )
+
+for file in ${lib_files[@]}; do
+    source $ZSH/lib/$file.zsh
 done
 
 autoload -Uz compaudit compinit

@@ -1,3 +1,16 @@
+# colorize man pages
+export LESS_TERMCAP_mb=$(printf "\e[32m")
+export LESS_TERMCAP_md=$(printf "\e[97m")
+export LESS_TERMCAP_me=$(printf "\e[0m")
+export LESS_TERMCAP_se=$(printf "\e[0m")
+export LESS_TERMCAP_so=$(printf "\e[43;30m")
+export LESS_TERMCAP_ue=$(printf "\e[33m")
+export LESS_TERMCAP_us=$(printf "\e[1;31m")
+
+# ls colors & tab completion colors
+eval `dircolors $ZSH/colors/dircolors.ansi-dark`
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
 setopt prompt_subst
 
 git_status () {
@@ -12,26 +25,24 @@ git_status () {
     # unmerged
     $(echo "$_INDEX" | grep '^UU ' &> /dev/null) && _STATUS="$_STATUS%{$fg[red]%}?%{$reset_color%}"
     # stashed
-    $(git rev-parse --verify refs/stash >/dev/null 2>&1) && _STATUS="$_STATUS%{$fg_bold[magenta]%}∘%{$reset_color%}"
+    $(git rev-parse --verify refs/stash > /dev/null 2>&1) && _STATUS="$_STATUS%{$fg_bold[magenta]%}∘%{$reset_color%}"
     # ahead
     $(echo "$_INDEX" | grep '^## .*ahead' &> /dev/null) && _STATUS="$_STATUS%{$fg[cyan]%}▲%{$reset_color%}"
     # behind
     $(echo "$_INDEX" | grep '^## .*behind' &> /dev/null) && _STATUS="$_STATUS%{$fg[magenta]%}▼%{$reset_color%}"
     # diverged
-    $(echo "$_INDEX" | grep '^## .*diverged' &> /dev/null) && _STATUS="$_STATUS%{$fg_bold[red]%}≠%{$reset_color%}"
+    $(echo "$_INDEX" | grep '^## .*diverged' &> /dev/null) && _STATUS="$_STATUS%{$fg_bold[red]%}⧎%{$reset_color%}"
     echo $_STATUS
 }
 
 git_prompt () {
-    local _result=""
     local _branch="$(git symbolic-ref --short HEAD 2> /dev/null)"
     if [ "$_branch" ]; then
         _result="[%{$fg[white]%}$_branch"
         local _status=$(git_status)
         [ "$_status" ] && _result="$_result $_status"
-        _result="$_result%{$reset_color%}]"
+        echo "$_result%{$reset_color%}]"
     fi
-    echo $_result
 }
 
 autoload -Uz git_status git_prompt
@@ -44,12 +55,8 @@ else
     _PROMPT="%{$fg[green]%}$"
 fi
 
-PROMPT="$_USERNAME %{$fg_bold[white]%}%~%{$reset_color%}
-$_PROMPT%{$reset_color%} "
-
 N="%{$fg_bold[white]%}N%{$reset_color%}"
 I="%{$fg[yellow]%}I%{$reset_color%}"
-
 
 function zle-keymap-select {
     mode="${${KEYMAP/vicmd/${N}}/(main|viins)/${I}}"
@@ -60,4 +67,7 @@ zle -N zle-keymap-select
 
 mode=$I
 precmd() { mode=$I }
+
+PROMPT="$_USERNAME %{$fg_bold[white]%}%~%{$reset_color%}
+$_PROMPT%{$reset_color%} "
 RPROMPT='$(git_prompt)[${mode}]'

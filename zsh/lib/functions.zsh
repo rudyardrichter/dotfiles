@@ -72,3 +72,7 @@ function csv_to_github_table() {
     column -t |
     sed '2s/| /|:/g; 2s/[^|:]/-/g; 2s/| /|:/g; 2s/ //g'
 }
+
+function scut() {
+    cut -d ' ' -f $1 $2
+}

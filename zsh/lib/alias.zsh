@@ -1,5 +1,6 @@
 alias c='cat'
 alias e='vim'
+alias emacs='vim'
 alias map='xargs -n1'
 alias mkdir='mkdir -p'
 alias reload='source ~/.zshrc'
