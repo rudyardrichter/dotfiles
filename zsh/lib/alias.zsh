@@ -64,17 +64,17 @@ alias gdw='git diff --word-diff'
 alias gf='git fetch'
 alias gfa='git fetch --all --prune'
 alias gfo='git fetch origin'
-alias gg='git gui citool'
-alias gga='git gui citool --amend'
+pretty_fmt="format:'%C(yellow)%h %C(cyan)%s %C(auto)%d%Creset%n        %an <%ae>%n        %ai (%cr)%n'"
+alias gg="git log --name-status --pretty=$pretty_fmt"
+alias ggs="git log --stat --pretty=$pretty_fmt"
+alias gga="git log --graph --all --name-status --pretty=$pretty_fmt"
+alias ggas="git log --graph --all --stat --pretty=$pretty_fmt"
 alias gl='git pull'
-alias glg='git log --stat'
-alias glgp='git log --stat -p'
-alias glgg='git log --graph'
-alias glgga='git log --graph --decorate --all'
-alias glgm='git log --graph --max-count=10'
+alias gls='git log --stat'
+alias glsp='git log --stat -p'
+alias glg='git log --graph'
+alias glga='git log --graph --decorate --all'
 alias glo='git log --oneline --decorate'
-alias glol="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glola="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all"
 alias glog='git log --oneline --decorate --graph'
 alias gloga='git log --oneline --decorate --graph --all'
 alias gm='git merge'
