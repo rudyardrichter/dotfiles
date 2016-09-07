@@ -1,6 +1,5 @@
 typeset -Ag abbreviations
 abbreviations=(
-    'AG'    '| agrep'
     'EG'    '| egrep'
     'G'     '| grep'
     'C'     '| cut'
