@@ -25,7 +25,7 @@ git_status () {
     # unmerged
     $(echo "$_INDEX" | grep '^UU ' &> /dev/null) && _STATUS="$_STATUS%{$fg[red]%}?%{$reset_color%}"
     # stashed
-    $(git rev-parse --verify refs/stash > /dev/null 2>&1) && _STATUS="$_STATUS%{$fg_bold[magenta]%}∘%{$reset_color%}"
+    $(git rev-parse --verify refs/stash > /dev/null 2>&1) && _STATUS="$_STATUS%{$fg_bold[magenta]%}•%{$reset_color%}"
     # ahead
     $(echo "$_INDEX" | grep '^## .*ahead' &> /dev/null) && _STATUS="$_STATUS%{$fg[cyan]%}▲%{$reset_color%}"
     # behind
