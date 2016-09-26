@@ -1,16 +1,35 @@
-alias c='clear'
+alias c='cat'
 alias e='vim'
-alias o='open'
+alias emacs='vim'
 alias map='xargs -n1'
 alias mkdir='mkdir -p'
 alias reload='source ~/.zshrc'
 alias py='python'
+alias psa='ps aux'
+alias psg='ps aux | grep'
 
 # ls
 alias l='ls -A --color=auto'
 alias ll='ls -Aho --color=auto'
 alias lr='ls -AR --color=auto'
 alias ls='ls --color=auto'
+
+# directories
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
+alias -- -='cd -'
+alias 1='cd -'
+alias 2='cd -2'
+alias 3='cd -3'
+alias 4='cd -4'
+alias 5='cd -5'
+alias 6='cd -6'
+alias 7='cd -7'
+alias 8='cd -8'
+alias 9='cd -9'
+alias d='dirs -v | head -10'
 
 # git
 alias g='git'
@@ -40,22 +59,22 @@ alias gcm='git commit -m'
 alias gcp='git cherry-pick'
 alias gcs='git commit -S'
 alias gd='git diff'
-alias gdca='git diff --cached'
+alias gdc='git diff --cached'
 alias gdw='git diff --word-diff'
 alias gf='git fetch'
 alias gfa='git fetch --all --prune'
 alias gfo='git fetch origin'
-alias gg='git gui citool'
-alias gga='git gui citool --amend'
+pretty_fmt="format:'%C(yellow)%h %C(cyan)%s %C(auto)%d%Creset%n        %an <%ae>%n        %ai (%cr)%n'"
+alias gg="git log --name-status --pretty=$pretty_fmt"
+alias ggs="git log --stat --pretty=$pretty_fmt"
+alias gga="git log --graph --all --name-status --pretty=$pretty_fmt"
+alias ggas="git log --graph --all --stat --pretty=$pretty_fmt"
 alias gl='git pull'
-alias glg='git log --stat'
-alias glgp='git log --stat -p'
-alias glgg='git log --graph'
-alias glgga='git log --graph --decorate --all'
-alias glgm='git log --graph --max-count=10'
+alias gls='git log --stat'
+alias glsp='git log --stat -p'
+alias glg='git log --graph'
+alias glga='git log --graph --decorate --all'
 alias glo='git log --oneline --decorate'
-alias glol="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glola="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all"
 alias glog='git log --oneline --decorate --graph'
 alias gloga='git log --oneline --decorate --graph --all'
 alias gm='git merge'
