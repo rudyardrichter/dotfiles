@@ -1,4 +1,5 @@
-set tw=80
+set linebreak
+set breakindent
 let g:tex_flavor='latex'
 set bg=light
 colo lucius
@@ -22,6 +23,10 @@ nnoremap <leader>bt o\begin{tabular}{}<CR>\toprule<CR>\midrule<CR>\bottomrule<CR
 
 nnoremap <buffer> <leader>c mc0%<C-c>`c
 
+nnoremap j gj
+nnoremap k gk
+noremap H g^
+noremap L g$
 inoremap <TAB> \
 inoremap \ /
 inoremap ; {
