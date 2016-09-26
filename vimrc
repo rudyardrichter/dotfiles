@@ -17,6 +17,7 @@ Plugin 'gmarik/Vundle.vim'
 " my plugins:
 Plugin 'scrooloose/syntastic'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'flazz/vim-colorschemes'
 Plugin 'bling/vim-airline'
 "Plugin 'itchyny/lightline.vim'
 Plugin 'vim-airline/vim-airline-themes'
@@ -200,7 +201,7 @@ endif
 set t_Co=256
 
 if has("gui_running")
-    set guifont=Source\ Code\ Pro\ for\ Powerline\ 11
+    set guifont=Source\ Code\ Pro\ for\ Powerline:h12
 else
     set term=xterm-256color
     let g:airline_section_z = '%4l:%=%3.v'
