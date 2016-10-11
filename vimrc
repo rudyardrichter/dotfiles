@@ -45,8 +45,8 @@ endif
 
 " UltiSnips
 let g:UltiSnipsEditSplit="horizontal"
-let g:UltiSnipsSnippetDirectories=['snippet', '/home/rudayd/dotfiles/vim/bundle/vim-snippets/UltiSnips']
-let g:UltiSnipsSnippetsDir='/home/rudyard/.vim/snippet'
+let g:UltiSnipsSnippetDirectories=['snippet', '/Users/rudayd/dotfiles/vim/bundle/vim-snippets/UltiSnips']
+let g:UltiSnipsSnippetsDir='/Users/rudyard/.vim/snippet'
 
 " SimpylFold
 let g:SimpylFoldDocstring=1
@@ -148,7 +148,6 @@ noremap ` '
 noremap M `
 nnoremap <C-j> <C-e>
 nnoremap <C-k> <C-y>
-nnoremap <Tab> za
 
 nnoremap <Tab> za
 nnoremap <C-n> :set rnu!<CR>
