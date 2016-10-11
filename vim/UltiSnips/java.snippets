@@ -1,0 +1,11 @@
+snippet exc "raise runtime exception"
+throw new RuntimeException("$1");
+endsnippet
+
+snippet ifel "if else" b
+if ($1) {
+	$2${VISUAL}
+} else {
+	$0${VISUAL}
+}
+endsnippet
