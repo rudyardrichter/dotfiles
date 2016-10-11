@@ -140,6 +140,7 @@ noremap ` '
 
 nnoremap <C-j> <C-e>
 nnoremap <C-k> <C-y>
+nnoremap <Tab> za
 
 noremap <F2> :set list!<CR>
 inoremap <F2> <C-o>:set list!<CR>

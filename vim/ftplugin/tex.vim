@@ -13,10 +13,10 @@ nnoremap <leader>ul :w<CR>:silent !pdflatex -synctex=1 --interaction=batchmode %
 nnoremap <leader>ml :w<CR>:silent !pdflatex -synctex=1 --interaction=batchmode %<CR>:silent !/Applications/Skim.app/Contents/SharedSupport/displayline <C-R>=line('.')<CR> %<.pdf %<CR><C-L>
 
 nnoremap <leader>ba o\begin{align*}<CR>\end{align*}<C-c>
-nnoremap <leader>be o\begin{enumerate}<CR>\item<CR>\item<CR>\end{enumerate}<C-c>kk
+nnoremap <leader>be o\begin{enumerate}<CR>\item<CR>\end{enumerate}<C-c>kk
 nnoremap <leader>bf o\begin{figure}[!h]<CR>\centering<CR>\caption{}<CR>\end{figure}<C-c>
 nnoremap <leader>bg o\begin{gather*}<CR>\end{gather*}<C-c>
-nnoremap <leader>bi o\begin{itemize}<CR>\item<CR>\item<CR>\end{itemize}<C-c>
+nnoremap <leader>bi o\begin{itemize}<CR>\item<CR>\end{itemize}<C-c>
 nnoremap <leader>bq o\begin{equation*}<CR>\end{equation*}<C-c>
 nnoremap <leader>bs o\section*{}<C-c>
 nnoremap <leader>bt o\begin{tabular}{}<CR>\toprule<CR>\midrule<CR>\bottomrule<CR>\end{tabular}<C-c>
@@ -43,6 +43,11 @@ inoremap _ <
 inoremap ^ >
 inoremap / $
 inoremap $ /
+vnoremap <D-j> gj
+vnoremap <D-k> gk
+vnoremap <D-h> g^
+vnoremap <D-l> g$
+nnoremap <D-j> gj
 nnoremap <C-l> <C-c>:w<CR>:silent !pdflatex -synctex=1 --interaction=batchmode %<CR><C-L>
 inoremap <C-l> <C-c>:w<CR>:silent !pdflatex -synctex=1 --interaction=batchmode %<CR><C-L>
 nnoremap <C-x> <C-c>:w<CR>:silent !xelatex --interaction=batchmode --halt-on-error %<CR><C-L>
