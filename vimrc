@@ -21,12 +21,11 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'bling/vim-airline'
 "Plugin 'itchyny/lightline.vim'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'EricGebhart/SAS-Vim'
+Plugin 'morhetz/gruvbox'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tmhedberg/SimpylFold'
 if has('python')
     Plugin 'SirVer/ultisnips'
-    Plugin 'honza/vim-snippets'
 endif
 " close vundle section (don't touch)
 call vundle#end()
@@ -43,6 +42,14 @@ let g:airline_section_z = '%{g:airline_symbols.linenr}%4l:%=%3.v'
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
+
+" UltiSnips
+let g:UltiSnipsEditSplit="horizontal"
+let g:UltiSnipsSnippetDirectories=['snippet', '/home/rudayd/dotfiles/vim/bundle/vim-snippets/UltiSnips']
+let g:UltiSnipsSnippetsDir='/home/rudyard/.vim/snippet'
+
+" SimpylFold
+let g:SimpylFoldDocstring=1
 
 
 " ==== General Configuration ====
@@ -111,13 +118,15 @@ fu! CustomFoldText()
     let foldLevelStr = repeat("+", v:foldlevel) . repeat("-", fmax-v:foldlevel)
     let lineCount = line("$")
     let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
-    let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage) - 1)
+    let foldInfoLen = 2 + strwidth(foldSizeStr.foldPercentage.foldLevelStr)
+    let line = line[0:w-foldInfoLen]
+    let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage) + 1)
     return line . ' ' . expansionString . foldSizeStr . foldPercentage . foldLevelStr
 endf
 
 set foldenable
 set foldtext=CustomFoldText()
-
+set fillchars=fold:\ 
 
 " ==== Mappings/Bindings ====
 
@@ -125,9 +134,8 @@ set foldtext=CustomFoldText()
 nnoremap ; :
 nnoremap : ;
 nnoremap <CR> :w<CR>
-inoremap <C-J> <C-c>
 inoremap <C-CR> <C-c>:w<CR>
-inoremap <C-W> <C-c>:w<CR>
+inoremap <C-J> <C-c>:w<CR>
 
 " these make more sense
 noremap H ^
@@ -137,10 +145,13 @@ noremap L $
 noremap Y y$
 noremap ' `
 noremap ` '
-
+noremap M `
 nnoremap <C-j> <C-e>
 nnoremap <C-k> <C-y>
 nnoremap <Tab> za
+
+nnoremap <Tab> za
+nnoremap <C-n> :set rnu!<CR>
 
 noremap <F2> :set list!<CR>
 inoremap <F2> <C-o>:set list!<CR>
@@ -167,6 +178,9 @@ nnoremap <leader>nh :nohl<CR>
 
 " Remove Whitespace
 nnoremap <leader>rw :%s/\s\+$//<CR> :nohl<CR> :w<CR>
+
+" Save session
+nnoremap <leader>s :mksession<CR>
 
 " access vimrc more easily
 " Vimrc EDit

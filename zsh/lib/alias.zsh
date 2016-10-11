@@ -8,6 +8,7 @@ alias reload='source ~/.zshrc'
 alias psa='ps aux'
 alias psg='ps aux | grep'
 alias py='python'
+alias rsml='rlwrap sml'
 
 # ls
 alias l='gls -A --color=auto'
