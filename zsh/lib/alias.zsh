@@ -4,9 +4,11 @@ alias emacs='vim'
 alias map='xargs -n1'
 alias mkdir='mkdir -p'
 alias reload='source ~/.zshrc'
-alias py='python'
+alias pac='sudo pacman'
 alias psa='ps aux'
 alias psg='ps aux | grep'
+alias py='python'
+alias rsml='rlwrap sml'
 
 # ls
 alias l='ls -A --color=auto'
@@ -65,8 +67,8 @@ alias gf='git fetch'
 alias gfa='git fetch --all --prune'
 alias gfo='git fetch origin'
 pretty_fmt="format:'%C(yellow)%h %C(cyan)%s %C(auto)%d%Creset%n        %an <%ae>%n        %ai (%cr)%n'"
-alias gg="git log --name-status --pretty=$pretty_fmt"
-alias ggs="git log --stat --pretty=$pretty_fmt"
+alias gg="git log --graph --pretty=$pretty_fmt"
+alias ggs="git log --graph --stat --pretty=$pretty_fmt"
 alias gga="git log --graph --all --name-status --pretty=$pretty_fmt"
 alias ggas="git log --graph --all --stat --pretty=$pretty_fmt"
 alias gl='git pull'

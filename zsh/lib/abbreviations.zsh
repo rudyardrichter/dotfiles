@@ -9,7 +9,7 @@ abbreviations=(
     'M'     '| map'
     'P'     '|'
     'QLOG'  '> "Q$(date +%FT%R).log"'
-    'S'     '| sed'
+    'SE'    '| sed'
     'T'     '| tail'
     'U'     '| uniq'
     'W'     '| wc -l'

@@ -1,4 +1,5 @@
 export EDITOR='vim'
 export PAGER='less'
 export LESS='-R'
-export PATH="/Users/rudyard/Library/Haskell/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:/usr/texbin:/Users/rudyard/bin:$GEM_HOME/bin"
+export PATH=~/dotfiles/bin:/usr/lib/smlnj/bin:$PATH
+export SMLNJ_HOME=/usr/lib/smlnj

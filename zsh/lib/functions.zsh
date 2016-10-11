@@ -80,3 +80,7 @@ function csv_to_github_table() {
 function scut() {
     cut -d ' ' -f $1 $2
 }
+
+function pdf() {
+    evince $1 &
+}

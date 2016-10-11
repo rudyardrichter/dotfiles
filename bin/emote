@@ -1,0 +1,25 @@
+#!/bin/bash
+
+declare -A emotes
+emotes=( [shrug]='¯\_(ツ)_/¯'
+         [tableflip]='(╯°□°)╯︵ ┻━┻'
+         [barro]='ʕ •ᴥ•ʔ'
+         [lenny]='( ͡° ͜ʖ ͡°)'
+         [satan]='ψ(｀∇´)ψ'
+         [shades]='(•_•) ( •_•)>⌐■-■ (⌐■_■)'
+         [squid]='<コ:彡'
+         [walrus]='(:3 っ)っ'
+         [fish]='<º)))><'
+         [sad]='(╥﹏╥)'
+         [whee]='ᕕ( ᐛ )ᕗ'
+       )
+
+if [[ -n ${emotes[$1]} ]]; then
+    echo ${emotes[$1]}
+else
+    for key in "${!emotes[@]}"; do
+        echo -e "$key ${emotes[$key]}"
+    done | col
+    echo "$(basename $0) <emote>"
+    exit 1
+fi
