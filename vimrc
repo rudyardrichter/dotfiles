@@ -17,12 +17,11 @@ Plugin 'gmarik/Vundle.vim'
 " my plugins:
 Plugin 'scrooloose/syntastic'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'bling/vim-airline'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'bling/vim-airline'
 "Plugin 'itchyny/lightline.vim'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'morhetz/gruvbox'
-Plugin 'EricGebhart/SAS-Vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tmhedberg/SimpylFold'
 if has('python')
@@ -48,6 +47,7 @@ endif
 let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsSnippetDirectories=['snippet', '/home/rudayd/dotfiles/vim/bundle/vim-snippets/UltiSnips']
 let g:UltiSnipsSnippetsDir='/home/rudyard/.vim/snippet'
+
 
 " SimpylFold
 let g:SimpylFoldDocstring=1
@@ -217,7 +217,7 @@ endif
 set t_Co=256
 
 if has("gui_running")
-    set guifont=Source\ Code\ Pro\ for\ Powerline\ 11
+    set guifont=Source\ Code\ Pro\ for\ Powerline:h12
 else
     set term=xterm-256color
     let g:airline_section_z = '%4l:%=%3.v'

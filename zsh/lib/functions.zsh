@@ -1,5 +1,5 @@
 function zsh_stats() {
-  fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n30
+    fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n30
 }
 
 function aes-encrypt() {
@@ -80,7 +80,6 @@ function csv_to_github_table() {
 function scut() {
     cut -d ' ' -f $1 $2
 }
-
 function pdf() {
     evince $1 &
 }
