@@ -151,6 +151,8 @@ nnoremap <C-k> <C-y>
 
 nnoremap <Tab> za
 nnoremap <C-n> :set rnu!<CR>
+nnoremap , ;
+nnoremap : ,
 
 noremap <F2> :set list!<CR>
 inoremap <F2> <C-o>:set list!<CR>

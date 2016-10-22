@@ -3,8 +3,7 @@
 zstyle ":completion:*:*:*vim:*:*files" ignored-patterns \
     "*?.o" "*?.hi" "*?.aux" "*?.pdf" "*?.gz" "*?.log" "*?.out" "*?.aes" "*?.toc"
 ## open
-zstyle ":completion:*:*:open:*:*files" ignored-patterns \
-    "*?.tex" "*?.gz" "*?.aes"
+zstyle ":completion:*:*:pdf:*:*" file-patterns '*.pdf'
 
 ################################################################################
 # TODO: FIXME

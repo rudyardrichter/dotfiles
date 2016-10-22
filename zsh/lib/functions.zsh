@@ -84,3 +84,7 @@ function scut() {
 function pdf() {
     evince $1 &
 }
+
+function cl() {
+    cd $1 && l
+}
