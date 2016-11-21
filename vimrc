@@ -24,6 +24,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'morhetz/gruvbox'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tmhedberg/SimpylFold'
+Plugin 'jez/vim-better-sml'
 if has('python')
     Plugin 'SirVer/ultisnips'
 endif
@@ -79,12 +80,10 @@ set wrap                        " wrap text
 set splitbelow                  " more natural than default
 set splitright                  " ^
 set lazyredraw                  " what it says
-set shiftround                  " round indentation to shiftwidth
 set lcs=tab:▸\ ,trail:·,nbsp:_  " invisible characters to display
-"set list                        " display invisible characters (see above)
 set undofile                    " maintain persistent undo history
-set undodir=~/.vim/undo         " directory for undo history storage
-set backupdir=~/.vim/swp        " directory for swap files
+set undodir=/home/rudyard/.vim/undo     " directory for undo history storage
+set backupdir=/home/rudyard/.vim/swp    " directory for swap files
 set gdefault                    " include /g in sed by default
 
 
@@ -128,6 +127,34 @@ endf
 set foldenable
 set foldtext=CustomFoldText()
 set fillchars=fold:\ 
+
+
+" ==== Preview ====
+
+func! PreviewWord()
+  if &previewwindow			" don't do this in the preview window
+    return
+  endif
+  let w = expand("<cword>")		" get the word under cursor
+  if w =~ '\a'			" if the word contains a letter
+
+    " Delete any existing highlight before showing another tag
+    silent! wincmd P			" jump to preview window
+    if &previewwindow			" if we really get there...
+      match none			" delete existing highlight
+      wincmd p			" back to old window
+    endif
+
+    " Try displaying a matching tag for the word under the cursor
+    try
+       exe "ptag " . w
+    catch
+      return
+    endtry
+  endif
+endfun
+
+
 
 " ==== Mappings/Bindings ====
 
@@ -190,6 +217,8 @@ nnoremap <leader>ved :e $MYVIMRC<CR>:nohl<CR>
 nnoremap <leader>vsp :split $MYVIMRC<CR>:nohl<CR>
 " Vimrc SourCe
 nnoremap <leader>vsc :source $MYVIMRC<CR>:nohl<CR>
+
+nnoremap <leader>] <C-w>}
 
 
 " ==== Display ====
