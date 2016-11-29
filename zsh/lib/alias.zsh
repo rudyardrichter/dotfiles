@@ -83,7 +83,7 @@ alias ggs="git log --graph --stat --pretty=$pretty_fmt"
 alias gl='git pull'
 alias gm='git merge'
 alias gmom='git merge origin/master'
-alias gp='git push'
+alias gp='git push | grep -v hint'
 alias gpristine='git reset --hard && git clean -dfx'
 alias gr='git remote'
 alias gra='git remote add'

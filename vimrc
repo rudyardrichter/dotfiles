@@ -24,6 +24,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'morhetz/gruvbox'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tmhedberg/SimpylFold'
+Plugin 'jez/vim-better-sml'
 if has('python')
     Plugin 'SirVer/ultisnips'
 endif
@@ -127,6 +128,33 @@ endf
 set foldenable
 set foldtext=CustomFoldText()
 set fillchars=fold:\ 
+
+
+" ==== Preview ====
+
+func! PreviewWord()
+  if &previewwindow                     " don't do this in the preview window
+    return
+  endif
+  let w = expand("<cword>")             " get the word under cursor
+  if w =~ '\a'                  " if the word contains a letter
+
+    " Delete any existing highlight before showing another tag
+    silent! wincmd P                    " jump to preview window
+    if &previewwindow                   " if we really get there...
+      match none                        " delete existing highlight
+      wincmd p                  " back to old window
+    endif
+
+    " Try displaying a matching tag for the word under the cursor
+    try
+       exe "ptag " . w
+    catch
+      return
+    endtry
+  endif
+endfun
+
 
 " ==== Mappings/Bindings ====
 
