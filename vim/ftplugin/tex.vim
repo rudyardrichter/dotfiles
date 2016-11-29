@@ -6,6 +6,19 @@ colo lucius
 let g:airline_theme='lucius'
 AirlineRefresh
 
+" let g:UltisnipsExpandTrigger = "<TAB>"
+
+let g:syntastic_quiet_messages = {
+    \ "type": "style"
+    \}
+
+"let g:syntastic_quiet_messages = {
+"    \ "!level": "warnings",
+"    \ "type": "style",
+"    \ "regex": '.*',
+"    \ "file:p": '.*'
+"    \}
+
 let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_CompileRule_pdf = 'pdflatex -synctex=1 --interaction=batchmode $*'
 let g:Tex_ViewRule_pdf = 'open -a Skim'
@@ -27,22 +40,23 @@ nnoremap j gj
 nnoremap k gk
 noremap H g^
 noremap L g$
-inoremap <TAB> \
-inoremap \ /
-inoremap ; {
-inoremap : [
-inoremap ' }
-inoremap " ]
-inoremap [ ;
-inoremap ] '
-inoremap { :
-inoremap } "
-inoremap < _
-inoremap > ^
-inoremap _ <
-inoremap ^ >
-inoremap / $
-inoremap $ /
+nnoremap / \
+nnoremap \ /
+"inoremap \ /
+"inoremap ; {
+"inoremap : [
+"inoremap ' }
+"inoremap " ]
+"inoremap [ ;
+"inoremap ] '
+"inoremap { :
+"inoremap } "
+"inoremap < _
+"inoremap > ^
+"inoremap _ <
+"inoremap ^ >
+"inoremap / $
+"inoremap $ /
 vnoremap <D-j> gj
 vnoremap <D-k> gk
 vnoremap <D-h> g^

@@ -2,6 +2,26 @@ priority -50
 
 extends texmath
 
+snippet k "Command with curly braces and no argument" i
+\\${1:cmd}{}$0
+endsnippet
+
+snippet c "Command with curly braces and an argument" i
+\\${1:cmd}{${2:arg}}$0
+endsnippet
+
+snippet p "Command with parens" i
+\\${1:op}($2)$0
+endsnippet
+
+snippet m "Math mode" i
+\$$1\$$0
+endsnippet
+
+snippet q "Equation"
+\\[ $0 \\]
+endsnippet
+
 snippet "b(egin)?" "begin{} / end{}" br
 \begin{${1:environment}}
 	${0:${VISUAL}}
@@ -53,8 +73,8 @@ snippet desc "Description" b
 endsnippet
 
 snippet it "Individual item" b
-\item ${1}
-$0
+\item
+    $0
 endsnippet
 
 snippet part "Part" b
@@ -71,22 +91,34 @@ snippet cha "Chapter" b
 ${0}
 endsnippet
 
-snippet sec "Section" b
-\section{${1:section name}}
+snippet sec "Section (no label)" b
+\section*{${1:Section}}
+
+${0}
+endsnippet
+
+snippet secl "Section with label" b
+\section{${1:Section}}
 \label{sec:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
 
 ${0}
 endsnippet
 
-snippet sub "Subsection" b
-\subsection{${1:subsection name}}
+snippet sub "Subsection (no label)" b
+\subsection*{${1:Subsection}}
+
+${0}
+endsnippet
+
+snippet subl "Subsection with label" b
+\subsection{${1:Subsection}}
 \label{sub:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
 
 ${0}
 endsnippet
 
 snippet ssub "Subsubsection" b
-\subsubsection{${1:subsubsection name}}
+\subsubsection{${1:Subsubsection}}
 \label{ssub:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
 
 ${0}
