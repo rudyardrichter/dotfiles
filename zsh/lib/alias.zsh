@@ -9,6 +9,7 @@ alias psa='ps aux'
 alias psg='ps aux | grep'
 alias py='python'
 alias rsml='rlwrap sml'
+alias todo='grep -I TODO -r .'
 
 # ls
 alias l='ls -A --color=auto'

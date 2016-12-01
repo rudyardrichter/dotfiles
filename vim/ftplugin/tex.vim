@@ -27,7 +27,8 @@ nnoremap j gj
 nnoremap k gk
 noremap H g^
 noremap L g$
-inoremap <TAB> \
+"inoremap <TAB> \
+inoremap / \
 inoremap \ /
 inoremap ; {
 inoremap : [
@@ -41,8 +42,8 @@ inoremap < _
 inoremap > ^
 inoremap _ <
 inoremap ^ >
-inoremap / $
-inoremap $ /
+inoremap ? $
+inoremap $ ?
 vnoremap <D-j> gj
 vnoremap <D-k> gk
 vnoremap <D-h> g^
