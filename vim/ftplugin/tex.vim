@@ -6,7 +6,12 @@ colo lucius
 let g:airline_theme='lucius'
 AirlineRefresh
 
-" let g:UltisnipsExpandTrigger = "<TAB>"
+"set cole=2
+"let g:tex_conceal= 'adgm'
+"hi Conceal guibg=NONE
+"hi! link Conceal Operator
+"
+"syn match texMathSymbol '\\implies\>' contained conceal cchar=⇒
 
 let g:syntastic_quiet_messages = {
     \ "type": "style"
@@ -40,23 +45,20 @@ nnoremap j gj
 nnoremap k gk
 noremap H g^
 noremap L g$
-nnoremap / \
-nnoremap \ /
-"inoremap \ /
-"inoremap ; {
-"inoremap : [
-"inoremap ' }
-"inoremap " ]
-"inoremap [ ;
-"inoremap ] '
-"inoremap { :
-"inoremap } "
-"inoremap < _
-"inoremap > ^
-"inoremap _ <
-"inoremap ^ >
-"inoremap / $
-"inoremap $ /
+inoremap / \
+inoremap \ /
+inoremap ; {
+inoremap : [
+inoremap ' }
+inoremap " ]
+inoremap [ ;
+inoremap ] '
+inoremap { :
+inoremap } "
+inoremap < _
+inoremap > ^
+inoremap _ <
+inoremap ^ >
 vnoremap <D-j> gj
 vnoremap <D-k> gk
 vnoremap <D-h> g^

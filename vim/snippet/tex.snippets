@@ -1,6 +1,6 @@
-priority -50
-
 extends texmath
+
+priority 0
 
 snippet k "Command with curly braces and no argument" i
 \\${1:cmd}{}$0
@@ -22,6 +22,8 @@ snippet q "Equation"
 \\[ $0 \\]
 endsnippet
 
+priority 1
+
 snippet "b(egin)?" "begin{} / end{}" br
 \begin{${1:environment}}
 	${0:${VISUAL}}
@@ -33,6 +35,29 @@ snippet tab "tabular / array environment" b
 $0${2/((?<=.)c|l|r)|./(?1: & )/g}
 \end{$1${1/(t)$|(a)$|(.*)/(?1:abular)(?2:rray)/}}
 endsnippet
+
+snippet it "Individual item" b
+\item
+    $0
+endsnippet
+
+snippet sub "Subsection (no label)" b
+\subsection*{${1:Subsection}}
+
+${0}
+endsnippet
+
+snippet sec "Section (no label)" b
+\section*{${1:Section}}
+
+${0}
+endsnippet
+
+snippet em "emph"
+\emph{$1}$0
+endsnippet
+
+priority 2
 
 snippet table "Table environment" b
 \begin{table}[${1:htpb}]
@@ -72,11 +97,6 @@ snippet desc "Description" b
 \end{description}
 endsnippet
 
-snippet it "Individual item" b
-\item
-    $0
-endsnippet
-
 snippet part "Part" b
 \part{${1:part name}}
 \label{prt:${2:${1/(\w+)|\W+/(?1:\L$0\E:_)/ga}}}
@@ -91,21 +111,9 @@ snippet cha "Chapter" b
 ${0}
 endsnippet
 
-snippet sec "Section (no label)" b
-\section*{${1:Section}}
-
-${0}
-endsnippet
-
 snippet secl "Section with label" b
 \section{${1:Section}}
 \label{sec:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
-
-${0}
-endsnippet
-
-snippet sub "Subsection (no label)" b
-\subsection*{${1:Subsection}}
 
 ${0}
 endsnippet
@@ -138,16 +146,6 @@ snippet subp "Subparagraph" b
 ${0}
 endsnippet
 
-snippet ni "Non-indented paragraph" b
-\noindent
-${0}
-endsnippet
-
 snippet pac "Package" b
 \usepackage[${1:options}]{${2:package}}$0
 endsnippet
-
-snippet lp "Long parenthesis"
-\left(${1:${VISUAL:contents}}\right)$0
-endsnippet
-# vim:ft=snippets:
