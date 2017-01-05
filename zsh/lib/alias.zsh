@@ -1,3 +1,5 @@
+alias -s pdf=pdf
+
 alias c='cat'
 alias e='vim'
 alias emacs='vim'

@@ -1,7 +1,7 @@
-bindkey '^A' beginning-of-line
-bindkey '^E' end-of-line
-bindkey '^P' up-line-or-search
-bindkey '^N' down-line-or-search
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
+bindkey '^p' up-line-or-search
+bindkey '^n' down-line-or-search
 bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' forward-word

@@ -19,7 +19,7 @@ snippet m "Math mode" i
 endsnippet
 
 snippet q "Equation"
-\\[ $0 \\]
+\\[ $1 \\]$0
 endsnippet
 
 snippet "b(egin)?" "begin{} / end{}" br
@@ -117,7 +117,13 @@ snippet subl "Subsection with label" b
 ${0}
 endsnippet
 
-snippet ssub "Subsubsection" b
+snippet ssub "Subsubsection without label" b
+\subsubsection*{${1:Subsubsection}}
+
+${0}
+endsnippet
+
+snippet ssubl "Subsubsection with label" b
 \subsubsection{${1:Subsubsection}}
 \label{ssub:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
 
