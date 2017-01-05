@@ -155,7 +155,6 @@ func! PreviewWord()
 endfun
 
 
-
 " ==== Mappings/Bindings ====
 
 " life is good
