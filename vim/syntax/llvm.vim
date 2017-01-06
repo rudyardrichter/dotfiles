@@ -1,12 +1,12 @@
 " Vim syntax file
-" " Language:   llvm
-" " Maintainer: The LLVM team, http://llvm.org/
-" " Version:      $Revision: 137806 $
+" Language:   llvm
+" Maintainer: The LLVM team, http://llvm.org/
+" Version:      $Revision: 137806 $
 
 if version < 600
-    syntax clear
+  syntax clear
 elseif exists("b:current_syntax")
-    finish
+  finish
 endif
 
 syn case match
@@ -82,6 +82,7 @@ syn match  llvmSpecialComment /;\s*XFAIL:.*$/
 syn match  llvmSpecialComment /;\s*XTARGET:.*$/
 
 if version >= 508 || !exists("did_c_syn_inits")
+<<<<<<< HEAD
     if version < 508
         let did_c_syn_inits = 1
         command -nargs=+ HiLink hi link <args>
@@ -105,6 +106,31 @@ if version >= 508 || !exists("did_c_syn_inits")
     HiLink llvmIdentifier Identifier
 
     delcommand HiLink
+=======
+  if version < 508
+    let did_c_syn_inits = 1
+    command -nargs=+ HiLink hi link <args>
+  else
+    command -nargs=+ HiLink hi def link <args>
+  endif
+
+  HiLink llvmType Type
+  HiLink llvmStatement Statement
+  HiLink llvmNumber Number
+  HiLink llvmComment Comment
+  HiLink llvmString String
+  HiLink llvmLabel Label
+  HiLink llvmKeyword Keyword
+  HiLink llvmBoolean Boolean
+  HiLink llvmFloat Float
+  HiLink llvmNoName Identifier
+  HiLink llvmConstant Constant
+  HiLink llvmSpecialComment SpecialComment
+  HiLink llvmError Error
+  HiLink llvmIdentifier Identifier
+
+  delcommand HiLink
+>>>>>>> origin/master
 endif
 
 let b:current_syntax = "llvm"

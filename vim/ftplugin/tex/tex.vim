@@ -6,11 +6,21 @@ colo lucius
 let g:airline_theme='lucius'
 AirlineRefresh
 
-" let g:UltisnipsExpandTrigger = "<TAB>"
+nnoremap <leader>f :call MakeTexFolds(1)<CR>
+
+"set cole=2
+"let g:tex_conceal= 'adgm'
+"hi Conceal guibg=NONE
+"hi! link Conceal Operator
+"
+"syn match texMathSymbol '\\implies\>' contained conceal cchar=⇒
 
 let g:syntastic_quiet_messages = {
     \ "type": "style"
     \}
+
+let g:UltiSnipsJumpForwardTrigger="<CR>"
+let g:UltiSnipsJumpBackwardTrigger="<S-CR>"
 
 "let g:syntastic_quiet_messages = {
 "    \ "!level": "warnings",
@@ -40,7 +50,6 @@ nnoremap j gj
 nnoremap k gk
 noremap H g^
 noremap L g$
-"inoremap <TAB> \
 inoremap / \
 inoremap \ /
 inoremap ; {
