@@ -121,13 +121,13 @@ fu! CustomFoldText()
     let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
     let foldInfoLen = 2 + strwidth(foldSizeStr.foldPercentage.foldLevelStr)
     let line = line[0:w-foldInfoLen]
-    let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage) + 1)
-    return line . ' ' . expansionString . foldSizeStr . foldPercentage . foldLevelStr
+    let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage) + 2)
+    return line . ' ' . expansionString . foldSizeStr . foldPercentage . foldLevelStr . ' '
 endf
 
 set foldenable
 set foldtext=CustomFoldText()
-set fillchars=fold:\ 
+set fillchars=fold:.
 
 
 " ==== Preview ====

@@ -6,6 +6,8 @@ colo lucius
 let g:airline_theme='lucius'
 AirlineRefresh
 
+nnoremap <leader>f :call MakeTexFolds(1)<CR>
+
 "set cole=2
 "let g:tex_conceal= 'adgm'
 "hi Conceal guibg=NONE
@@ -16,6 +18,9 @@ AirlineRefresh
 let g:syntastic_quiet_messages = {
     \ "type": "style"
     \}
+
+let g:UltiSnipsJumpForwardTrigger="<CR>"
+let g:UltiSnipsJumpBackwardTrigger="<S-CR>"
 
 "let g:syntastic_quiet_messages = {
 "    \ "!level": "warnings",
