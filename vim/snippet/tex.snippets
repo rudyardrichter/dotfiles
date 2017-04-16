@@ -10,8 +10,12 @@ snippet c "Command with curly braces and an argument" i
 \\${1:cmd}{${2:arg}}$0
 endsnippet
 
-snippet p "Command with parens" i
-\\${1:op}($2)$0
+snippet p "Parens" i
+\\p{$1}$0
+endsnippet
+
+snippet f "Fraction" i
+\\f{$1}{$2}$0
 endsnippet
 
 snippet m "Math mode" i
@@ -23,6 +27,10 @@ snippet q "Equation"
 endsnippet
 
 priority 1
+
+snippet op "Command with parens" i
+\\${1:op}($2)$0
+endsnippet
 
 snippet "b(egin)?" "begin{} / end{}" br
 \begin{${1:environment}}
@@ -55,6 +63,10 @@ endsnippet
 
 snippet em "emph" i
 \emph{$1}$0
+endsnippet
+
+snippet bf "textbf" i
+\textbf{$1}$0
 endsnippet
 
 priority 2

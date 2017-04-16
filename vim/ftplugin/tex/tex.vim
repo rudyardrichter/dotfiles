@@ -19,9 +19,6 @@ let g:syntastic_quiet_messages = {
     \ "type": "style"
     \}
 
-let g:UltiSnipsJumpForwardTrigger="<CR>"
-let g:UltiSnipsJumpBackwardTrigger="<S-CR>"
-
 "let g:syntastic_quiet_messages = {
 "    \ "!level": "warnings",
 "    \ "type": "style",

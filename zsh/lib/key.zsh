@@ -9,6 +9,8 @@ bindkey '^b' backward-word
 bindkey '^r' history-incremental-search-backward
 bindkey '^j' down-line-or-beginning-search
 bindkey '^k' up-line-or-beginning-search
+bindkey '^u' kill-whole-line
+bindkey '^y' yank
 bindkey -M vicmd v edit-command-line
 bindkey -M vicmd k up-line-or-search
 bindkey -M vicmd j down-line-or-search

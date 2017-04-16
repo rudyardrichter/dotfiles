@@ -207,7 +207,7 @@ nnoremap <leader>nh :nohl<CR>
 nnoremap <leader>rw :%s/\s\+$//<CR> :nohl<CR> :w<CR>
 
 " Save session
-nnoremap <leader>s :mksession<CR>
+nnoremap <leader>s :mksession!<CR>
 
 " access vimrc more easily
 " Vimrc EDit

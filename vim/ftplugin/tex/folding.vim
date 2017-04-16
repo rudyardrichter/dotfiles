@@ -120,7 +120,7 @@ function! MakeTexFolds(force)
 	endif
 
 	if !exists('g:Tex_FoldedSections')
-		let g:Tex_FoldedSections = 'part,chapter,section,'
+		let g:Tex_FoldedSections = 'part,chapter,problem,subproblem,section,'
 								\. 'subsection,subsubsection,paragraph'
 	endif
 

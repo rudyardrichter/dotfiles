@@ -35,6 +35,6 @@ urgency.blocked.coefficient                = -5.0 # blocked by other tasks
 urgency.waiting.coefficient                = -3.0 # waiting task
 
 # urgency.user.tag
-urgency.user.tag.edu.coefficient           =  5.0
+#urgency.user.tag.edu.coefficient           =  5.0
 #urgency.user.project.<project>.coefficient =  5.0 # specific project
 #urgency.uda.<name>.coefficient             =  5.0 # specific UDA
