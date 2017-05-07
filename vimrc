@@ -25,6 +25,7 @@ Plugin 'morhetz/gruvbox'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'jez/vim-better-sml'
+Plugin 'majutsushi/tagbar'
 if has('python')
     Plugin 'SirVer/ultisnips'
 endif
@@ -33,11 +34,17 @@ call vundle#end()
 filetype plugin indent on
 
 
+"
+let mapleader="\<space>"
+set notimeout
+
+
 " ==== Plugin Settings ====
 
 " Airline
 let g:airline_powerline_fonts = 1
-let g:Powerline_symbols = 'fancy'
+let g:airline_left_sep = ""
+let g:airline_right_sep = ""
 " same as default, but without the 'X%' part
 let g:airline_section_z = '%{g:airline_symbols.linenr}%4l:%=%3.v'
 if !exists('g:airline_symbols')
@@ -52,6 +59,11 @@ let g:UltiSnipsSnippetsDir='/home/rudyard/.vim/snippet'
 
 " SimpylFold
 let g:SimpylFoldDocstring=1
+
+
+" Tagbar
+nnoremap <leader>t :TagbarToggle<CR>
+let g:airline#extensions#tagbar#enabled=0
 
 
 " ==== General Configuration ====
@@ -188,9 +200,6 @@ nnoremap <Up>    <C-w>k
 nnoremap <Down>  <C-w>j
 nnoremap <Left>  <C-w>h
 nnoremap <Right> <C-w>l
-
-let mapleader="\<space>"
-set notimeout
 
 " cd
 nnoremap <leader>d :cd %:h<CR>
