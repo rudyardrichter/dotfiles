@@ -68,10 +68,10 @@ vnoremap <D-k> gk
 vnoremap <D-h> g^
 vnoremap <D-l> g$
 nnoremap <D-j> gj
-nnoremap <C-l> <C-c>:w<CR>:silent !pdflatex -synctex=1 --interaction=batchmode %<CR><C-L>
-inoremap <C-l> <C-c>:w<CR>:silent !pdflatex -synctex=1 --interaction=batchmode %<CR><C-L>
-nnoremap <C-x> <C-c>:w<CR>:silent !xelatex --interaction=batchmode --halt-on-error %<CR><C-L>
-inoremap <C-x> <C-c>:w<CR>:silent !xelatex --interaction=batchmode --halt-on-error %<CR><C-L>
+nnoremap <C-l> <C-c>:w<CR>:AsyncRun pdflatex -synctex=1 --interaction=batchmode %<CR><C-L>
+inoremap <C-l> <C-c>:w<CR>:AsyncRun pdflatex -synctex=1 --interaction=batchmode %<CR><C-L>
+nnoremap <C-x> <C-c>:w<CR>:AsyncRun xelatex --interaction=batchmode --halt-on-error %<CR><C-L>
+inoremap <C-x> <C-c>:w<CR>:AsyncRun xelatex --interaction=batchmode --halt-on-error %<CR><C-L>
 
 function! WC()
     let filename = expand("%")
