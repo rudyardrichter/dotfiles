@@ -85,30 +85,6 @@ hs.hotkey.bind(keys, '.', hs.hints.windowHints)
 hs.hotkey.bind(keys, 'g', hs.grid.show)
 
 --------------------------------------------------------------------------------
--- Caffeinate
-
-local caffeine = hs.menubar.new()
-
-function setCaffeineDisplay(state)
-    if state then
-        caffeine:setIcon("~/.hammerspoon/on.pdf")
-    else
-        caffeine:setIcon("~/.hammerspoon/off.pdf")
-    end
-end
-
-function caffeineClicked()
-    setCaffeineDisplay(hs.caffeinate.toggle("displayIdle"))
-end
-
-if caffeine then
-    caffeine:setClickCallback(caffeineClicked)
-    setCaffeineDisplay(hs.caffeinate.get("displayIdle"))
-end
-
---------------------------------------------------------------------------------
-
---------------------------------------------------------------------------------
 
 -- Notify user that Hammerspoon config has loaded.
 hs.notify.new({
