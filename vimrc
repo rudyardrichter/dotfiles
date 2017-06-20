@@ -1,36 +1,22 @@
-" Rudyard Richter's vimrc
+" ==== Plugins ====
 
-
-" use vim settings, not vi
-set nocompatible
-
-
-" ==== Vundle ====
-
-" necessary for vundle (don't touch)
-"""
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-"""
-" my plugins:
-Plugin 'scrooloose/syntastic'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'bling/vim-airline'
-"Plugin 'itchyny/lightline.vim'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'morhetz/gruvbox'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'jez/vim-better-sml'
+call plug#begin('~/.vim/plugged')
+Plug 'skywind3000/asyncrun.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'morhetz/gruvbox'
+Plug 'scrooloose/syntastic'
 if has('python')
-    Plugin 'SirVer/ultisnips'
+    Plug 'SirVer/ultisnips'
 endif
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'altercation/vim-colors-solarized'
+Plug 'flazz/vim-colorschemes'
+"Plug 'itchyny/lightline.vim'
+Plug 'tmhedberg/SimpylFold', {'for': ['python']}
+Plug 'jez/vim-better-sml', {'for': ['sml']}
 " close vundle section (don't touch)
-call vundle#end()
-filetype plugin indent on
+call plug#end()
 
 
 " ==== Plugin Settings ====
@@ -43,6 +29,8 @@ let g:airline_section_z = '%{g:airline_symbols.linenr}%4l:%=%3.v'
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 
 " UltiSnips
 let g:UltiSnipsEditSplit="horizontal"
@@ -58,6 +46,7 @@ let g:SimpylFoldDocstring=1
 filetype on
 filetype plugin on
 filetype indent on
+set nocompatible                " use vim settings, not vi
 set confirm                     " ask to save instead of failing
 set wildmenu                    " diplay completion options
 set backspace=indent,eol,start  " allow backspace on everyting
@@ -160,7 +149,8 @@ endfun
 
 " life is good
 nnoremap ; :
-nnoremap : ;
+nnoremap : ,
+nnoremap , ;
 nnoremap <CR> :w<CR>
 inoremap <C-CR> <C-c>:w<CR>
 inoremap <C-J> <C-c>:w<CR>

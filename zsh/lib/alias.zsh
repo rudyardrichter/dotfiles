@@ -16,6 +16,9 @@ alias ll='gls -Aho --color=auto'
 alias lr='gls -AR --color=auto'
 alias ls='gls --color=auto'
 
+# gnu
+alias sort='gsort'
+
 # directories
 alias -g ...='../..'
 alias -g ....='../../..'
