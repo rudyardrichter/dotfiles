@@ -23,7 +23,8 @@ call plug#end()
 
 " Airline
 let g:airline_powerline_fonts = 1
-let g:Powerline_symbols = 'fancy'
+let g:airline_left_sep = ""
+let g:airline_right_sep = ""
 " same as default, but without the 'X%' part
 let g:airline_section_z = '%{g:airline_symbols.linenr}%4l:%=%3.v'
 if !exists('g:airline_symbols')
@@ -161,8 +162,10 @@ noremap J mjJ`j
 noremap K <nop>
 noremap L $
 noremap Y y$
-noremap ' `
-noremap ` '
+
+" TODO
+noremap , `
+noremap ' ,
 noremap M `
 nnoremap <C-j> <C-e>
 nnoremap <C-k> <C-y>
@@ -234,7 +237,4 @@ set t_Co=256
 
 if has("gui_running")
     set guifont=Source\ Code\ Pro\ for\ Powerline:h12
-else
-    set term=xterm-256color
-    let g:airline_section_z = '%4l:%=%3.v'
 endif
