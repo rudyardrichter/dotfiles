@@ -38,11 +38,13 @@ local keys_shift = {"ctrl", "alt", "shift" }
 --------------------------------------------------------------------------------
 -- Applications
 
-hs.hotkey.bind(keys, 'd', function () hs.application.launchOrFocus("Dictionary") end)
-hs.hotkey.bind(keys, 'space', function () hs.application.launchOrFocus("iterm") end)
-hs.hotkey.bind(keys, '1', function () hs.application.launchOrFocus("MacVim") end)
-hs.hotkey.bind(keys, '2', function () hs.application.launchOrFocus("Skim") end)
-hs.hotkey.bind(keys, 'c', function () hs.application.launchOrFocus("Google Chrome") end)
+function bindkeysLaunch(shortcut, app)
+    hs.hotkey.bind(keys, shortcut, function() hs.application.launchOrFocus(app) end)
+end
+
+bindkeysLaunch('d', "Dictionary")
+bindkeysLaunch('space', "iterm")
+bindkeysLaunch('c', "Google Chrome")
 
 --------------------------------------------------------------------------------
 -- Window/Grid Operations
