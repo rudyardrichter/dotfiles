@@ -12,6 +12,7 @@ Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 Plug 'flazz/vim-colorschemes'
+Plug 'scrooloose/nerdtree'
 "Plug 'itchyny/lightline.vim'
 Plug 'tmhedberg/SimpylFold', {'for': ['python']}
 Plug 'jez/vim-better-sml', {'for': ['sml']}
@@ -52,14 +53,12 @@ set confirm                     " ask to save instead of failing
 set wildmenu                    " diplay completion options
 set backspace=indent,eol,start  " allow backspace on everyting
 set history=1000                " store cmd history
-set undolevels=1000             " lots of undo memory
 set showcmd                     " show incomplete commands
 set gcr=a:blinkon0              " no cursor blink
 set noerrorbells                " no beeping
 set novisualbell                " no flashing
 set mouse=a                     " enable mouse
 set cmdheight=1                 " always have cmd bar
-set scrolloff=5                 " leave space when scrolling at edges
 set autoread                    " read external changes
 set ignorecase                  " ignore case in search...
 set smartcase                   " ...unless it has capitals
@@ -71,16 +70,15 @@ set splitright                  " ^
 set lazyredraw                  " what it says
 set shiftround                  " round indentation to shiftwidth
 set lcs=tab:▸\ ,trail:·,nbsp:_  " invisible characters to display
-"set list                        " display invisible characters (see above)
 set undofile                    " maintain persistent undo history
 set undodir=~/.vim/undo         " directory for undo history storage
+set undolevels=1000             " lots of undo memory
 set backupdir=~/.vim/swp        " directory for swap files
 set gdefault                    " include /g in sed by default
 
 
 " ==== Indentation ====
 
-" pretty straightforward
 set autoindent
 set smartindent
 set smarttab
@@ -149,9 +147,13 @@ endfun
 " ==== Mappings/Bindings ====
 
 " life is good
-nnoremap ; :
-nnoremap : ,
-nnoremap , ;
+noremap ; :
+noremap : `
+noremap ` "
+noremap " ,
+noremap , '
+noremap ' ;
+
 nnoremap <CR> :w<CR>
 inoremap <C-CR> <C-c>:w<CR>
 inoremap <C-J> <C-c>:w<CR>
@@ -163,10 +165,6 @@ noremap K <nop>
 noremap L $
 noremap Y y$
 
-" TODO
-noremap , `
-noremap ' ,
-noremap M `
 nnoremap <C-j> <C-e>
 nnoremap <C-k> <C-y>
 
