@@ -6,8 +6,9 @@ bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' forward-word
 bindkey '^b' backward-word
+bindkey '^j' down-line-or-beginning-search
+bindkey '^k' up-line-or-beginning-search
 bindkey '^r' history-incremental-search-backward
-bindkey '^j' vi-cmd-mode
 bindkey -M vicmd v edit-command-line
 bindkey -M vicmd k up-line-or-search
 bindkey -M vicmd j down-line-or-search
