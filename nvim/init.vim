@@ -1,11 +1,15 @@
+let g:python2_host_prog = "/usr/local/bin/python"
+let g:python3_host_prog = "/usr/local/bin/python3"
+
+
 " ==== Plugins ====
 
 call plug#begin('~/.vim/plugged')
 Plug 'skywind3000/asyncrun.vim'
 Plug 'neomake/neomake'
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'morhetz/gruvbox'
-if has('python')
+if has("python")
     Plug 'SirVer/ultisnips'
 endif
 Plug 'bling/vim-airline'
@@ -61,6 +65,7 @@ let g:airline_section_z = '%{g:airline_symbols.linenr}%4l:%=%3.v'
 let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsSnippetDirectories=['snippet']
 let g:UltiSnipsSnippetsDir='/Users/rudyardrichter/.config/nvim/snippet'
+let g:ultisnips_python_style="sphinx"
 
 " SimpylFold
 let g:SimpylFoldDocstring=1
