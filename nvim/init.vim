@@ -4,23 +4,24 @@ let g:python3_host_prog = "/usr/local/bin/python3"
 
 " ==== Plugins ====
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 Plug 'skywind3000/asyncrun.vim'
 Plug 'neomake/neomake'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'morhetz/gruvbox'
 if has("python")
     Plug 'SirVer/ultisnips'
+
 endif
 Plug 'bling/vim-airline'
+"Plug 'itchyny/lightline.vim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 Plug 'flazz/vim-colorschemes'
 Plug 'scrooloose/nerdtree'
-"Plug 'itchyny/lightline.vim'
 Plug 'tmhedberg/SimpylFold', {'for': ['python']}
 Plug 'jez/vim-better-sml', {'for': ['sml']}
-" close vundle section (don't touch)
+Plug 'hashivim/vim-terraform'
 call plug#end()
 
 
@@ -35,6 +36,28 @@ autocmd ColorScheme *
 
 " ctrlp
 let g:ctrlp_cmd = 'CtrlPBuffer'
+
+" NERDTree
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
+"" lightline
+"colorscheme solarized
+"let g:lightline = {
+"    \   'colorscheme': 'solarized',
+"    \   'active': {
+"    \     'left': [
+"    \       ['mode', 'paste'],
+"    \       ['readonly'],
+"    \       ['filename', 'modified']
+"    \     ],
+"    \     'right': [
+"    \       ['lineinfo', 'percent'],
+"    \       ['fileencoding', 'fileformat'],
+"    \       ['filetype'],
+"    \     ],
+"    \   }
+"    \ }
 
 " airline
 if !exists('g:airline_symbols')
@@ -174,7 +197,12 @@ endfun
 
 " ==== Mappings/Bindings ====
 
-" life is good
+noremap H ^
+noremap J mjJ`j
+noremap K <nop>
+noremap L $
+noremap Y y$
+
 noremap ; :
 noremap : `
 noremap ` "
@@ -184,14 +212,9 @@ noremap ' ;
 
 nnoremap <CR> :w<CR>
 inoremap <C-CR> <C-c>:w<CR>
-inoremap <C-J> <C-c>:w<CR>
+inoremap <C-j> <C-c>:w<CR>
 
-" these make more sense
-noremap H ^
-noremap J mjJ`j
-noremap K <nop>
-noremap L $
-noremap Y y$
+tnoremap <Esc> <C-\><C-n>
 
 nnoremap <C-j> <C-e>
 nnoremap <C-k> <C-y>
@@ -212,15 +235,23 @@ let mapleader="\<space>"
 set notimeout
 
 " cd
-nnoremap <leader>d :cd %:h<CR>
-" like i...but A
-nnoremap <leader>i A
+nnoremap <leader>cd :cd %:h<CR>
+
 nnoremap <leader>q gqq
 
 " Highlight
+let g:HL_ON=0
+func! ToggleHL()
+    if g:HL_ON == 1
+        let @/=""
+    else
+        normal! mh#`h
+    endif
+    let g:HL_ON=abs(1-g:HL_ON)
+endfun
+"nnoremap <leader>h :if (g:HL_ON == 1) \| let @/="" \| else \| normal! mh#`h \| endif \| let g:HL_ON=abs(1-g:HL_ON)
 nnoremap <leader>h mh#`h
-" No Highlight
-nnoremap <leader>nh :nohl<CR>
+nnoremap <silent> <C-l> :let @/=""<CR><C-l>
 
 " Remove Whitespace
 nnoremap <leader>rw :%s/\s\+$//<CR> :nohl<CR> :w<CR>
@@ -251,7 +282,11 @@ set guioptions-=L
 
 " ==== GUI Options ====
 
-set bg=dark
+if $BG == "light"
+    set bg=light
+else
+    set bg=dark
+endif
 colorscheme solarized
 
 " syntax highlighting
@@ -262,5 +297,5 @@ endif
 set t_Co=256
 
 if has("gui_running")
-    set guifont=Source\ Code\ Pro\ for\ Powerline:h12
+    set guifont=Source\ Code\ Pro:h12
 endif

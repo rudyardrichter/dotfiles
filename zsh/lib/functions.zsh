@@ -80,3 +80,10 @@ function csv_to_github_table() {
 function scut() {
     cut -d ' ' -f $1 $2
 }
+
+function autopep8diff() {
+    pepped="${1%.*}.autopep8-corrected.py"
+    autopep8 $1 > $pepped
+    nvim -d $1 $pepped
+    rm $pepped
+}

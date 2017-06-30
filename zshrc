@@ -1,5 +1,9 @@
 export ZSH=~/dotfiles/zsh
-export THEME=arete
+if [[ $BG == "light" ]]; then
+    export THEME=arete-light
+else
+    export THEME=arete
+fi
 
 lib_files=(
     alias compfix completion env functions grep history local opt \

@@ -8,6 +8,7 @@ alias reload='source ~/.zshrc'
 alias psa='ps aux'
 alias psg='ps aux | grep'
 alias py='python'
+alias rg='rg --color=always'
 alias rsml='rlwrap sml'
 
 # ls
@@ -84,9 +85,10 @@ alias ggp="git log --graph -p --pretty=$pretty_fmt"
 alias ggps="git log --graph -p --stat --pretty=$pretty_fmt"
 alias ggs="git log --graph --stat --pretty=$pretty_fmt"
 alias gl='git pull'
+alias glr='git pull --rebase'
 alias gm='git merge'
 alias gmom='git merge origin/master'
-alias gp='git push 2>&1 | grep -v hint 1>&2'
+alias gp='git push'
 alias gpristine='git reset --hard && git clean -dfx'
 alias gr='git remote'
 alias gra='git remote add'
