@@ -8,20 +8,22 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'skywind3000/asyncrun.vim'
 Plug 'neomake/neomake'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'morhetz/gruvbox'
+Plug 'scrooloose/nerdtree'
+Plug 'majutsushi/tagbar'
 if has("python")
     Plug 'SirVer/ultisnips'
-
 endif
 Plug 'bling/vim-airline'
-"Plug 'itchyny/lightline.vim'
 Plug 'vim-airline/vim-airline-themes'
+"Plug 'itchyny/lightline.vim'
+" colorschemes
 Plug 'altercation/vim-colors-solarized'
 Plug 'flazz/vim-colorschemes'
-Plug 'scrooloose/nerdtree'
+Plug 'morhetz/gruvbox'
+" filetype-specific plugins
 Plug 'tmhedberg/SimpylFold', {'for': ['python']}
 Plug 'jez/vim-better-sml', {'for': ['sml']}
-Plug 'hashivim/vim-terraform'
+Plug 'hashivim/vim-terraform', {'for': ['terraform']}
 call plug#end()
 
 
@@ -64,10 +66,6 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 let g:airline_powerline_fonts = 1
-"let g:airline_left_sep = ""
-"let g:airline_left_alt_sep = ""
-"let g:airline_right_sep = ""
-"let g:airline_right_alt_sep = ""
 let g:airline_left_sep = ""
 let g:airline_left_alt_sep = ""
 let g:airline_right_sep = ""
@@ -102,6 +100,7 @@ filetype indent on
 set nocompatible                " use vim settings, not vi
 set confirm                     " ask to save instead of failing
 set wildmenu                    " diplay completion options
+set wildignorecase              " ignore case in completion
 set backspace=indent,eol,start  " allow backspace on everyting
 set history=1000                " store cmd history
 set showcmd                     " show incomplete commands
@@ -126,6 +125,18 @@ set undodir=~/.vim/undo         " directory for undo history storage
 set undolevels=1000             " lots of undo memory
 set backupdir=~/.vim/swp        " directory for swap files
 set gdefault                    " include /g in sed by default
+
+
+" ==== Display ====
+
+set title                       " display file name in an xterm
+set number                      " show line numbers
+set ruler                       " display cursor position in status
+set cursorline                  " highliht the current line
+set encoding=utf-8              " set text to utf-8 standard
+set laststatus=2                " status line
+set guioptions-=r
+set guioptions-=L
 
 
 " ==== Indentation ====
@@ -157,7 +168,7 @@ fu! CustomFoldText()
     let foldSizeStr = " " . foldSize . " lines "
     let foldLevelStr = repeat("+", v:foldlevel) . repeat("-", fmax-v:foldlevel)
     let lineCount = line("$")
-    let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
+    let foldPercentage = printf("(%.1f", (foldSize*1.0)/lineCount*100) . "%) "
     let foldInfoLen = 2 + strwidth(foldSizeStr.foldPercentage.foldLevelStr)
     let line = line[0:w-foldInfoLen]
     let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage) + 2)
@@ -202,6 +213,9 @@ noremap J mjJ`j
 noremap K <nop>
 noremap L $
 noremap Y y$
+
+nnoremap n nzz
+nnoremap N Nzz
 
 noremap ; :
 noremap : `
@@ -256,9 +270,6 @@ nnoremap <silent> <C-l> :let @/=""<CR><C-l>
 " Remove Whitespace
 nnoremap <leader>rw :%s/\s\+$//<CR> :nohl<CR> :w<CR>
 
-" Save session
-nnoremap <leader>s :mksession<CR>
-
 " access vimrc more easily
 " Vimrc EDit
 nnoremap <leader>ved :e $MYVIMRC<CR>:nohl<CR>
@@ -267,21 +278,20 @@ nnoremap <leader>vsp :split $MYVIMRC<CR>:nohl<CR>
 " Vimrc SourCe
 nnoremap <leader>vsc :source $MYVIMRC<CR>:nohl<CR>
 
-
-" ==== Display ====
-
-set title                       " display file name in an xterm
-set number                      " show line numbers
-set ruler                       " display cursor position in status
-set cursorline                  " highliht the current line
-set encoding=utf-8              " set text to utf-8 standard
-set laststatus=2                " status line
-set guioptions-=r
-set guioptions-=L
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
 
 
 " ==== GUI Options ====
 
+set t_Co=256
 if $BG == "light"
     set bg=light
 else
@@ -289,12 +299,9 @@ else
 endif
 colorscheme solarized
 
-" syntax highlighting
 if has('syntax') && !exists('g:syntax_on')
     syntax enable
 endif
-
-set t_Co=256
 
 if has("gui_running")
     set guifont=Source\ Code\ Pro:h12

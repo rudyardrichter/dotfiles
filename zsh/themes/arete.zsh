@@ -51,7 +51,9 @@ if [[ $EUID -eq 0 ]]; then
     _USERNAME="%{$fg_bold[red]%}%n%{$reset_color%}@%m"
     _PROMPT="%{$fg[red]%}#"
 else
-    _USERNAME="%{$fg_bold[white]%}%n%{$reset_color%}@%m"
+    #_USERNAME="%{$fg[cyan]%}%n@%m%{$reset_color%}"
+    #_USERNAME="%n@%m"
+    _USERNAME="%{$fg_bold[green]%}%n@%m%{$reset_color%}"
     _PROMPT="%{$fg[green]%}$"
 fi
 

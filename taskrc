@@ -19,8 +19,8 @@ calendar.details=sparse
 default.command=list
 
 # report.list
-report.list.columns=id,start.active,depends.indicator,priority,project,description.count,tags,recur.indicator,scheduled.countdown,due,until.remaining,urgency
-report.list.labels=ID,A,D,P,Project,Description,Tags,R,Sch,Due,Until,Urg
+report.list.columns=start.active,id,depends.indicator,priority,project,description.count,tags,recur.indicator,scheduled.countdown,due,until.remaining,urgency
+report.list.labels=A,ID,D,P,Project,Description,Tags,R,Sch,Due,Until,Urg
 report.list.dateformat=a M-D H:N:S
 
 # urgency
