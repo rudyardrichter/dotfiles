@@ -10,6 +10,7 @@ Plug 'neomake/neomake'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
+Plug 'EinfachToll/DidYouMean'
 if has("python")
     Plug 'SirVer/ultisnips'
 endif
@@ -38,6 +39,9 @@ autocmd ColorScheme *
 
 " ctrlp
 let g:ctrlp_cmd = 'CtrlPBuffer'
+set grepprg=rg
+let g:ctrlp_user_command='rg --files --smart-case --follow --color=never --glob "%s"'
+let g:ctrlp_use_caching=0
 
 " NERDTree
 let NERDTreeMinimalUI = 1
@@ -101,6 +105,9 @@ set nocompatible                " use vim settings, not vi
 set confirm                     " ask to save instead of failing
 set wildmenu                    " diplay completion options
 set wildignorecase              " ignore case in completion
+set wildignore+=*/.git/*
+set wildignore+=*/tmp/*
+set wildignore+=*.swp
 set backspace=indent,eol,start  " allow backspace on everyting
 set history=1000                " store cmd history
 set showcmd                     " show incomplete commands

@@ -89,7 +89,7 @@ function autopep8diff() {
 }
 
 function rgl() {
-    rg $1 --heading --color=always | less
+    rg --heading --color=always "$@" | less
 }
 
 function sl() {
