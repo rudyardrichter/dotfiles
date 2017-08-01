@@ -1,7 +1,8 @@
 # completion ignore
 ## vim
 zstyle ":completion:*:*:*vim:*:*files" ignored-patterns \
-    "*?.o" "*?.hi" "*?.aux" "*?.pdf" "*?.gz" "*?.log" "*?.out" "*?.aes" "*?.toc"
+    "*?.o" "*?.hi" "*?.aux" "*?.pdf" "*?.gz" "*?.log" "*?.out" "*?.aes" \
+    "*?.toc" "*?.pyc"
 
 ################################################################################
 # TODO: FIXME

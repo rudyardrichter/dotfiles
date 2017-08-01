@@ -22,6 +22,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
 " filetype-specific plugins
+Plug 'fatih/vim-go', {'for': ['go']}
 Plug 'tmhedberg/SimpylFold', {'for': ['python']}
 Plug 'jez/vim-better-sml', {'for': ['sml']}
 Plug 'hashivim/vim-terraform', {'for': ['terraform']}
@@ -40,30 +41,12 @@ autocmd ColorScheme *
 " ctrlp
 let g:ctrlp_cmd = 'CtrlPBuffer'
 set grepprg=rg
-let g:ctrlp_user_command='rg --files --smart-case --follow --color=never --glob "%s"'
+let g:ctrlp_user_command='rg %s --files --follow --color=never'
 let g:ctrlp_use_caching=0
 
 " NERDTree
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-
-"" lightline
-"colorscheme solarized
-"let g:lightline = {
-"    \   'colorscheme': 'solarized',
-"    \   'active': {
-"    \     'left': [
-"    \       ['mode', 'paste'],
-"    \       ['readonly'],
-"    \       ['filename', 'modified']
-"    \     ],
-"    \     'right': [
-"    \       ['lineinfo', 'percent'],
-"    \       ['fileencoding', 'fileformat'],
-"    \       ['filetype'],
-"    \     ],
-"    \   }
-"    \ }
 
 " airline
 if !exists('g:airline_symbols')
@@ -78,13 +61,12 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 let g:airline_symbols.whitespace = ''
-" same as default, but without the 'X%' part
 let g:airline_section_warning =
     \ "%{airline#util#wrap(airline#extensions#neomake#get_warnings(),0)}"
     \ . "%{empty(airline#extensions#neomake#get_warnings())"
     \ . "|| empty(airline#extensions#whitespace#check()) ? '' : ' '}"
     \ . "%{airline#util#wrap(airline#extensions#whitespace#check(),0)}"
-let g:airline_section_z = '%{g:airline_symbols.linenr}%4l:%=%3.v'
+let g:airline_section_z = '%4l:%=%3.v'
 
 " UltiSnips
 let g:UltiSnipsEditSplit="horizontal"
@@ -224,55 +206,53 @@ noremap Y y$
 nnoremap n nzz
 nnoremap N Nzz
 
-noremap ; :
-noremap : `
-noremap ` "
-noremap " ,
-noremap , '
-noremap ' ;
-
-nnoremap <CR> :w<CR>
-inoremap <C-CR> <C-c>:w<CR>
-inoremap <C-j> <C-c>:w<CR>
-
-tnoremap <Esc> <C-\><C-n>
-
-nnoremap <C-j> <C-e>
-nnoremap <C-k> <C-y>
-
-nnoremap <Tab> za
-nnoremap <C-n> :set rnu!<CR>
-
-noremap <F2> :set list!<CR>
-inoremap <F2> <C-o>:set list!<CR>
-
 " use arrow keys for split navigation
 nnoremap <Up>    <C-w>k
 nnoremap <Down>  <C-w>j
 nnoremap <Left>  <C-w>h
 nnoremap <Right> <C-w>l
 
+noremap ; :
+noremap : `
+noremap ` "
+noremap " ,
+noremap M '
+noremap , '
+noremap ' ;
+
+inoremap <C-j> <C-c>:w<CR>
+
+nnoremap <C-h> <C-o>
+nnoremap <C-j> <C-e>
+nnoremap <C-k> <C-y>
+nnoremap <C-l> <C-i>
+
+nnoremap <silent> <C-_> :let @/=""<CR><C-l>
+
+tnoremap <Esc> <C-\><C-n>
+
+nnoremap <CR> :w<CR>
+nnoremap <Tab> za
+nnoremap <C-n> :set rnu!<CR>
+nnoremap <C-f> :CtrlPLine<CR>
+
+noremap <F2> :set list!<CR>
+inoremap <F2> <C-o>:set list!<CR>
+
 let mapleader="\<space>"
 set notimeout
 
+" copy and paste from clipboard
+noremap <leader>c "*y
+noremap <leader>p "*p
+noremap <leader>P "*P
+
 " cd
-nnoremap <leader>cd :cd %:h<CR>
+nnoremap <leader>d :cd %:h<CR>
 
 nnoremap <leader>q gqq
 
-" Highlight
-let g:HL_ON=0
-func! ToggleHL()
-    if g:HL_ON == 1
-        let @/=""
-    else
-        normal! mh#`h
-    endif
-    let g:HL_ON=abs(1-g:HL_ON)
-endfun
-"nnoremap <leader>h :if (g:HL_ON == 1) \| let @/="" \| else \| normal! mh#`h \| endif \| let g:HL_ON=abs(1-g:HL_ON)
 nnoremap <leader>h mh#`h
-nnoremap <silent> <C-l> :let @/=""<CR><C-l>
 
 " Remove Whitespace
 nnoremap <leader>rw :%s/\s\+$//<CR> :nohl<CR> :w<CR>

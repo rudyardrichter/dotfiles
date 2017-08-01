@@ -1,5 +1,6 @@
-alias c='cat'
+alias c='cd'
 alias e='mvim'
+alias ipy='ipython'
 alias o='open'
 alias emacs='vim'
 alias map='xargs -n1'
@@ -9,6 +10,7 @@ alias psa='ps aux'
 alias psg='ps aux | grep'
 alias py='python'
 alias rsml='rlwrap sml'
+alias vim='vim -u ~/.simple_vimrc.vim'
 
 # ls
 alias l='gls -A --color=auto'
