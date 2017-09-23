@@ -1,7 +1,12 @@
+# Enable auto-suggestions.
+#source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+#export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
+
 # completion ignore
 ## vim
 zstyle ":completion:*:*:*vim:*:*files" ignored-patterns \
-    "*?.o" "*?.hi" "*?.aux" "*?.pdf" "*?.gz" "*?.log" "*?.out" "*?.aes" "*?.toc"
+    "*?.o" "*?.hi" "*?.aux" "*?.pdf" "*?.gz" "*?.log" "*?.out" "*?.aes" \
+    "*?.toc" "*?.pyc"
 
 ################################################################################
 # TODO: FIXME
@@ -30,12 +35,14 @@ zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
 
-# disable named-directories autocompletion
+# Make dash and underscore equivalent in completion.
+#zstyle ':completion:*' matcher-list '' 'm:{-_}={_-}'
+
+# Disable named-directories autocompletion.
 zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
 
-# Use caching so that commands like apt and dpkg complete are useable
+# Use caching so that commands like apt and dpkg complete are useable.
 zstyle ':completion::complete:*' use-cache on
 zstyle ':completion::complete:*' cache-path $ZSH/cache
 
-# ... unless we really want to.
 zstyle '*' single-ignored show

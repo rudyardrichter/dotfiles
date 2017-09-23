@@ -1,92 +1,80 @@
-let g:python2_host_prog = "/usr/local/bin/python"
-let g:python3_host_prog = "/usr/local/bin/python3"
+let g:python_host_prog = '/Users/rudyardrichter/envs/neovim/bin/python2'
+let g:python3_host_prog = '/Users/rudyardrichter/envs/neovim/bin/python3'
 
 
 " ==== Plugins ====
 
 call plug#begin('~/.config/nvim/plugged')
+Plug 'w0rp/ale'
 Plug 'skywind3000/asyncrun.vim'
-Plug 'neomake/neomake'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'EinfachToll/DidYouMean'
 Plug 'scrooloose/nerdtree'
-Plug 'majutsushi/tagbar'
-if has("python")
-    Plug 'SirVer/ultisnips'
-endif
+Plug 'SirVer/ultisnips'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-fugitive'
 " colorschemes
 Plug 'altercation/vim-colors-solarized'
 Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
 " filetype-specific plugins
+Plug 'fatih/vim-go', {'for': ['go']}
 Plug 'tmhedberg/SimpylFold', {'for': ['python']}
 Plug 'jez/vim-better-sml', {'for': ['sml']}
 Plug 'hashivim/vim-terraform', {'for': ['terraform']}
 call plug#end()
 
-
-" ==== Plugin Settings ====
-
-" neomake
-autocmd! BufWritePost * Neomake
-augroup neomake_signs
-autocmd ColorScheme *
-    \ hi NeomakeErrorSign ctermfg=1 |
-    \ hi NeomakeWarningSign ctermfg=9
+set updatetime=250
+autocmd! CursorHold * call ale#Lint()
+autocmd! CursorHoldI * call ale#Lint()
+autocmd! InsertEnter * call ale#Lint()
+autocmd! InsertLeave * call ale#Lint()
+let g:ale_sign_error = '❯❯'
+let g:ale_sign_warning = '⟩⟩'
+let g:airline#extensions#ale#enabled = 1
 
 " ctrlp
 let g:ctrlp_cmd = 'CtrlPBuffer'
+set grepprg=rg
+let g:ctrlp_user_command='rg %s --files --follow --color=never'
+let g:ctrlp_use_caching=0
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=50
+let gctrlp_working_path_mode=''
 
 " NERDTree
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-
-"" lightline
-"colorscheme solarized
-"let g:lightline = {
-"    \   'colorscheme': 'solarized',
-"    \   'active': {
-"    \     'left': [
-"    \       ['mode', 'paste'],
-"    \       ['readonly'],
-"    \       ['filename', 'modified']
-"    \     ],
-"    \     'right': [
-"    \       ['lineinfo', 'percent'],
-"    \       ['fileencoding', 'fileformat'],
-"    \       ['filetype'],
-"    \     ],
-"    \   }
-"    \ }
+let NERDTreeMapActivateNode = 'o'
+let NERDTreeMapChangeRoot = 'c'
+let NERDTreeMapOpenSplit = 's'
+let NERDTreeMapOpenVSplit = 'v'
+let NERDTreeIgnore = ['\.pyc$']
 
 " airline
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-let g:airline_powerline_fonts = 1
+let g:airline#extensions#tagbar#enabled = 0
+let g:airline#extensions#ale#enabled = 1
 let g:airline_left_sep = ""
-let g:airline_left_alt_sep = ""
+let g:airline_left_alt_sep = "|"
 let g:airline_right_sep = ""
 let g:airline_right_alt_sep = ""
-let g:airline_symbols.branch = ''
+let g:airline_symbols.branch = '⎇'
 let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
 let g:airline_symbols.whitespace = ''
-" same as default, but without the 'X%' part
-let g:airline_section_warning =
-    \ "%{airline#util#wrap(airline#extensions#neomake#get_warnings(),0)}"
-    \ . "%{empty(airline#extensions#neomake#get_warnings())"
-    \ . "|| empty(airline#extensions#whitespace#check()) ? '' : ' '}"
-    \ . "%{airline#util#wrap(airline#extensions#whitespace#check(),0)}"
-let g:airline_section_z = '%{g:airline_symbols.linenr}%4l:%=%3.v'
+"let g:airline_section_warning =
+let g:airline_section_x = ''
+let g:airline_section_y = '%{airline#util#wrap(airline#parts#filetype(),0)}'
+let g:airline_section_z = '%4l:%=%-3.v'
 
 " UltiSnips
 let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsSnippetDirectories=['snippet']
 let g:UltiSnipsSnippetsDir='/Users/rudyardrichter/.config/nvim/snippet'
-let g:ultisnips_python_style="sphinx"
+let g:ultisnips_python_style="google"
 
 " SimpylFold
 let g:SimpylFoldDocstring=1
@@ -100,8 +88,12 @@ filetype indent on
 set nocompatible                " use vim settings, not vi
 set confirm                     " ask to save instead of failing
 set wildmenu                    " diplay completion options
+set wildmode=longest:full,full  " set tab completion method
 set wildignorecase              " ignore case in completion
-set backspace=indent,eol,start  " allow backspace on everyting
+set wildignore+=*/.git/*
+set wildignore+=*/tmp/*
+set wildignore+=*.swp
+set backspace=indent,eol,start  " allow backspace on everything
 set history=1000                " store cmd history
 set showcmd                     " show incomplete commands
 set gcr=a:blinkon0              " no cursor blink
@@ -130,9 +122,9 @@ set gdefault                    " include /g in sed by default
 " ==== Display ====
 
 set title                       " display file name in an xterm
-set number                      " show line numbers
+set nonumber                    " don't show line numbers
 set ruler                       " display cursor position in status
-set cursorline                  " highliht the current line
+set cursorline                  " highlight the current line
 set encoding=utf-8              " set text to utf-8 standard
 set laststatus=2                " status line
 set guioptions-=r
@@ -163,7 +155,12 @@ fu! CustomFoldText()
     else
         let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
     endif
-    let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
+    let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0) - fmax - 1
+    let bufnumber = bufn('%')
+    let signsPlaced = sign place buffer=bufnumber
+    if signsPlaced
+        let w -= 2
+    endif
     let foldSize = 1 + v:foldend - v:foldstart
     let foldSizeStr = " " . foldSize . " lines "
     let foldLevelStr = repeat("+", v:foldlevel) . repeat("-", fmax-v:foldlevel)
@@ -213,31 +210,10 @@ noremap J mjJ`j
 noremap K <nop>
 noremap L $
 noremap Y y$
+nnoremap Q :q<CR>
 
 nnoremap n nzz
 nnoremap N Nzz
-
-noremap ; :
-noremap : `
-noremap ` "
-noremap " ,
-noremap , '
-noremap ' ;
-
-nnoremap <CR> :w<CR>
-inoremap <C-CR> <C-c>:w<CR>
-inoremap <C-j> <C-c>:w<CR>
-
-tnoremap <Esc> <C-\><C-n>
-
-nnoremap <C-j> <C-e>
-nnoremap <C-k> <C-y>
-
-nnoremap <Tab> za
-nnoremap <C-n> :set rnu!<CR>
-
-noremap <F2> :set list!<CR>
-inoremap <F2> <C-o>:set list!<CR>
 
 " use arrow keys for split navigation
 nnoremap <Up>    <C-w>k
@@ -245,27 +221,56 @@ nnoremap <Down>  <C-w>j
 nnoremap <Left>  <C-w>h
 nnoremap <Right> <C-w>l
 
+noremap ; :
+noremap : `
+noremap - "
+noremap ` "
+noremap " ,
+noremap M '
+noremap , '
+noremap ' ;
+
+inoremap <C-j> <C-c>:w<CR>
+
+nnoremap <C-h> <C-o>
+nnoremap <C-j> <C-e>
+nnoremap <C-k> <C-y>
+nnoremap <C-l> <C-i>
+nnoremap <C-q> :lw<CR>
+
+vnoremap > >gv
+vnoremap < <gv
+
+" This is actually <C-/>.
+nnoremap <silent> <C-_> :let @/=""<CR><C-l>
+
+tnoremap <Esc> <C-\><C-n>
+
+nnoremap <CR> :w<CR>
+nnoremap <Tab> za
+nnoremap <C-n> :set rnu!<CR>
+nnoremap <C-f> :CtrlP<CR>
+nnoremap <C-s> :CtrlPLine<CR>
+
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+
+noremap <F2> :set list!<CR>
+inoremap <F2> <C-o>:set list!<CR>
+
 let mapleader="\<space>"
 set notimeout
 
+" copy and paste from clipboard
+noremap <leader>c "*y
+noremap <leader>p "*p
+noremap <leader>P "*P
+
 " cd
-nnoremap <leader>cd :cd %:h<CR>
+nnoremap <leader>d :cd %:h<CR>
 
 nnoremap <leader>q gqq
 
-" Highlight
-let g:HL_ON=0
-func! ToggleHL()
-    if g:HL_ON == 1
-        let @/=""
-    else
-        normal! mh#`h
-    endif
-    let g:HL_ON=abs(1-g:HL_ON)
-endfun
-"nnoremap <leader>h :if (g:HL_ON == 1) \| let @/="" \| else \| normal! mh#`h \| endif \| let g:HL_ON=abs(1-g:HL_ON)
-nnoremap <leader>h mh#`h
-nnoremap <silent> <C-l> :let @/=""<CR><C-l>
+nnoremap <leader>h mh*`h
 
 " Remove Whitespace
 nnoremap <leader>rw :%s/\s\+$//<CR> :nohl<CR> :w<CR>
@@ -278,6 +283,9 @@ nnoremap <leader>vsp :split $MYVIMRC<CR>:nohl<CR>
 " Vimrc SourCe
 nnoremap <leader>vsc :source $MYVIMRC<CR>:nohl<CR>
 
+" Tab navigation
+noremap <PageUp> gt
+noremap <PageDown> gT
 noremap <leader>1 1gt
 noremap <leader>2 2gt
 noremap <leader>3 3gt
@@ -292,12 +300,15 @@ noremap <leader>9 9gt
 " ==== GUI Options ====
 
 set t_Co=256
+colorscheme solarized
 if $BG == "light"
     set bg=light
 else
     set bg=dark
 endif
-colorscheme solarized
+if $BG == 'gruvbox'
+    colorscheme gruvbox
+endif
 
 if has('syntax') && !exists('g:syntax_on')
     syntax enable

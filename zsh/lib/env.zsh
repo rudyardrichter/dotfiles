@@ -2,8 +2,19 @@ export EDITOR='nvim'
 export GIT_EDITOR='nvim'
 export PAGER='less'
 export LESS='-R'
-export WORKON_HOME=~/envs && source /usr/local/bin/virtualenvwrapper.sh
-source /usr/local/bin/virtualenvwrapper.sh
+export TERM=xterm-256color
+export GOPATH="/Users/rudyardrichter/go"
+
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+export VIRTUALENVWRAPPER_VIRTUALENV=/Users/rudyardrichter/Library/Python/2.7/bin/virtualenv
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+source /Users/rudyardrichter/Library/Python/2.7/bin/virtualenvwrapper.sh
+export WORKON_HOME=~/envs
+
+#export PYTHONPATH="/usr/local/lib/python2.7/site-packages:/Users/rudyardrichter/Library/Python/2.7:$PYTHONPATH)"
+
+gettext="/usr/local/opt/gettext/bin"
+user_binaries="/Users/rudyardrichter/bin"
+python_binaries="/Users/rudyardrichter/Library/Python/2.7/bin"
 tex_binaries="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin"
-user_binaries="/users/rudyardrichter/bin"
-export PATH="$user_binaries:$tex_binaries:$PATH"
+export PATH="$gettext:$user_binaries:$python_binaries:$tex_binaries:$PATH"

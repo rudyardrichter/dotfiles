@@ -76,6 +76,6 @@ zle -N zle-keymap-select
 mode=$I
 precmd() { mode=$I }
 
-PROMPT="%{$fg[cyan]%}$_USERNAME%{$reset_color%} %{$fg_bold[black]%}%~%{$reset_color%}
+PROMPT="%{$fg_bold[cyan]%}$_USERNAME%{$reset_color%} %{$fg_bold[black]%}%~%{$reset_color%}
 $_PROMPT%{$reset_color%} "
 RPROMPT='$(git_prompt)[${mode}]'

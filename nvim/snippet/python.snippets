@@ -65,6 +65,10 @@ def main():
 	${1:${VISUAL:pass}}
 endsnippet
 
+snippet pdb "set pdb trace" b
+import pdb; pdb.set_trace()
+endsnippet
+
 ##########
 # COMMON #
 ##########
@@ -177,10 +181,8 @@ def format_arg(arg, style):
 def format_return(style):
 	if style == DOXYGEN:
 		return "@return: TODO"
-	elif style in (NORMAL, SPHINX, JEDI):
+	else:
 		return ":return: TODO"
-	elif style == GOOGLE:
-		return "Returns: TODO"
 
 
 def write_docstring_args(args, snip):
@@ -205,6 +207,7 @@ def write_google_docstring_args(args, snip):
 	args = [arg for arg in args if not arg.is_kwarg()]
 
 	if args:
+		snip.rv += '\n'
 		snip += "Args:"
 		snip.shift()
 		for arg in args:
@@ -277,6 +280,11 @@ def write_function_docstring(t, snip):
 		snip += 'Returns'
 		snip += '-------'
 		snip += 'TODO'
+	elif style == GOOGLE:
+		snip += 'Return:'
+		snip.shift()
+		snip += 'TODO'
+		snip.unshift()
 	else:
 		snip += format_return(style)
 	snip += triple_quotes(snip)

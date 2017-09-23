@@ -2,7 +2,6 @@ typeset -Ag abbreviations
 abbreviations=(
     'EG'    '| egrep'
     'G'     '| grep'
-    'C'     '| cut'
     'H'     '| head'
     'L'     '| less'
     'M'     '| map'
