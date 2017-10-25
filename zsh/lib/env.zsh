@@ -16,5 +16,6 @@ export WORKON_HOME=~/envs
 gettext="/usr/local/opt/gettext/bin"
 user_binaries="/Users/rudyardrichter/bin"
 python_binaries="/Users/rudyardrichter/Library/Python/2.7/bin"
+rust_binaries="/Users/rudyardrichter/.cargo/bin"
 tex_binaries="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin"
-export PATH="$gettext:$user_binaries:$python_binaries:$tex_binaries:$PATH"
+export PATH="$gettext:$user_binaries:$rust_binaries:$python_binaries:$tex_binaries:$PATH"

@@ -5,10 +5,10 @@ let g:python3_host_prog = '/Users/rudyardrichter/envs/neovim/bin/python3'
 " ==== Plugins ====
 
 call plug#begin('~/.config/nvim/plugged')
-Plug 'w0rp/ale'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'EinfachToll/DidYouMean'
+Plug 'neomake/neomake'
 Plug 'scrooloose/nerdtree'
 Plug 'SirVer/ultisnips'
 Plug 'bling/vim-airline'
@@ -21,18 +21,15 @@ Plug 'morhetz/gruvbox'
 " filetype-specific plugins
 Plug 'fatih/vim-go', {'for': ['go']}
 Plug 'tmhedberg/SimpylFold', {'for': ['python']}
+Plug 'rust-lang/rust.vim', {'for': ['rust']}
 Plug 'jez/vim-better-sml', {'for': ['sml']}
 Plug 'hashivim/vim-terraform', {'for': ['terraform']}
 call plug#end()
 
-set updatetime=250
-autocmd! CursorHold * call ale#Lint()
-autocmd! CursorHoldI * call ale#Lint()
-autocmd! InsertEnter * call ale#Lint()
-autocmd! InsertLeave * call ale#Lint()
-let g:ale_sign_error = '❯❯'
-let g:ale_sign_warning = '⟩⟩'
-let g:airline#extensions#ale#enabled = 1
+" Neomake
+let g:neomake_error_sign = {'text': '❯❯', 'texthl': 'Error'}
+let g:neomake_warning_sign = {'text': '⟩⟩', 'texthl': 'Todo'}
+autocmd! BufWritePost * Neomake
 
 " ctrlp
 let g:ctrlp_cmd = 'CtrlPBuffer'
@@ -58,14 +55,14 @@ if !exists('g:airline_symbols')
 endif
 let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#ale#enabled = 1
-let g:airline_left_sep = ""
-let g:airline_left_alt_sep = "|"
-let g:airline_right_sep = ""
-let g:airline_right_alt_sep = ""
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = '|'
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.notexists = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.whitespace = ''
-"let g:airline_section_warning =
 let g:airline_section_x = ''
 let g:airline_section_y = '%{airline#util#wrap(airline#parts#filetype(),0)}'
 let g:airline_section_z = '%4l:%=%-3.v'
@@ -115,6 +112,7 @@ set lcs=tab:▸\ ,trail:·,nbsp:_  " invisible characters to display
 set undofile                    " maintain persistent undo history
 set undodir=~/.vim/undo         " directory for undo history storage
 set undolevels=1000             " lots of undo memory
+set updatetime=250              " ms after which cursor is considered idle
 set backupdir=~/.vim/swp        " directory for swap files
 set gdefault                    " include /g in sed by default
 
@@ -297,6 +295,39 @@ noremap <leader>8 8gt
 noremap <leader>9 9gt
 
 
+" ==== Session Management ====
+
+fu! SaveSession()
+    let here = substitute(expand('%:p:h'), "/", "-", "g")
+    let session_filename = $HOME . "/.config/nvim/sessions/" . here
+    execute 'mksession! ' . session_filename
+endfunction
+
+fu! RestoreSession()
+    echom expand('%')
+    if expand('%') == ''
+        let here = substitute(expand('%:p:h'), "/", "-", "g")
+        if here != ''
+            let session_filename = $HOME . "/.config/nvim/sessions/" . here
+            try
+                execute 'source ' . session_filename
+                if bufexists(1)
+                    for l in range(1, bufnr('$'))
+                        if bufwinnr(l) == -1
+                            exec 'sbuffer ' . l
+                        endif
+                    endfor
+                endif
+            catch
+            endtry
+        endif
+    endif
+endfunction
+
+autocmd VimLeave * call SaveSession()
+autocmd VimEnter * call RestoreSession()
+
+
 " ==== GUI Options ====
 
 set t_Co=256
@@ -309,6 +340,7 @@ endif
 if $BG == 'gruvbox'
     colorscheme gruvbox
 endif
+hi Todo cterm=None ctermfg=5
 
 if has('syntax') && !exists('g:syntax_on')
     syntax enable

@@ -1,12 +1,18 @@
 data.location=~/.task
 include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/solarized-dark-256.theme
 
+uda.estimate.type=numeric
+uda.estimate.label=Est
+
 bulk=2
 weekstart=Monday
 displayweeknumber=no
 confirmation=yes
 active.indicator=>
 abbreviation.minimum=2
+
+# time format
+dateformat=Y-M-DTHN
 
 # aliases
 alias.rm=delete
@@ -16,29 +22,37 @@ alias.cal=calendar
 calendar.details=sparse
 
 # default
-default.command=list
+default.command=next
 
 # report.list
-report.list.columns=start.active,id,depends.indicator,priority,project,description.count,tags,recur.indicator,scheduled.countdown,due,until.remaining,urgency
-report.list.labels=A,ID,D,P,Project,Description,Tags,R,Sch,Due,Until,Urg
+report.list.columns=start.active,id,depends.indicator,priority,project,description.count,tags,recur.indicator,scheduled.countdown,due,until.remaining,urgency,estimate
+report.list.labels=A,ID,D,P,Project,Description,Tags,R,Sch,Due,Until,Urg,Est
 report.list.dateformat=a M-D H:N:S
+report.list.sort=project+/,status-,urgency-
+
+# report.next
+report.next.columns=start.active,id,depends.indicator,priority,project,description.count,tags,recur.indicator,scheduled.countdown,due,until.remaining,urgency,estimate
+report.next.labels=A,ID,D,P,Project,Description,Tags,R,Sch,Due,Until,Urg,Est
+report.next.dateformat=a M-D H:N:S
+report.next.filter=+PENDING +UNBLOCKED
+report.next.sort=status-,start-,urgency-,project+,due+
 
 # urgency
 urgency.user.tag.next.coefficient          = 15.0 # +next tag
 urgency.due.coefficient                    = 15.0 # overdue or near due date
-urgency.blocking.coefficient               =  8.0 # blocking other tasks
-urgency.uda.priority.H.coefficient         =  4.0 # high Priority
+urgency.blocking.coefficient               =  1.0 # blocking other tasks
+urgency.uda.priority.H.coefficient         =  2.0 # high Priority
 urgency.uda.priority.M.coefficient         =  0.0 # medium Priority
-urgency.uda.priority.L.coefficient         = -4.0 # low Priority
+urgency.uda.priority.L.coefficient         = -2.0 # low Priority
 urgency.active.coefficient                 =  4.0 # already started tasks
-urgency.scheduled.coefficient              =  4.0 # scheduled tasks
+urgency.scheduled.coefficient              =  0.0 # scheduled tasks
 urgency.annotations.coefficient            =  0.0 # has annotations
 urgency.tags.coefficient                   =  0.0 # has tags
-urgency.project.coefficient                =  0.0 # assigned to any project
+urgency.project.coefficient                =  1.0 # assigned to any project
 urgency.age.coefficient                    =  0.0 # coefficient for age
-urgency.blocked.coefficient                = -5.0 # blocked by other tasks
-urgency.waiting.coefficient                = -3.0 # waiting task
+urgency.blocked.coefficient                = -4.0 # blocked by other tasks
+urgency.waiting.coefficient                = -5.0 # waiting task
 
 # urgency.user.tag
 #urgency.user.project.<project>.coefficient =  5.0 # specific project
-#urgency.uda.<name>.coefficient             =  5.0 # specific UDA
+#urgency.uda.estimate.coefficient            =  1.0 # specific UDA
