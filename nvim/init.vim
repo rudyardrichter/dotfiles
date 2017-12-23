@@ -1,5 +1,6 @@
 let g:python_host_prog = '/Users/rudyardrichter/envs/neovim/bin/python2'
 let g:python3_host_prog = '/Users/rudyardrichter/envs/neovim/bin/python3'
+let g:ycm_python_binary_path = 'python'
 
 
 " ==== Plugins ====
@@ -14,6 +15,7 @@ Plug 'SirVer/ultisnips'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
+Plug 'valloric/youcompleteme'
 " colorschemes
 Plug 'altercation/vim-colors-solarized'
 Plug 'flazz/vim-colorschemes'
@@ -68,10 +70,12 @@ let g:airline_section_y = '%{airline#util#wrap(airline#parts#filetype(),0)}'
 let g:airline_section_z = '%4l:%=%-3.v'
 
 " UltiSnips
+let g:UltiSnipsExpandTrigger='`'
+let g:UltiSnipsListSnippets='<S-`>'
 let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsSnippetDirectories=['snippet']
 let g:UltiSnipsSnippetsDir='/Users/rudyardrichter/.config/nvim/snippet'
-let g:ultisnips_python_style="google"
+let g:ultisnips_python_style='google'
 
 " SimpylFold
 let g:SimpylFoldDocstring=1

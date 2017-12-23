@@ -56,6 +56,10 @@ elif ${1:bool}:
 	${2:${VISUAL:pass}}
 endsnippet
 
+snippet here "file path" i
+os.path.dirname(os.path.realpath(__file__))
+endsnippet
+
 snippet .
 self.
 endsnippet
@@ -537,6 +541,7 @@ if snip.indent:
 	`!p snip.rv = triple_quotes(snip)`
 	${4:TODO: Docstring for $1.}`!p
 write_function_docstring(t, snip) `
+	# TODO
 	${5:${VISUAL:pass}}
 endsnippet
 

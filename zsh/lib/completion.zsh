@@ -6,7 +6,7 @@
 ## vim
 zstyle ":completion:*:*:*vim:*:*files" ignored-patterns \
     "*?.o" "*?.hi" "*?.aux" "*?.pdf" "*?.gz" "*?.log" "*?.out" "*?.aes" \
-    "*?.toc" "*?.pyc"
+    "*?.toc" "*?.pyc" "*.egg-info*"
 
 ################################################################################
 # TODO: FIXME

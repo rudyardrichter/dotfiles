@@ -18,5 +18,6 @@ setopt auto_menu               # use menu completion
 setopt auto_pushd              # cd pushes directories onto the stack
 setopt pushd_ignore_dups       # ignore duplicates in directory stack
 setopt pushdminus              # flip the signs interpreted by popd
+setopt +o nomatch              # if a pattern has no matches, leave it alone
 unsetopt list_ambiguous        # show the completion list even on partial completion
 unsetopt flowcontrol           # disable flow control via start/stop chars

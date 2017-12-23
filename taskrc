@@ -2,7 +2,10 @@ data.location=~/.task
 include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/solarized-dark-256.theme
 
 uda.estimate.type=numeric
-uda.estimate.label=Est
+uda.estimate.label=Estimate
+
+uda.sprint.type=numeric
+uda.sprint.label=Sprint
 
 bulk=2
 weekstart=Monday
@@ -15,8 +18,8 @@ abbreviation.minimum=2
 dateformat=Y-M-DTHN
 
 # aliases
-alias.rm=delete
 alias.cal=calendar
+alias.rm=delete
 
 # calendar
 calendar.details=sparse
