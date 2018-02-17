@@ -1,27 +1,31 @@
-let g:python_host_prog = '/Users/rudyardrichter/envs/neovim/bin/python2'
-let g:python3_host_prog = '/Users/rudyardrichter/envs/neovim/bin/python3'
-
-
 " ==== Plugins ====
 
 call plug#begin('~/.config/nvim/plugged')
 Plug 'skywind3000/asyncrun.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'EinfachToll/DidYouMean'
+Plug 'autozimu/LanguageClient-neovim', {'tag': 'binary-*-x86_64-apple-darwin'}
 Plug 'neomake/neomake'
 Plug 'scrooloose/nerdtree'
+Plug 'roxma/nvim-completion-manager'
 Plug 'SirVer/ultisnips'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
+
+" rust
+Plug 'rust-lang/rust.vim', {'for': ['rust']}
+Plug 'racer-rust/vim-racer', {'for': ['rust']}
+Plug 'roxma/nvim-cm-racer', {'for': ['rust']}
+
 " colorschemes
 Plug 'altercation/vim-colors-solarized'
 Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
+
 " filetype-specific plugins
 Plug 'fatih/vim-go', {'for': ['go']}
 Plug 'tmhedberg/SimpylFold', {'for': ['python']}
-Plug 'rust-lang/rust.vim', {'for': ['rust']}
 Plug 'jez/vim-better-sml', {'for': ['sml']}
 Plug 'hashivim/vim-terraform', {'for': ['terraform']}
 call plug#end()
@@ -29,6 +33,13 @@ call plug#end()
 " Neomake
 let g:neomake_error_sign = {'text': '❯❯', 'texthl': 'Error'}
 let g:neomake_warning_sign = {'text': '⟩⟩', 'texthl': 'Todo'}
+let g:neomake_python_enabled_makers = ['python', 'frosted', 'pyflakes', 'pylint']
+let g:neomake_python_pylint_args = [
+    \ '--output-format=text',
+    \ '--msg-template="{path}:{line}:{column}:{C}: [{symbol}] {msg} [{msg_id}]"',
+    \ '--reports=no',
+    \ '2>/dev/null',
+    \ ]
 autocmd! BufWritePost * Neomake
 
 " ctrlp
@@ -66,6 +77,13 @@ let g:airline_symbols.whitespace = ''
 let g:airline_section_x = ''
 let g:airline_section_y = '%{airline#util#wrap(airline#parts#filetype(),0)}'
 let g:airline_section_z = '%4l:%=%-3.v'
+
+" LanguageClientServer
+let g:LanguageClient_autoStart = 0
+nnoremap <leader>lcs :LanguageClientStart<CR>
+let g:LanguageClient_serverCommands = {
+    \ 'python': ['pyls'],
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'] }
 
 " UltiSnips
 let g:UltiSnipsEditSplit="horizontal"
@@ -273,6 +291,8 @@ nnoremap <leader>h mh*`h
 " Remove Whitespace
 nnoremap <leader>rw :%s/\s\+$//<CR> :nohl<CR> :w<CR>
 
+nnoremap <leader>lcs :LanguageClientStart<CR>
+
 " access vimrc more easily
 " Vimrc EDit
 nnoremap <leader>ved :e $MYVIMRC<CR>:nohl<CR>
@@ -337,7 +357,7 @@ if $BG == "light"
 else
     set bg=dark
 endif
-if $BG == 'gruvbox'
+if $ITERM_PROFILE == 'gruvbox'
     colorscheme gruvbox
 endif
 hi Todo cterm=None ctermfg=5

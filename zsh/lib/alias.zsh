@@ -6,6 +6,7 @@ alias emacs='vim'
 alias map='xargs -n1'
 alias mkdir='mkdir -p'
 alias reload='source ~/.zshrc'
+alias rrepl="rustup run nightly-2016-08-01 ~/.cargo/bin/rusti"
 alias psa='ps aux'
 alias psg='ps aux | grep'
 alias py='python'

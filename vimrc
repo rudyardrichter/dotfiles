@@ -8,6 +8,7 @@ Plug 'scrooloose/syntastic'
 if has('python')
     Plug 'SirVer/ultisnips'
 endif
+Plug 'nightsense/carbonized'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
