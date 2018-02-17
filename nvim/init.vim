@@ -70,12 +70,22 @@ let g:airline_section_y = '%{airline#util#wrap(airline#parts#filetype(),0)}'
 let g:airline_section_z = '%4l:%=%-3.v'
 
 " UltiSnips
-let g:UltiSnipsExpandTrigger='`'
-let g:UltiSnipsListSnippets='<S-`>'
+let g:UltiSnipsExpandTrigger='<nop>'
+let g:UltiSnipsListSnippets='<S-CR>'
 let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsSnippetDirectories=['snippet']
 let g:UltiSnipsSnippetsDir='/Users/rudyardrichter/.config/nvim/snippet'
 let g:ultisnips_python_style='google'
+let g:ulti_expand_or_jump_res = 0
+function! <SID>ExpandSnippetOrReturn()
+  let snippet = UltiSnips#ExpandSnippetOrJump()
+  if g:ulti_expand_or_jump_res > 0
+    return snippet
+  else
+    return "\<CR>"
+  endif
+endfunction
+inoremap <expr> <CR> pumvisible() ? "<C-R>=<SID>ExpandSnippetOrReturn()<CR>" : "\<CR>"
 
 " SimpylFold
 let g:SimpylFoldDocstring=1
