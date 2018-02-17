@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Genomics
 App
 URLs
@@ -18,3 +19,31 @@ eRA
 cybersecurity
 auditable
 API
+=======
+docstrings
+Docstring
+reStructuredText
+neovim
+pylint
+Linting
+PlanX
+TODO
+feat
+Metadata
+metadata
+Workflow
+workflow
+Workflows
+workflows
+IDE
+presigned
+Auth
+GDC
+URLs
+eRA
+API
+google
+filesystem
+deque
+OIDC
+>>>>>>> socrates

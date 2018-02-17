@@ -1,3 +1,8 @@
+let g:python_host_prog = '/Users/rudyard/envs/neovim/bin/python2'
+let g:python3_host_prog = '/Users/rudyard/envs/neovim/bin/python3'
+let g:ycm_python_binary_path = 'python'
+
+
 " ==== Plugins ====
 
 call plug#begin('~/.config/nvim/plugged')
@@ -12,6 +17,7 @@ Plug 'SirVer/ultisnips'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
+Plug 'valloric/youcompleteme'
 
 " rust
 Plug 'rust-lang/rust.vim', {'for': ['rust']}
@@ -86,10 +92,22 @@ let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'] }
 
 " UltiSnips
+let g:UltiSnipsExpandTrigger='<nop>'
+let g:UltiSnipsListSnippets='<S-CR>'
 let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsSnippetDirectories=['snippet']
 let g:UltiSnipsSnippetsDir='/Users/rudyardrichter/.config/nvim/snippet'
-let g:ultisnips_python_style="google"
+let g:ultisnips_python_style='google'
+let g:ulti_expand_or_jump_res = 0
+function! <SID>ExpandSnippetOrReturn()
+  let snippet = UltiSnips#ExpandSnippetOrJump()
+  if g:ulti_expand_or_jump_res > 0
+    return snippet
+  else
+    return "\<CR>"
+  endif
+endfunction
+inoremap <expr> <CR> pumvisible() ? "<C-R>=<SID>ExpandSnippetOrReturn()<CR>" : "\<CR>"
 
 " SimpylFold
 let g:SimpylFoldDocstring=1

@@ -76,6 +76,10 @@ hs.hotkey.bind(keys, 'k', hs.grid.pushWindowUp)
 hs.hotkey.bind(keys, 'l', hs.grid.pushWindowRight)
 
 -- Resize Windows
+hs.hotkey.bind(keys, 'm', function()
+    local win = hs.window.focusedWindow()
+    win:setFrame(win:screen():frame())
+end)
 hs.hotkey.bind(keys, 'y', hs.grid.resizeWindowThinner)
 hs.hotkey.bind(keys, 'u', hs.grid.resizeWindowShorter)
 hs.hotkey.bind(keys, 'i', hs.grid.resizeWindowTaller)
