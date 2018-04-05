@@ -11,3 +11,5 @@ let g:neomake_python_pylint_maker = {
     \ 'output_stream': 'stdout',
     \ 'postprocess': [function('neomake#postprocess#GenericLengthPostprocess'), function('neomake#makers#ft#python#PylintEntryProcess')],
     \ }
+
+let g:neomake_python_enabled_makers = []

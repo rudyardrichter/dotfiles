@@ -1,8 +1,3 @@
-let g:python_host_prog = '/Users/rudyardrichter/envs/neovim/bin/python2'
-let g:python3_host_prog = '/Users/rudyardrichter/envs/neovim/bin/python3'
-let g:ycm_python_binary_path = 'python'
-
-
 " ==== Plugins ====
 
 call plug#begin('~/.config/nvim/plugged')
@@ -35,12 +30,10 @@ autocmd! BufWritePost * Neomake
 
 " ctrlp
 let g:ctrlp_cmd = 'CtrlPBuffer'
-set grepprg=rg
-let g:ctrlp_user_command='rg %s --files --follow --color=never'
-let g:ctrlp_use_caching=0
-let g:ctrlp_max_files=0
+let g:ctrlp_user_command='rg %s --files --no-ignore --hidden --follow --color=never'
+let g:ctrlp_max_files=10000
 let g:ctrlp_max_depth=50
-let gctrlp_working_path_mode=''
+let gctrlp_working_path_mode='rc'
 
 " NERDTree
 let NERDTreeMinimalUI = 1
@@ -70,7 +63,7 @@ let g:airline_section_y = '%{airline#util#wrap(airline#parts#filetype(),0)}'
 let g:airline_section_z = '%4l:%=%-3.v'
 
 " UltiSnips
-let g:UltiSnipsExpandTrigger='<nop>'
+let g:UltiSnipsExpandTrigger='<C-S-e>'
 let g:UltiSnipsListSnippets='<S-CR>'
 let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsSnippetDirectories=['snippet']
@@ -90,8 +83,13 @@ inoremap <expr> <CR> pumvisible() ? "<C-R>=<SID>ExpandSnippetOrReturn()<CR>" : "
 " SimpylFold
 let g:SimpylFoldDocstring=1
 
+let g:python_host_prog = '/Users/rudyardrichter/envs/neovim/bin/python2'
+let g:python3_host_prog = '/Users/rudyardrichter/envs/neovim/bin/python3'
+let g:ycm_python_binary_path = '/Users/rudyardrichter/envs/neovim/bin/python3'
+
 
 " ==== General Configuration ====
+
 
 filetype on
 filetype plugin on
@@ -103,6 +101,7 @@ set wildmode=longest:full,full  " set tab completion method
 set wildignorecase              " ignore case in completion
 set wildignore+=*/.git/*
 set wildignore+=*/tmp/*
+set wildignore+=*.egg-info/*
 set wildignore+=*.swp
 set backspace=indent,eol,start  " allow backspace on everything
 set history=1000                " store cmd history
@@ -215,6 +214,17 @@ func! PreviewWord()
 endfun
 
 
+" ==== Searching ====
+
+set grepprg=rg\ --vimgrep\ --no-heading
+set grepformat=%f:%l:%c:%m
+
+command! -nargs=+ Search silent! grep! <args> <bar> copen <bar> redraw!
+
+nnoremap - :silent! Search<Space>
+nnoremap = *:silent! Search <C-r>=expand("<cword>")<CR><CR>:echo<CR>
+
+
 " ==== Mappings/Bindings ====
 
 noremap H ^
@@ -222,6 +232,7 @@ noremap J mjJ`j
 noremap K <nop>
 noremap L $
 noremap Y y$
+
 nnoremap Q :q<CR>
 
 nnoremap n nzz
@@ -235,7 +246,6 @@ nnoremap <Right> <C-w>l
 
 noremap ; :
 noremap : `
-noremap - "
 noremap ` "
 noremap " ,
 noremap M '

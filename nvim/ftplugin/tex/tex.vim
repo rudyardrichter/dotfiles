@@ -95,5 +95,5 @@ function! CodeMaps()
     iunmap >
 endfunction
 
-command WC call WC()
-command CodeMaps call CodeMaps()
+command! WC call WC()
+command! CodeMaps call CodeMaps()
