@@ -15,8 +15,8 @@ for file in ${lib_files[@]}; do
 done
 
 autoload -Uz compinit
-if [[ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]]; then
-    compinit
-else
-    compinit -C
-fi
+#if [[ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]]; then
+#    compinit
+#else
+#    compinit -C
+#fi

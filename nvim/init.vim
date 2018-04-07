@@ -4,13 +4,17 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'skywind3000/asyncrun.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'EinfachToll/DidYouMean'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 Plug 'neomake/neomake'
 Plug 'scrooloose/nerdtree'
+Plug 'roxma/nvim-completion-manager'
 Plug 'SirVer/ultisnips'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
-Plug 'valloric/youcompleteme'
 " colorschemes
 Plug 'altercation/vim-colors-solarized'
 Plug 'flazz/vim-colorschemes'
@@ -19,9 +23,21 @@ Plug 'morhetz/gruvbox'
 Plug 'fatih/vim-go', {'for': ['go']}
 Plug 'tmhedberg/SimpylFold', {'for': ['python']}
 Plug 'rust-lang/rust.vim', {'for': ['rust']}
+Plug 'racer-rust/vim-racer', {'for': ['rust']}
+Plug 'roxma/nvim-cm-racer', {'for': ['rust']}
 Plug 'jez/vim-better-sml', {'for': ['sml']}
 Plug 'hashivim/vim-terraform', {'for': ['terraform']}
 call plug#end()
+
+" language server client
+let g:LanguageClient_serverCommands = {
+    \ 'python': ['pyls'],
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ }
+
+" completion
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Neomake
 let g:neomake_error_sign = {'text': '❯❯', 'texthl': 'Error'}
@@ -83,10 +99,6 @@ inoremap <expr> <CR> pumvisible() ? "<C-R>=<SID>ExpandSnippetOrReturn()<CR>" : "
 " SimpylFold
 let g:SimpylFoldDocstring=1
 
-let g:python_host_prog = '/Users/rudyardrichter/envs/neovim/bin/python2'
-let g:python3_host_prog = '/Users/rudyardrichter/envs/neovim/bin/python3'
-let g:ycm_python_binary_path = '/Users/rudyardrichter/envs/neovim/bin/python3'
-
 
 " ==== General Configuration ====
 
@@ -128,6 +140,7 @@ set undolevels=1000             " lots of undo memory
 set updatetime=250              " ms after which cursor is considered idle
 set backupdir=~/.vim/swp        " directory for swap files
 set gdefault                    " include /g in sed by default
+set shortmess+=c                " suppress completion messages
 
 
 " ==== Display ====

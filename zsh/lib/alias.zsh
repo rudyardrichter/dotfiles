@@ -20,10 +20,10 @@ alias vim='vim -u ~/.simple_vimrc.vim'
 alias k8s_dash='ssh -L 9090:localhost:9090 -N dev-k8s'
 
 # ls
-alias l='gls -A --color=auto'
-alias ll='gls -Aho --color=auto'
-alias lr='gls -AR --color=auto'
-alias ls='gls --color=auto'
+alias l='ls -A --color=auto'
+alias ll='ls -Aho --color=auto'
+alias lr='ls -AR --color=auto'
+alias ls='ls --color=auto'
 
 # gnu
 alias sort='gsort'
