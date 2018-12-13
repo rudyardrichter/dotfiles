@@ -16,10 +16,9 @@ emotes=(
 )
 
 if [[ -n ${emotes[$1]} ]]; then
-    echo ${emotes[$1]}
+    echo -n ${emotes[$1]}
 else
     echo "usage: $(basename $0) <emote>"
-    echo
     for key in "${(@k)emotes}"; do
         echo -e "$key: ${emotes[$key]}"
     done | awk '{ $1 = $1"\t"; print }' | column -t -s $'\t'

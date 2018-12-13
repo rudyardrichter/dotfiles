@@ -24,6 +24,10 @@ function gclmy() {
     git clone --recursive git@github.com:rudyardrichter/$1.git
 }
 
+function ggb() {
+    git log --graph --pretty=$pretty_fmt --first-parent $(git rev-parse $(git merge-base master HEAD))..HEAD
+}
+
 function union() {
     cat $1 $2 | sort | uniq
 }
@@ -125,4 +129,8 @@ function sl() {
     fi
     popd >/dev/null
     exec 1<&4
+}
+
+function re() {
+    rg -l "$@" | xargs nvim
 }

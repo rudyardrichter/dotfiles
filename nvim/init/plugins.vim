@@ -122,6 +122,3 @@ function! <SID>ExpandSnippetOrReturn()
   endif
 endfunction
 inoremap <expr> <CR> pumvisible() ? "<C-R>=<SID>ExpandSnippetOrReturn()<CR>" : "\<CR>"
-
-" SimpylFold
-let g:SimpylFold_docstring_preview=1

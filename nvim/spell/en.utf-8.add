@@ -60,3 +60,11 @@ datacenters
 Backend
 indexd
 GUID
+authZ
+authN
+auth
+IDP
+IDPs
+OAuth
+def
+timestamp

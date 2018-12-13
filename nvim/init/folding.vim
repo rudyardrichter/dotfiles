@@ -20,11 +20,16 @@ fu! CustomFoldText()
     let foldSizeStr = " " . foldSize . " lines "
     let foldLevelStr = repeat("+", v:foldlevel) . repeat("-", fmax-v:foldlevel)
     let lineCount = line("$")
-    let foldPercentage = printf("(%.1f", (foldSize*1.0)/lineCount*100) . "%) "
-    let foldInfoLen = 2 + strwidth(foldSizeStr.foldPercentage.foldLevelStr)
+    let foldPercentage = (100.0*foldSize)/lineCount
+    let foldPercentageStr = printf("%04.1f", foldPercentage) . "%) "
+    "if foldPercentage < 10.0
+    "    let foldPercentageStr = '0' . foldPercentageStr
+    "endif
+    let foldPercentageStr = '(' . foldPercentageStr
+    let foldInfoLen = 2 + strwidth(foldSizeStr.foldPercentageStr.foldLevelStr)
     let line = line[0:w-foldInfoLen]
-    let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage) + 2)
-    return line . ' ' . expansionString . foldSizeStr . foldPercentage . foldLevelStr . ' '
+    let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentageStr))
+    return line . ' ' . expansionString . foldSizeStr . foldPercentageStr . foldLevelStr . ' '
 endf
 
 set foldenable
