@@ -134,3 +134,9 @@ function sl() {
 function re() {
     rg -l "$@" | xargs nvim
 }
+
+# colorscheme
+function cs() {
+    export COLORSCHEME="$1"
+    dynamic-colors switch "$1"
+}
