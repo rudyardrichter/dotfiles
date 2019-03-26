@@ -5,8 +5,8 @@ if $BG == "light"
 else
     set bg=dark
 endif
-if $BG == 'gruvbox'
-    colorscheme gruvbox
+if $BG != ''
+    colorscheme $BG
 endif
 hi Todo cterm=None ctermfg=5
 

@@ -49,3 +49,5 @@ zstyle ':completion::complete:*' use-cache on
 zstyle ':completion::complete:*' cache-path $ZSH/cache
 
 zstyle '*' single-ignored show
+
+source $HOME/.dynamic-colors/completions/dynamic-colors.zsh

@@ -96,41 +96,6 @@ function rgl() {
     rg --heading --color=always "$@" | less
 }
 
-function sl() {
-    exec 4<&1
-    exec 2>/dev/null
-    pushd . >/dev/null
-    pushd $1 >/dev/null
-    directories=$(gls -ACd --color=always (*|.*)(/))
-    files=$(gls -AC --color=always (*|.*)(.))
-    misc=$(gls -ACd --color=always (*|.*)(^/.))
-    if [[ "$directories" != "" ]]; then
-        print $directories
-        if [[ "$files" != "" ]]; then
-            echo
-            print $files
-            if [[ "$misc" != "" ]]; then
-                echo
-                print $misc
-            fi
-        fi
-    else
-        if [[ "$files" != "" ]]; then
-            print $files
-            if [[ "$misc" != "" ]]; then
-                echo
-                print $misc
-            fi
-        else
-            if [[ "$misc" != "" ]]; then
-                print $misc
-            fi
-        fi
-    fi
-    popd >/dev/null
-    exec 1<&4
-}
-
 function re() {
     rg -l "$@" | xargs nvim
 }

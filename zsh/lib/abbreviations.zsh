@@ -1,16 +1,8 @@
 typeset -Ag abbreviations
 abbreviations=(
-    'EG'    '| egrep'
     'G'     '| grep'
-    'H'     '| head'
     'L'     '| less'
-    'M'     '| map'
-    'P'     '|'
     'QLOG'  '> "Q$(date +%FT%R).log"'
-    'T'     '| tail'
-    'U'     '| uniq'
-    'W'     '| wc -l'
-    'X'     '| xargs'
 )
 
 magic-abbrev-expand() {

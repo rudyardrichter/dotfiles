@@ -24,3 +24,22 @@ endsnippet
 snippet println "Description" b
 print("${0}\n")
 endsnippet
+
+snippet test "test run" b
+t.Run("${1:test}", func(t *testing.T) {
+	${0}
+	// TODO
+	t.Fail()
+})
+endsnippet
+
+snippet testhttp "test run for a server test" b
+t.Run("${1:test}", func(t *testing.T) {
+	w := httptest.NewRecorder()
+	req := newRequest("${1:POST}", "${2:/endpoint}", ${3:body})
+	handler.ServeHTTP(w, req)
+	${0}
+	// TODO
+	t.Fail()
+})
+endsnippet

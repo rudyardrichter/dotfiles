@@ -1,3 +1,4 @@
+Xft.dpi: 157
 Xft.antialias: false
 Xft.rgba: rgb
 Xft.hinting: true
@@ -6,7 +7,7 @@ Xft.hintstyle: hintslight
 *.font: xft:Terminus:pixelsize=28
 
 !! URxvt
-URxvt.perl-ext-common: default,clipboard,selection-to-clipboard,keyboard-select
+URxvt.perl-ext-common: default,clipboard,keyboard-select
 URxvt.keyboard-select.clipboard: true
 URxvt.font: xft:Terminus:pixelsize=32
 URxvt.letterSpace: 0

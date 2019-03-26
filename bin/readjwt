@@ -1,0 +1,26 @@
+#!/usr/bin/python3.6
+
+from base64 import b64decode
+import json
+import sys
+
+
+def _decode(data):
+    padding = '=' * (4 - len(data) % 4)
+    return b64decode(data + padding).decode('utf-8')
+
+
+def print_json(string, **kwargs):
+    print(json.dumps(json.loads(string), **kwargs))
+
+
+def main():
+    jwt = sys.argv[1]
+    # signature unused
+    headers, payload, _ = jwt.split('.')
+    print_json(_decode(headers), indent=4)
+    print_json(_decode(payload), indent=4)
+
+
+if __name__ == "__main__":
+    main()

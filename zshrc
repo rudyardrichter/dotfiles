@@ -6,8 +6,8 @@ else
 fi
 
 lib_files=(
-    alias compfix completion env functions grep history local opt \
-    termsupport syntax theme key-bindings key abbreviations \
+    env compfix completion grep history local opt termsupport syntax theme \
+    key-bindings key abbreviations functions alias \
 )
 
 for file in ${lib_files[@]}; do

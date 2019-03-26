@@ -38,10 +38,11 @@ git_status () {
 git_prompt () {
     local _branch="$(git symbolic-ref --short HEAD 2> /dev/null)"
     if [ "$_branch" ]; then
-        _result="[%{$fg[white]%}$_branch"
+        #_result="[%{$fg[white]%}$_branch"
+        _result="%{$fg[cyan]%}$_branch"
         local _status=$(git_status)
         [ "$_status" ] && _result="$_result $_status"
-        echo "$_result%{$reset_color%}]"
+        echo "  $_result%{$reset_color%}"
     fi
 }
 
@@ -57,8 +58,8 @@ else
     _PROMPT="%{$fg[green]%}$"
 fi
 
-N="%{$fg_bold[white]%}N%{$reset_color%}"
-I="%{$fg[yellow]%}I%{$reset_color%}"
+N="[%{$fg_bold[white]%}NORMAL%{$reset_color%}]"
+I=""
 
 function zle-keymap-select {
     mode="${${KEYMAP/vicmd/${N}}/(main|viins)/${I}}"
@@ -70,6 +71,6 @@ zle -N zle-keymap-select
 mode=$I
 precmd() { mode=$I }
 
-PROMPT="$_USERNAME %{$fg_bold[white]%}%~%{$reset_color%}
+PROMPT="$_USERNAME %{$fg_bold[white]%}%~%{$reset_color%}\$(git_prompt)
 $_PROMPT%{$reset_color%} "
-RPROMPT='$(git_prompt)[${mode}]'
+RPROMPT='${mode}'
