@@ -9,17 +9,19 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'neomake/neomake'
 Plug 'scrooloose/nerdtree'
 Plug 'roxma/nvim-completion-manager'
-Plug 'majutsushi/tagbar'
+"Plug 'majutsushi/tagbar'
 Plug 'SirVer/ultisnips'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
-"Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-rhubarb'
+Plug 'airblade/vim-gitgutter'
 " colorschemes
 Plug 'altercation/vim-colors-solarized'
 Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
 " filetype-specific plugins
+"Plug 'plasticboy/vim-markdown', {'for': ['markdown']}
 Plug 'fatih/vim-go', {'for': ['go']}
 Plug 'mdempsky/gocode', {'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh'}
 Plug 'tmhedberg/SimpylFold', {'for': ['python']}
@@ -37,9 +39,12 @@ let g:black_virtualenv = '/home/rudyard/.envs/neovim3.6'
 "autocmd BufWritePre *.py execute ':Black'
 
 " gitgutter
-nmap <leader>gp <Plug>GitGutterPreviewHunk
-nmap <leader>gu <Plug>GitGutterUndoHunk
-nmap <leader>gs <Plug>GitGutterStageHunk
+nnoremap <leader>gp :GitGutterPreviewHunk<CR>
+nnoremap <leader>gu :GitGutterUndoHunk<CR>
+nnoremap <leader>gs :GitGutterStageHunk<CR>
+let g:gitgutter_enabled = 0
+nnoremap <leader>gl :Gbrowse<CR>
+vnoremap <leader>gl :Gbrowse<CR>
 
 " language server client
 let g:LanguageClient_serverCommands = {
@@ -77,9 +82,12 @@ let NERDTreeIgnore = ['\.pyc$']
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-let g:airline#extensions#tagbar#enabled = 0
+let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#ale#enabled = 0
 let g:airline_skip_empty_sections = 1
+
+"
+let g:tagbar_map_togglefold = "<tab>"
 
 let g:enable_powerline_symbols = 0
 if g:enable_powerline_symbols
@@ -93,10 +101,10 @@ else
     let g:airline_right_sep = ''
     let g:airline_right_alt_sep = '|'
 endif
-let g:airline_symbols.branch = ''
+let g:airline_symbols.branch = ''
 let g:airline#extensions#branch#empty_message = ''
 let g:airline_symbols.notexists = ''
-let g:airline_symbols.readonly = ''
+let g:airline_symbols.readonly = 'RO'
 let g:airline_symbols.linenr = ''
 let g:airline_symbols.whitespace = ''
 let g:airline_section_b = '%{airline#util#wrap(airline#extensions#branch#get_head(),0)}'

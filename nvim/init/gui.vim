@@ -1,18 +1,14 @@
 set t_Co=256
-colorscheme solarized
-if $BG == "light"
-    set bg=light
-else
-    set bg=dark
-endif
-if $BG != ''
-    colorscheme $BG
-endif
-hi Todo cterm=None ctermfg=5
+colorscheme gruvbox
+set bg=dark
 
 if has('syntax') && !exists('g:syntax_on')
     syntax enable
 endif
+
+highlight Todo ctermbg=None ctermfg=1
+" this fixes a weird bug on punctuation highlighting that I was having
+highlight Normal ctermfg=223 guifg=#ebdbb2 ctermbg=NONE guibg=NONE
 
 if has("gui_running")
     set guifont=Source\ Code\ Pro:h12

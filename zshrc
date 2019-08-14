@@ -1,9 +1,5 @@
 export ZSH=~/dotfiles/zsh
-if [[ $BG == "light" ]]; then
-    export THEME=arete-light
-else
-    export THEME=arete
-fi
+export THEME=gruvbox
 
 lib_files=(
     env compfix completion grep history local opt termsupport syntax theme \

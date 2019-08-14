@@ -17,9 +17,3 @@ let g:config_files = [
 for file in g:config_files
     exe 'source ' . g:init . file
 endfor
-
-try
-    colorscheme $COLORSCHEME
-catch /.*/
-    colorscheme solarized
-endtry

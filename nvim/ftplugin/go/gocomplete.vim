@@ -1,1 +1,1 @@
-setlocal omnifunc=gocomplete#Complete
+/home/rudyard/.config/nvim/plugged/gocode/nvim/ftplugin/go/gocomplete.vim

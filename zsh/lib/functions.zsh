@@ -105,3 +105,7 @@ function cs() {
     export COLORSCHEME="$1"
     dynamic-colors switch "$1"
 }
+
+function psg() {
+    ps aux | grep "$@" | grep -v grep
+}
