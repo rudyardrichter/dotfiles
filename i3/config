@@ -27,13 +27,13 @@ bindsym Mod1+p workspace prev
 floating_modifier Mod1
 
 # Start a terminal.
-bindsym Mod1+Return exec i3-sensible-terminal
+bindsym Mod1+Return exec urxvt
 
 # Kill focused window.
 bindsym Mod1+Shift+q kill
 
 # Start dmenu (a program launcher).
-bindsym Mod1+space exec dmenu_run
+bindsym Mod1+space exec --no-startup-id dmenu_run
 # Start i3-dmenu-desktop.
 #bindsym Mod1+d exec --no-startup-id i3-dmenu-desktop
 
@@ -93,6 +93,8 @@ bindsym Mod1+Shift+8 move container to workspace 8
 bindsym Mod1+Shift+9 move container to workspace 9
 bindsym Mod1+Shift+0 move container to workspace 10
 
+bindsym Mod1+i exec --no-startup-id polybar-msg cmd toggle
+
 # reload the configuration file
 bindsym Mod1+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -129,15 +131,11 @@ mode $resize {
 #exec -c "HUD"
 #for_window [instance="HUD"] floating enable, resize set 1200px 800px, move scratchpad
 
-# Disable mouse warping.
 mouse_warping none
 
 # Change brightness setting.
-# Requires `brightlight`: https://github.com/multiplexd/brightlight
-# Maximum brightness is 7500.
-# 7500 / 375 == 20 increments.
-bindsym XF86MonBrightnessUp exec brightlight -i 375
-bindsym XF86MonBrightnessDown exec brightlight -d 375
+bindsym XF86MonBrightnessUp exec "xbacklight -inc 5"
+bindsym XF86MonBrightnessDown exec "xbacklight -dec 5"
 
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
@@ -149,7 +147,6 @@ gaps inner 8
 gaps outer 0
 smart_gaps on
 smart_borders on
-
 
 # COLORSCHEME (gruvbox)
 

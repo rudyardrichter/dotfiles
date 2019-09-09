@@ -1,16 +1,19 @@
-Xft.dpi: 157
-!!Xft.dpi: 221
+!!Xft.dpi: 282
+Xft.dpi: 250
 Xft.antialias: false
 Xft.rgba: rgb
 Xft.hinting: true
 Xft.hintstyle: hintslight
 
-*.font: xft:Fira Mono:pixelsize=24
+*.font: xft:Ubuntu Mono:pixelsize=16
 
 !! URxvt
 URxvt.perl-ext-common: default,clipboard,keyboard-select,font-size
 URxvt.keyboard-select.clipboard: true
-URxvt.font: xft:Fira Mono:pixelsize=24
+URxvt.font: xft:Ubuntu Mono:fontsize=16,xft:Noto Color Emoji:style=Regular
+URxvt*locale:            en_US.UTF-8
+URxvt*letterSpace:       -1
+URxvt*skipBuiltInGlyphs: true
 URxvt.boldFont:
 URxvt.letterSpace: 0
 URxvt.scrollBar: false
@@ -21,7 +24,9 @@ URxvt.keysym.C-S: perl:keyboard-select:activate
 URxvt.keysym.C-C: eval:selection_to_clipboard
 URxvt.keysym.C-V: eval:paste_clipboard
 URxvt*dynamicColors: on
-
+!! key bindings
+!URxvt.keysym.Control-h: \033[1;5D
+!URxvt.keysym.Control-l: \033[1;5C
 !! font size extension
 URxvt.font-size.step: 4
 

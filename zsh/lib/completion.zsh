@@ -50,7 +50,7 @@ zstyle ':completion::complete:*' cache-path $ZSH/cache
 
 zstyle '*' single-ignored show
 
-source $HOME/.dynamic-colors/completions/dynamic-colors.zsh
+#source $HOME/.dynamic-colors/completions/dynamic-colors.zsh
 
 #source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 #export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"

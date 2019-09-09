@@ -15,10 +15,10 @@ export FZF_DEFAULT_OPTS='--reverse'
 #export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
 #export VIRTUALENVWRAPPER_VIRTUALENV=/Users/rudyardrichter/Library/Python/2.7/bin/virtualenv
 #export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
-source /usr/local/bin/virtualenvwrapper.sh
+source /home/rudyard/.local/bin/virtualenvwrapper.sh
 export WORKON_HOME=~/.envs
 
-#export PYTHONPATH="/usr/local/lib/python2.7/site-packages:/Users/rudyardrichter/Library/Python/2.7:$PYTHONPATH)"
+export RUST_SRC_PATH="/home/rudyard/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/"
 
 export GOROOT=/usr/local/go
 export GOPATH=~/go
@@ -31,5 +31,6 @@ go_binaries=$GOBIN
 tex="/usr/local/texlive/2017/bin/x86_64-linux"
 npm="$HOME/.npm/bin/"
 colors="$HOME/.dynamic-colors/bin"
-export PATH="$colors:$user_binaries:$rust_binaries:$go_binaries:$tex:$npm:$PATH"
-export RUST_SRC_PATH="/home/rudyard/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/"
+fzf="$HOME/.fzf/bin"
+eb="/home/rudyard/.ebcli-virtual-env/executables"
+export PATH="$colors:$user_binaries:$rust_binaries:$go_binaries:$tex:$npm:$fzf:$eb:$PATH"

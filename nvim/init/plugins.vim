@@ -8,20 +8,26 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 Plug 'neomake/neomake'
 Plug 'scrooloose/nerdtree'
-Plug 'roxma/nvim-completion-manager'
-"Plug 'majutsushi/tagbar'
-Plug 'SirVer/ultisnips'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
+Plug 'SirVer/ultisnips'
+" Completion
+Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-ultisnips'
+Plug 'ncm2/ncm2-jedi'
+Plug 'ncm2/ncm2-racer'
+Plug 'roxma/nvim-yarp'
 " colorschemes
 Plug 'altercation/vim-colors-solarized'
 Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
+Plug '~/.fzf'
+Plug 'junegunn/fzf.vim'
 " filetype-specific plugins
-"Plug 'plasticboy/vim-markdown', {'for': ['markdown']}
+Plug 'plasticboy/vim-markdown', {'for': ['markdown']}
 Plug 'fatih/vim-go', {'for': ['go']}
 Plug 'mdempsky/gocode', {'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh'}
 Plug 'tmhedberg/SimpylFold', {'for': ['python']}
@@ -52,15 +58,22 @@ let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
     \ }
 let g:LanguageClient_autoStart = 1
+" don't use virtual text to show errors inline
+let g:LanguageClient_useVirtualText = 0
 
-" completion bindings
+" completion settings
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+" disable language client completion, we already get these from jedi
+call ncm2#override_source('LanguageClient_python', {'enable': 0})
 
 " Neomake
-let g:neomake_error_sign = {'text': '❯❯', 'texthl': 'Error'}
-let g:neomake_warning_sign = {'text': '⟩⟩', 'texthl': 'Todo'}
-autocmd! BufWritePost * Neomake
+"let g:neomake_error_sign = {'text': '❯❯', 'texthl': 'Error'}
+"let g:neomake_warning_sign = {'text': '⟩⟩', 'texthl': 'Todo'}
+"autocmd! BufWritePost * Neomake
 
 " ctrlp
 let g:ctrlp_cmd = 'CtrlPBuffer'
@@ -121,12 +134,6 @@ let g:UltiSnipsSnippetDirectories=['snippet']
 let g:UltiSnipsSnippetsDir='~/.config/nvim/snippet'
 let g:ultisnips_python_style='google'
 let g:ulti_expand_or_jump_res = 0
-function! <SID>ExpandSnippetOrReturn()
-  let snippet = UltiSnips#ExpandSnippetOrJump()
-  if g:ulti_expand_or_jump_res > 0
-    return snippet
-  else
-    return "\<CR>\<CR>"
-  endif
-endfunction
-inoremap <expr> <CR> pumvisible() ? "<C-R>=<SID>ExpandSnippetOrReturn()<CR>" : "\<CR>"
+
+" markdown
+let g:vim_markdown_folding_disabled = 1
