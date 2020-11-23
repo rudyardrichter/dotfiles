@@ -107,5 +107,25 @@ function cs() {
 }
 
 function psg() {
-    ps aux | grep "$@" | grep -v grep
+    ps aux | grep -E "($@|^\s*USER)" | grep -v grep
+}
+
+function fe() {
+  local files
+  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
+
+function find_up() {
+    setopt localoptions null_glob
+    result=((../)#"$@"(:a))
+    if [[ -n $result ]]; then
+        echo $result
+    fi
+}
+
+function globus-mfa-users () {
+  AWS_PROFILE=rudyard ADMIN_AWS_MFA_SN=arn:aws:iam::942379385228:mfa/rudyard \
+    $HOME/.envs/globus/bin/mfa-login --mmin 540 "$HOME/.globus_mfa_users" || return $?
+  $HOME/.envs/globus/bin/mfa-to-profile mfa-activated "$HOME/.globus_mfa_users"
 }

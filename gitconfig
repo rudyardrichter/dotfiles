@@ -1,0 +1,10 @@
+[user]
+    email = rudyardrichter@uchicago.edu
+    name = Rudyard Richter
+[core]
+    excludesfile = /home/rudyard/.gitignore
+[push]
+    default = current
+[alias]
+    files = !git diff --name-only $(git merge-base HEAD \"$REVIEW_BASE\")
+    review = !vim -p $(git files) +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"

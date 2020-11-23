@@ -8,11 +8,12 @@ Xft.hintstyle: hintslight
 *.font: xft:Ubuntu Mono:pixelsize=16
 
 !! URxvt
-URxvt.perl-ext-common: default,clipboard,keyboard-select,font-size
+URxvt.perl-ext-common: default,clipboard,keyboard-select,font-size,resize-font
 URxvt.keyboard-select.clipboard: true
-URxvt.font: xft:Ubuntu Mono:fontsize=16,xft:Noto Color Emoji:style=Regular
+URxvt.font: xft:UbuntuMono Nerd Font Mono:size=12:style=regular:minspace=False
+!!URxvt.font: xft:SauceCodePro Nerd Font Mono:size=10
 URxvt*locale:            en_US.UTF-8
-URxvt*letterSpace:       -1
+URxvt*letterSpace:       1
 URxvt*skipBuiltInGlyphs: true
 URxvt.boldFont:
 URxvt.letterSpace: 0
@@ -28,7 +29,7 @@ URxvt*dynamicColors: on
 !URxvt.keysym.Control-h: \033[1;5D
 !URxvt.keysym.Control-l: \033[1;5C
 !! font size extension
-URxvt.font-size.step: 4
+URxvt.font-size.step: 2
 
 !!!!
 !!!! colors: solarized

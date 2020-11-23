@@ -4,6 +4,7 @@ export PAGER='less'
 export LESS='-R'
 export TERM=xterm-256color
 export GOPATH="/home/rudyard/go"
+export ZLE_REMOVE_SUFFIX_CHARS=""
 
 export REVIEW_BASE=master
 
@@ -33,4 +34,5 @@ npm="$HOME/.npm/bin/"
 colors="$HOME/.dynamic-colors/bin"
 fzf="$HOME/.fzf/bin"
 eb="/home/rudyard/.ebcli-virtual-env/executables"
-export PATH="$colors:$user_binaries:$rust_binaries:$go_binaries:$tex:$npm:$fzf:$eb:$PATH"
+poetry="/home/rudyard/.poetry/bin"
+export PATH="$colors:$user_binaries:$rust_binaries:$go_binaries:$tex:$npm:$fzf:$eb:$poetry:$PATH"

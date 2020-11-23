@@ -30,9 +30,10 @@ git_status () {
     # stashed
     $(git rev-parse --verify refs/stash > /dev/null 2>&1) && _STATUS="$_STATUS%{$fg_bold[magenta]%}•%{$reset_color%}"
     # ahead
-    $(echo "$_INDEX" | grep '^## .*ahead' &> /dev/null) && _STATUS="$_STATUS%{$fg[cyan]%}▲%{$reset_color%}"
+    # 
+    $(echo "$_INDEX" | grep '^## .*ahead' &> /dev/null) && _STATUS="$_STATUS%{$fg[cyan]%}%{$reset_color%}"
     # behind
-    $(echo "$_INDEX" | grep '^## .*behind' &> /dev/null) && _STATUS="$_STATUS%{$fg[magenta]%}▼%{$reset_color%}"
+    $(echo "$_INDEX" | grep '^## .*behind' &> /dev/null) && _STATUS="$_STATUS%{$fg[magenta]%}%{$reset_color%}"
     # diverged
     $(echo "$_INDEX" | grep '^## .*diverged' &> /dev/null) && _STATUS="$_STATUS%{$fg_bold[red]%}⧎%{$reset_color%}"
     echo $_STATUS

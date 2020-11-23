@@ -54,3 +54,6 @@ zstyle '*' single-ignored show
 
 #source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 #export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
+
+# AWS CLI completions
+source /usr/share/zsh/vendor-completions/_awscli

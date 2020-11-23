@@ -1,0 +1,32 @@
+#!/bin/bash
+# changeVolume
+
+# based on script from arch wiki: https://wiki.archlinux.org/index.php/Dunst
+
+# Arbitrary but unique message id
+# change base64 string "vol" to base10 for the ID
+msgId="$((64#vol))"
+
+if [[ "$1" == "toggle" ]]; then
+    pactl set-sink-mute 0 toggle
+else
+    amixer -c 0 set "$@" > /dev/null
+fi
+
+# Query amixer for the current volume and whether or not the speaker is muted
+volume="$(amixer -c 0 get Master | tail -1 | awk '{print $4}' | sed 's/[^0-9]*//g')"
+db="$(amixer -c 0 get Master | tail -1 | awk '{print $5}' | sed 's/[^-0-9\.]*//' | sed 's/\..*//')"
+n=$(bc -l <<< "$volume / 100.0")
+mute="$(amixer -c 0 get Master | tail -1 | awk '{print $6}' | sed 's/[^a-z]*//g')"
+if [[ "$mute" == "off" ]]; then
+    # Show the sound muted notification
+    dunstify -a "changeVolume" -u low -i audio-volume-muted -r "$msgId" \
+    "Volume: muted (${volume}%)" "$(progress $n 20 ▒ ░)"
+else
+    # Show the volume notification
+    dunstify -a "changeVolume" -u low -i audio-volume-high -r "$msgId" \
+    "Volume: ${db} dB/${volume}%" "$(progress $n 20)"
+fi
+
+# Play the volume changed sound
+canberra-gtk-play -i audio-volume-change -d "changeVolume"

@@ -1,11 +1,13 @@
-let g:python_host_prog="/usr/bin/python"
+let g:python_host_prog="/usr/bin/python2"
 let g:python3_host_prog="/home/rudyard/.envs/neovim3.6/bin/python"
 
 let g:init = '~/.config/nvim/init/'
 
+" notes on ordering:
+" - `filetype plugin` commands in `defaults` must happen before `plugins`
 let g:config_files = [
-    \ 'plugins.vim',
     \ 'defaults.vim',
+    \ 'plugins.vim',
     \ 'indentation.vim',
     \ 'folding.vim',
     \ 'preview.vim',

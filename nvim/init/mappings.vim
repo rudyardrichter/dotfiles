@@ -1,6 +1,5 @@
 noremap H ^
 noremap J mjJ`j
-noremap K <nop>
 noremap L $
 noremap Y y$
 
@@ -17,11 +16,18 @@ nnoremap <Right> <C-w>l
 
 noremap ; :
 noremap : `
-noremap ` "
-noremap " ,
+
 noremap M '
 noremap , '
+noremap ` "
+
 noremap ' ;
+noremap " ,
+
+nnoremap g<Space> <C-]>
+
+" silence message
+nnoremap <C-c> <silent> <C-c>
 
 inoremap <C-j> <C-c>:w<CR>
 
@@ -42,8 +48,10 @@ tnoremap <Esc> <C-\><C-n>
 nnoremap <CR> :w<CR>
 nnoremap <Tab> za
 nnoremap <C-n> :set rnu!<CR>
-nnoremap <C-f> :CtrlP<CR>
-nnoremap <C-s> :CtrlPLine<CR>
+nnoremap <expr> <C-Z> &foldlevel ? 'zM' :'zR'
+
+nnoremap <C-f> :Files<CR>
+nnoremap <C-s> :Rg<CR>
 
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
