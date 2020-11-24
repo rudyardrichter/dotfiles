@@ -1,8 +1,8 @@
 [user]
-    email = rudyardrichter@uchicago.edu
-    name = Rudyard Richter
+	email = rudyardrichter@uchicago.edu
+	name = Rudyard Richter
 [core]
-    excludesfile = /home/rudyard/.gitignore
+	excludesfile = /home/rudyard/.gitignore
 [push]
     default = current
 [alias]

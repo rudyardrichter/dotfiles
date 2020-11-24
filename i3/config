@@ -161,12 +161,15 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id vol Master 2dB+
 bindsym XF86AudioLowerVolume exec --no-startup-id vol Master 2dB-
 bindsym XF86AudioMute exec --no-startup-id vol toggle
 
-# Gaps configuration.
 for_window [class="^.*"] border pixel 2
-gaps inner 8
-gaps outer 0
-smart_gaps on
-smart_borders on
+hide_edge_borders smart
+
+## i3gaps configuration
+#for_window [class="^.*"] border pixel 2
+#gaps inner 8
+#gaps outer 0
+#smart_gaps on
+#smart_borders on
 
 #                       border    background text      indicator  child_border
 client.focused          $darkblue $darkblue  $fg       $magenta   $darkblue
@@ -174,7 +177,8 @@ client.focused_inactive $white    $white     $fg       $magenta   $gray
 client.unfocused        $bg2      $bg2       $fg       $magenta   $gray
 client.urgent           $darkred  $darkred   $fg       $darkred   $darkred
 
-exec_always --no-startup-id xautolock -time 10 -locker "slock"
+exec_always --no-startup-id xautolock -time 15 -locker "slock"
+exec_always --no-startup-id ~/.fehbg
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
