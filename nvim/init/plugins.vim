@@ -17,11 +17,12 @@ Plug 'airblade/vim-gitgutter'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 " Completion
-Plug 'ncm2/ncm2'
-Plug 'ncm2/ncm2-ultisnips'
-Plug 'ncm2/ncm2-jedi'
-Plug 'ncm2/ncm2-racer'
-Plug 'roxma/nvim-yarp'
+"Plug 'ncm2/ncm2'
+"Plug 'ncm2/ncm2-ultisnips'
+"Plug 'ncm2/ncm2-jedi'
+"Plug 'ncm2/ncm2-racer'
+"Plug 'roxma/nvim-yarp'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " colorschemes
 Plug 'altercation/vim-colors-solarized'
 Plug 'flazz/vim-colorschemes'
@@ -32,11 +33,12 @@ Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', {'for': ['go']}
 Plug 'mdempsky/gocode', {'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh'}
 Plug 'tmhedberg/SimpylFold', {'for': ['python']}
-Plug 'davidhalter/jedi-vim', {'for': ['python']}
+"Plug 'davidhalter/jedi-vim', {'for': ['python']}
 Plug 'ambv/black', {'for': ['python']}
 Plug 'Vimjas/vim-python-pep8-indent', {'for': ['python']}
 Plug 'rust-lang/rust.vim', {'for': ['rust']}
 Plug 'racer-rust/vim-racer', {'for': ['rust']}
+Plug 'neoclide/coc-rls', {'for': ['rust']}
 Plug 'roxma/nvim-cm-racer', {'for': ['rust']}
 Plug 'jez/vim-better-sml', {'for': ['sml']}
 Plug 'hashivim/vim-terraform', {'for': ['terraform']}
@@ -49,7 +51,8 @@ let g:plugin_configs = [
     \ 'gitgutter',
     \ 'markdown',
     \ 'neomake',
-    \ 'ncm2',
+    "\ 'ncm2',
+    \ 'coc',
     \ 'nerdtree',
     \ 'ultisnips',
     \ ]

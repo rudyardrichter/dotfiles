@@ -2,4 +2,11 @@
 
 xset r rate 180 40
 setxkbmap -option "ctrl:swapcaps"
-nohup polybar -r i3 &
+
+if type "xrandr"; then
+    for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+        MONITOR=$m nohup polybar -r i3 > ~/.i3/polybar-${m}.log &
+    done
+else
+    nohup polybar -r i3 > ~/.i3/polybar.log &
+fi

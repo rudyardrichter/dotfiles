@@ -1,12 +1,13 @@
 autocmd! BufWritePost * Neomake
 
-let g:neomake_python_enabled_makers = ['python', 'flake8']  " trying no pyflakes
+let g:neomake_python_enabled_makers = ['python', 'pyflakes']
 
 let g:neomake_warning_sign = {'text': '✖', 'texthl': 'NeomakeWarningSign'}
 
-let NEOMAKE_PYTHON = 'python'
-let NEOMAKE_PYLINT = 'pylint'
-let NEOMAKE_PYFLAKES = 'pyflakes'
+let NVIM_VENV = '/home/rudyard/.envs/nvim3.8'
+let NEOMAKE_PYTHON = NVIM_VENV . '/bin/python'
+let NEOMAKE_PYLINT = NVIM_VENV . '/bin/pylint'
+let NEOMAKE_PYFLAKES = NVIM_VENV . '/bin/pyflakes'
 
 let g:neomake_python_python_maker = {
     \ 'exe': NEOMAKE_PYTHON,
@@ -20,8 +21,13 @@ let g:neomake_python_python_maker = {
     \ }
 
 let g:neomake_python_pylint_maker = {
-    \ 'exe': 'pylint',
-    \ 'args': ['--output-format=text', '--msg-template="{path}:{line}:{column}:{C}: [{symbol}] {msg} [{msg_id}]"', '--reports=no'],
+    \ 'exe': NEOMAKE_PYLINT,
+    \ 'args': [
+        \ "--init-hook=\"import pylint_venv; pylint_venv.inithook('$(pwd)/.venv', force_venv_activation=True)\"",
+        \ '--output-format=text',
+        \ '--msg-template="{path}:{line}:{column}:{C}: [{symbol}] {msg} [{msg_id}]"',
+        \ '--reports=no'
+        \ ],
     \ 'auto_enabled': 0,
     \ 'errorformat': '%A%f:%l:%c:%t: %m,%A%f:%l: %m,%A%f:(%l): %m,%-Z%p^%.%#,%-G%.%#',
     \ 'output_stream': 'stdout',
@@ -29,7 +35,7 @@ let g:neomake_python_pylint_maker = {
     \ }
 
 let g:neomake_python_pyflakes_maker = {
-    \ 'exe': 'pyflakes',
+    \ 'exe': NEOMAKE_PYFLAKES,
     \ 'args': [],
     \ 'auto_enabled': 0,
     \ 'errorformat': '%E%f:%l: could not compile,%-Z%p^,%E%f:%l:%c: %m,%E%f:%l: %m,%-G%.%#',

@@ -8,7 +8,7 @@
 msgId="$((64#vol))"
 
 if [[ "$1" == "toggle" ]]; then
-    pactl set-sink-mute 0 toggle
+    pactl set-sink-mute 1 toggle
 else
     amixer -c 0 set "$@" > /dev/null
 fi

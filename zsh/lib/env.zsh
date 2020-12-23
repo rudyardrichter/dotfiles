@@ -19,7 +19,7 @@ export FZF_DEFAULT_OPTS='--reverse'
 source /home/rudyard/.local/bin/virtualenvwrapper.sh
 export WORKON_HOME=~/.envs
 
-export RUST_SRC_PATH="/home/rudyard/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/"
+#export RUST_SRC_PATH="/home/rudyard/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/"
 
 export GOROOT=/usr/local/go
 export GOPATH=~/go
