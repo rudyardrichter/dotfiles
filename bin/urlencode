@@ -3,4 +3,4 @@
 import sys
 import urllib.parse
 
-print(urllib.parse.quote(sys.argv[1]))
+print(urllib.parse.quote(sys.argv[1], safe=""))

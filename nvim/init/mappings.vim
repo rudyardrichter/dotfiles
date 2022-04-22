@@ -14,6 +14,10 @@ nnoremap <Down>  <C-w>j
 nnoremap <Left>  <C-w>h
 nnoremap <Right> <C-w>l
 
+" wildmenu navigation
+let &wildcharm = &wildchar
+cnoremap <expr> <C-l> wildmenumode() ? "\<Down>" : "\<C-l>"
+
 noremap ; :
 noremap : `
 
@@ -65,9 +69,6 @@ set notimeout
 noremap <leader>c "*y
 noremap <leader>p "*p
 noremap <leader>P "*P
-
-" cd
-nnoremap <leader>d :cd %:h<CR>
 
 nnoremap <leader>q gqq
 

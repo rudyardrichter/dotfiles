@@ -18,3 +18,5 @@ autoload -Uz compinit
 #fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PATH="$HOME/.poetry/bin:$PATH"

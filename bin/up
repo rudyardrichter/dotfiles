@@ -1,7 +1,8 @@
 #!/bin/bash
 
 xset r rate 180 40
-setxkbmap -option "ctrl:swapcaps"
+#setxkbmap -option "ctrl:swapcaps"
+setxkbmap -option ctrl:nocaps
 
 if type "xrandr"; then
     for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do

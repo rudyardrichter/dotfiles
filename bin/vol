@@ -7,8 +7,15 @@
 # change base64 string "vol" to base10 for the ID
 msgId="$((64#vol))"
 
+bluetooth_sinks="$(pactl list sinks short)"
+if [[ -n "$bluetooth_sinks | grep -v SUSPENDED | grep blue)" ]]; then
+    pactl_sink="$(echo $bluetooth_sinks | cut -d ' ' -f 1)"
+else
+    pactl_sink=1
+fi
+
 if [[ "$1" == "toggle" ]]; then
-    pactl set-sink-mute 1 toggle
+    pactl set-sink-mute $pactl_sink toggle
 else
     amixer -c 0 set "$@" > /dev/null
 fi

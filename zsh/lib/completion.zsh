@@ -31,6 +31,11 @@ else
   fi
 fi
 
+autoload -U bashcompinit
+bashcompinit
+
+eval "$(register-python-argcomplete pipx)"
+
 # should this be in keybindings?
 bindkey -M menuselect '^o' accept-and-infer-next-history
 

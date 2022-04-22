@@ -1,10 +1,14 @@
 [user]
-	email = rudyardrichter@uchicago.edu
-	name = Rudyard Richter
+    email = rudyardrichter@uchicago.edu
+    name = Rudyard Richter
 [core]
-	excludesfile = /home/rudyard/.gitignore
+    excludesfile = /home/rudyard/.gitignore
 [push]
     default = current
 [alias]
     files = !git diff --name-only $(git merge-base HEAD \"$REVIEW_BASE\")
     review = !vim -p $(git files) +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"
+    sync = !git fetch upstream && git merge upstream/main --ff-only && git push
+    slate = !git checkout main && git sync
+[init]
+    defaultBranch = main
