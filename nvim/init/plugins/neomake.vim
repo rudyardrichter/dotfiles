@@ -1,8 +1,9 @@
-call neomake#configure#automake('w')
-
 let g:neomake_python_enabled_makers = ['python', 'pyflakes']
+" let language server handle everything
+let g:neomake_typescript_enabled_makers = []
 
 let g:neomake_warning_sign = {'text': '✖', 'texthl': 'NeomakeWarningMsg'}
+let g:neomake_python_python_args = ['/home/rudyard/.config/nvim/plugged/neomake/autoload/neomake/makers/ft/python/compile.py', '%']
 
 " This will tack on these highlights to any existing color scheme, AS LONG AS
 " the colorscheme is sourced AFTER these lines.

@@ -54,8 +54,8 @@ nnoremap <Tab> za
 nnoremap <C-n> :set rnu!<CR>
 nnoremap <expr> <C-Z> &foldlevel ? 'zM' :'zR'
 
-nnoremap <C-f> :Files<CR>
-nnoremap <C-s> :Rg<CR>
+"nnoremap <C-f> :Files<CR>
+"nnoremap <C-s> :Rg<CR>
 
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 

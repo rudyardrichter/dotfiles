@@ -1,11 +1,6 @@
 call plug#begin('~/.config/nvim/plugged')
 Plug 'skywind3000/asyncrun.vim'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'EinfachToll/DidYouMean'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
 Plug 'neomake/neomake'
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
@@ -14,7 +9,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-abolish'
 "Plug 'airblade/vim-gitgutter'
-Plug 'ludovicchabant/vim-gutentags'
+"Plug 'ludovicchabant/vim-gutentags'
 " Snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -25,6 +20,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
 Plug '~/.fzf'
+Plug '~/.config/nvim/plugged/fzf'
 Plug 'junegunn/fzf.vim'
 " filetype-specific plugins
 Plug 'fatih/vim-go', {'for': ['go']}
@@ -37,13 +33,12 @@ Plug 'racer-rust/vim-racer', {'for': ['rust']}
 Plug 'neoclide/coc-rls', {'for': ['rust']}
 Plug 'jez/vim-better-sml', {'for': ['sml']}
 Plug 'hashivim/vim-terraform', {'for': ['terraform']}
-Plug 'leafgarland/typescript-vim', {'for': ['typescript']}
+"Plug 'leafgarland/typescript-vim', {'for': ['typescript']}
 call plug#end()
 
 let g:plugin_configs = [
     \ 'airline',
     \ 'coc',
-    \ 'ctrlp',
     \ 'gitgutter',
     \ 'markdown',
     \ 'neomake',
