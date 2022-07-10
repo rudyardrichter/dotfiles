@@ -28,14 +28,16 @@ git_status () {
     # unmerged
     $(echo "$_INDEX" | grep '^UU ' &> /dev/null) && _STATUS="$_STATUS%{$fg[red]%}?%{$reset_color%}"
     # stashed
-    $(git rev-parse --verify refs/stash > /dev/null 2>&1) && _STATUS="$_STATUS%{$fg_bold[magenta]%}•%{$reset_color%}"
+    # $(git rev-parse --verify refs/stash > /dev/null 2>&1) && _STATUS="$_STATUS%{$fg_bold[magenta]%}•%{$reset_color%}"
+    $(git rev-parse --verify refs/stash > /dev/null 2>&1) && _STATUS="$_STATUS%{$fg[magenta]%}•%{$reset_color%}"
     # ahead
     # 
     $(echo "$_INDEX" | grep '^## .*ahead' &> /dev/null) && _STATUS="$_STATUS%{$fg[cyan]%}%{$reset_color%}"
     # behind
     $(echo "$_INDEX" | grep '^## .*behind' &> /dev/null) && _STATUS="$_STATUS%{$fg[magenta]%}%{$reset_color%}"
     # diverged
-    $(echo "$_INDEX" | grep '^## .*diverged' &> /dev/null) && _STATUS="$_STATUS%{$fg_bold[red]%}⧎%{$reset_color%}"
+    # $(echo "$_INDEX" | grep '^## .*diverged' &> /dev/null) && _STATUS="$_STATUS%{$fg_bold[red]%}⧎%{$reset_color%}"
+    $(echo "$_INDEX" | grep '^## .*diverged' &> /dev/null) && _STATUS="$_STATUS%{$fg[red]%}⧎%{$reset_color%}"
     echo $_STATUS
 }
 
@@ -43,7 +45,7 @@ git_prompt () {
     local _branch="$(git symbolic-ref --short HEAD 2> /dev/null)"
     if [ "$_branch" ]; then
         #_result="[%{$fg[white]%}$_branch"
-        _result="%{$fg_bold[cyan]%}$_branch"
+        _result="%{$fg_bold[cyan]%}$_branch%{$reset_color%}"
         local _status=$(git_status)
         [ "$_status" ] && _result="$_result $_status"
         #echo "  $_result%{$reset_color%}"
@@ -76,6 +78,6 @@ zle -N zle-keymap-select
 mode=$I
 precmd() { mode=$I }
 
-PROMPT="$_USERNAME %{$fg_bold[white]%}%~%{$reset_color%}\$(git_prompt)
+PROMPT="$_USERNAME %{$fg_bright[white]%}%~%{$reset_color%}\$(git_prompt)
 $_PROMPT%{$reset_color%} "
-RPROMPT='${mode}'
+RPROMPT='${mode} %{$fg[white]%}%D{%H:%M:%S}%{$reset_color%}'

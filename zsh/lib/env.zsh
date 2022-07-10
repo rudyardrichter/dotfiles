@@ -6,6 +6,8 @@ export TERM=xterm-256color
 export GOPATH="/home/rudyard/go"
 export ZLE_REMOVE_SUFFIX_CHARS=""
 export USE_EMOJI='false'
+export HISTSIZE=100000
+export SAVEHIST=$HISTSIZE
 
 export REVIEW_BASE=master
 

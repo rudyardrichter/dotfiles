@@ -129,3 +129,8 @@ function globus-mfa-users () {
     $HOME/.envs/globus/bin/mfa-login --mmin 540 "$HOME/.globus_mfa_users" || return $?
   $HOME/.envs/globus/bin/mfa-to-profile mfa-activated "$HOME/.globus_mfa_users"
 }
+
+function mkpyd() {
+    mkdir "$1"
+    touch "$1/__init__.py"
+}

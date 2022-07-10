@@ -1,4 +1,3 @@
-" let g:python_host_prog="/usr/bin/python2"
 let g:python3_host_prog="/home/rudyard/.envs/nvim3.8/bin/python"
 
 let g:init = '~/.config/nvim/init/'
@@ -19,3 +18,5 @@ let g:config_files = [
 for file in g:config_files
     exe 'source ' . g:init . file
 endfor
+
+lua require('init')

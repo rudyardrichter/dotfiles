@@ -54,10 +54,6 @@ for type, icon in pairs(signs) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
--- PER-LANGUAGE LANGUAGE SERVER SETUP
-
-require('lspconfig').pyright.setup{}
-
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = true,
@@ -85,6 +81,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 -- vim.cmd [[autocmd! InsertEnter *.py lua disable_diagnostics()]]
 -- vim.cmd [[autocmd! InsertLeavePre *.py lua enable_diagnostics()]]
 
+require('python')
 require('typescript')
 
 local actions = require('telescope.actions')
@@ -111,6 +108,7 @@ require('telescope').setup {
     }
   }
 }
+
 -- nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 -- nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 -- nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
@@ -118,3 +116,4 @@ require('telescope').setup {
 
 vim.api.nvim_set_keymap("n", "<C-f>", "<cmd>lua require('telescope.builtin').find_files()<cr>", {noremap = true})
 vim.api.nvim_set_keymap("n", "<C-s>", "<cmd>lua require('telescope.builtin').live_grep()<cr>", {noremap = true})
+vim.api.nvim_set_keymap("n", "<leader>d", "<cmd>lua require('telescope.builtin').lsp_definitions()<cr>", {noremap = true})

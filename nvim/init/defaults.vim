@@ -28,7 +28,6 @@ set lcs=tab:▸\ ,trail:·,nbsp:_  " invisible characters to display
 set undofile                    " maintain persistent undo history
 set undodir=~/.vim/undo         " directory for undo history storage
 set undolevels=1000             " lots of undo memory
-set updatetime=250              " ms after which cursor is considered idle
 set backupdir=~/.vim/swp        " directory for swap files
 set gdefault                    " include /g in sed by default
 set shortmess+=c                " suppress completion messages

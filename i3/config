@@ -47,7 +47,7 @@ bindsym Mod1+p workspace prev
 floating_modifier Mod1
 
 # Start a terminal.
-bindsym Mod1+Return exec urxvt
+bindsym Mod1+Return exec alacritty
 
 # Kill focused window.
 bindsym Mod1+Shift+q kill
