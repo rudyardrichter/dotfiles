@@ -11,7 +11,7 @@ export LESS_TERMCAP_ue=$(printf "\e[33m")
 export LESS_TERMCAP_us=$(printf "\e[1;31m")
 
 # ls colors & tab completion colors
-eval `dircolors $ZSH/colors/dircolors.ansi-dark`
+eval `dircolors $ZSH/colors/gruvbox_dircolors`
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 setopt prompt_subst
