@@ -19,7 +19,7 @@ export FZF_DEFAULT_OPTS='--reverse'
 #export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
 #export VIRTUALENVWRAPPER_VIRTUALENV=/Users/rudyardrichter/Library/Python/2.7/bin/virtualenv
 #export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
-source /home/rudyard/.local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper.sh
 export WORKON_HOME=~/.envs
 
 #export RUST_SRC_PATH="/home/rudyard/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/"
@@ -38,4 +38,5 @@ colors="$HOME/.dynamic-colors/bin"
 fzf="$HOME/.fzf/bin"
 eb="/home/rudyard/.ebcli-virtual-env/executables"
 poetry="/home/rudyard/.poetry/bin"
-export PATH="$colors:$user_binaries:$rust_binaries:$go_binaries:$tex:$npm:$fzf:$eb:$poetry:$PATH"
+gnubins="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="$colors:$user_binaries:$rust_binaries:$go_binaries:$tex:$npm:$fzf:$eb:$poetry:$gnubins:$PATH"

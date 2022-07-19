@@ -2,7 +2,6 @@ alias c='cd'
 alias chmox='chmod u+x'
 alias e='nvim'
 alias f='fzf'
-alias fd='fdfind'
 alias ipy='ipython'
 alias jql='jq -C . | less -R'
 alias o='open'
@@ -26,10 +25,10 @@ alias isodate='date +%Y-%m-%dT%H:%M:%SZ%z'
 alias po='poetry'
 
 # ls
-alias l='ls -A --color=auto'
-alias ll='ls -Aho --color=auto'
-alias lr='ls -AR --color=auto'
-alias ls='ls --color=auto'
+alias l='gls -A --color=auto'
+alias ll='gls -Aho --color=auto'
+alias lr='gls -AR --color=auto'
+alias ls='gls --color=auto'
 
 # directories
 alias -g ...='../..'
