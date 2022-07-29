@@ -31,3 +31,5 @@ export PATH="$PATH:/Users/rudyard/.local/bin"
 
 autoload -Uz compinit
 compinit
+export GPG_TTY=$(tty)
+export PATH="/usr/local/opt/python@3.10/bin:$PATH"
