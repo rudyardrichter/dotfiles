@@ -1,5 +1,12 @@
 # NOTE: commands here are linux-specific.
 
+# install cargo
+# lots of prerequisites to alacritty depending on system
+cargo install alacritty ripgrep
+
+export VIRTUALENVWRAPPER_PYTHON=python3
+source ~/.local/bin/virtualenvwrapper.sh
+
 # Initialize directories.
 ln -s ~/dotfiles/bin ~/bin
 ln -s ~/dotfiles/taskrc ~/.taskrc
