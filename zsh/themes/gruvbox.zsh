@@ -81,4 +81,4 @@ precmd() { mode=$I }
 
 PROMPT="$_USERNAME %{$fg_bright[white]%}%~%{$reset_color%}\$(git_prompt)
 $_PROMPT%{$reset_color%} "
-RPROMPT='${mode} %{$fg[white]%}%D{%H:%M:%S}%{$reset_color%}'
+RPROMPT='${mode}%{$reset_color%}'

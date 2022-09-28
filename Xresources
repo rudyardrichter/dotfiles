@@ -5,7 +5,7 @@ Xft.rgba: rgb
 Xft.hinting: true
 Xft.hintstyle: hintslight
 
-*.font: xft:Ubuntu Mono:pixelsize=16
+*.font: xft:Fira Sans:pixelsize=14
 
 !! URxvt
 URxvt.perl-ext-common: default,clipboard,keyboard-select,font-size,resize-font

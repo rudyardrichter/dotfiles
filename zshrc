@@ -20,3 +20,6 @@ autoload -Uz compinit
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH="$HOME/.poetry/bin:$PATH"
+
+# Created by `pipx` on 2022-08-01 18:52:43
+export PATH="$PATH:/home/rudyard/.local/bin"
