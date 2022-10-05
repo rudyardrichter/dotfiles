@@ -65,7 +65,7 @@ local options_table = {
     scrolloff = 0,
     filetype = on,
     foldenable = true,
-    foldlevel = 2,
+    foldlevel = 5,
     foldexpr = "nvim_treesitter#foldexpr()",
     foldmethod = "expr",
     shortmess = vim.opt.shortmess + {c = true},

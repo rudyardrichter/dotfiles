@@ -27,6 +27,8 @@ local flags = {
   debounce_text_changes = 200,
 }
 
+local theme = "gruvbox"
+
 require("packer").startup({
   function(use)
     use("wbthomason/packer.nvim")
@@ -49,6 +51,11 @@ require("packer").startup({
     use("tmhedberg/SimpylFold")
     use("williamboman/mason-lspconfig.nvim")
     use("williamboman/nvim-lsp-installer")
+
+    -- use({
+    --   "https://gitlab.com/HiPhish/resolarized.nvim",
+    --   as = "resolarized.nvim",
+    -- })
 
     use({
       "windwp/nvim-autopairs",
@@ -93,7 +100,7 @@ require("packer").startup({
     use({
       "lewis6991/gitsigns.nvim",
       config = function()
-        require("gitsigns").setup({current_line_blame = true})
+        require("gitsigns").setup({current_line_blame = false})
       end,
       requires = {"nvim-lua/plenary.nvim"}
     })
@@ -171,12 +178,38 @@ require("packer").startup({
     })
 
     use({
-      "nvim-lualine/lualine.nvim",
-      requires = {"kyazdani42/nvim-web-devicons", opt = true},
+      "feline-nvim/feline.nvim",
       config = function()
-        require("lualine").setup({theme = "gruvbox"})
-      end
+        require("plugins.configs.feline")
+      end,
     })
+
+    -- use({
+    --   "nvim-lualine/lualine.nvim",
+    --   requires = {"kyazdani42/nvim-web-devicons", opt = true},
+    --   config = function()
+    --     local custom = require("lualine.themes.solarized_dark")
+    --     if custom.normal.b == nil then
+    --       custom.normal.b = {}
+    --     end
+    --     if custom.insert.b == nil then
+    --       custom.insert.b = {}
+    --     end
+    --     if custom.visual.b == nil then
+    --       custom.visual.b = {}
+    --     end
+    --     if custom.replace.b == nil then
+    --       custom.replace.b = {}
+    --     end
+    --     custom.normal.b.bg = vim.g.terminal_color_10
+    --     custom.insert.b.bg = vim.g.terminal_color_10
+    --     custom.visual.b.bg = vim.g.terminal_color_10
+    --     custom.replace.b.bg = vim.g.terminal_color_10
+    --     require("lualine").setup({
+    --       options = { theme = custom },
+    --     })
+    --   end
+    -- })
 
     use({
       "ellisonleao/gruvbox.nvim",
@@ -247,6 +280,7 @@ require("packer").startup({
     use({
       "nvim-treesitter/nvim-treesitter",
       config = function()
+        require("nvim-treesitter").setup()
         require("nvim-treesitter.configs").setup({
           auto_install = true,
           ensure_installed = {"lua", "markdown", "python", "rust", "toml"},
@@ -259,7 +293,7 @@ require("packer").startup({
       run = function()
         require("nvim-treesitter.install").update({with_sync = true})
       end,
-      event = {"BufRead", "BufNewFile"},
+      -- event = {"BufRead", "BufNewFile"},
       cmd = {
         "TSInstall", "TSInstallInfo", "TSInstallSync", "TSUninstall", "TSUpdate", "TSUpdateSync",
         "TSDisableAll", "TSEnableAll"
@@ -269,14 +303,6 @@ require("packer").startup({
     use({"p00f/nvim-ts-rainbow", after = "nvim-treesitter"})
 
     use({"windwp/nvim-ts-autotag", after = "nvim-treesitter"})
-
-    use({
-      "feline-nvim/feline.nvim",
-      after = "nvim-web-devicons",
-      config = function()
-        require("plugins.configs.feline")
-      end
-    })
 
     use({
       "pwntester/octo.nvim",
