@@ -52,6 +52,8 @@ require("packer").startup({
     use("williamboman/mason-lspconfig.nvim")
     use("williamboman/nvim-lsp-installer")
 
+    use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+
     -- use({
     --   "https://gitlab.com/HiPhish/resolarized.nvim",
     --   as = "resolarized.nvim",
@@ -118,6 +120,13 @@ require("packer").startup({
               other_hints_prefix = ""
             },
           },
+          dap = {
+            adapter = {
+              type = "executable",
+              command = "lldb-vscode",
+              name = "rt_lldb",
+            },
+          },
         })
       end
     })
@@ -139,7 +148,10 @@ require("packer").startup({
             ["rust-analyzer"] = {
               cargo = {
                 buildScripts = {enable = true}
-              }
+              },
+              diagnostics = {
+                disabled = {"inactive-code"}
+              },
             }
           }
         })
@@ -226,8 +238,9 @@ require("packer").startup({
             GruvboxAquaSign = {bg = palette.dark0},
             GruvboxOrangeSign = {bg = palette.dark0},
             Folded = {bg = palette.dark0},
-            Pmenu = {bg = palette.dark0},
             IncSearch = {fg = palette.dark1, bg = palette.bright_blue},
+            Operator = {italic = false},
+            Pmenu = {bg = palette.dark0},
             Search = {fg = palette.dark0, bg = palette.bright_yellow},
             SignColumn = {bg = palette.dark0},
             String = {italic = false}
@@ -280,12 +293,12 @@ require("packer").startup({
     use({
       "nvim-treesitter/nvim-treesitter",
       config = function()
-        require("nvim-treesitter").setup()
+        -- require("nvim-treesitter").setup()
         require("nvim-treesitter.configs").setup({
           auto_install = true,
-          ensure_installed = {"lua", "markdown", "python", "rust", "toml"},
-          ident = {enable = true},
+          ensure_installed = "all",
           highlight = {enable = true, additional_vim_regex_highlighting = false},
+          ident = {enable = true},
           rainbow = {enable = true, extended_mode = true},
           sync_install = false
         })
@@ -294,10 +307,20 @@ require("packer").startup({
         require("nvim-treesitter.install").update({with_sync = true})
       end,
       -- event = {"BufRead", "BufNewFile"},
-      cmd = {
-        "TSInstall", "TSInstallInfo", "TSInstallSync", "TSUninstall", "TSUpdate", "TSUpdateSync",
-        "TSDisableAll", "TSEnableAll"
-      }
+      -- cmd = {
+      --   "TSInstall", "TSInstallInfo", "TSInstallSync", "TSUninstall", "TSUpdate", "TSUpdateSync",
+      --   "TSDisableAll", "TSEnableAll"
+      -- }
+    })
+
+    use({"nvim-treesitter/playground", after = "nvim-treesitter", config = function()
+        require("nvim-treesitter.configs").setup({
+          playground = {
+            enable = true,
+            updatetime = 25,
+          },
+        })
+      end
     })
 
     use({"p00f/nvim-ts-rainbow", after = "nvim-treesitter"})

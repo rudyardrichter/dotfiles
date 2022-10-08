@@ -1,7 +1,16 @@
 {
+    "diagnostics": {
+        "disabled": ["inactive-code"]
+    },
     "rust-analyzer": {
         "checkOnSave": {
             "allTargets": false
+        },
+        "diagnostics": {
+            "enable": true,
+            "disabled": ["inactive-code"],
+            "enableExperimental": true
         }
-    }
+    },
+    "rust-analyzer.diagnostics.disabled": ["inactive-code"]
 }

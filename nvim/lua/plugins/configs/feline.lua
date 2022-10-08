@@ -57,7 +57,7 @@ local components = {
       end,
       hl = function()
         return {
-          fg = hl("WildMenu").bg,
+          fg = C.dark0,
           bg = vi.get_mode_color(),
           style = "bold",
         }
@@ -66,7 +66,7 @@ local components = {
     },
     { provider = " ", hl = { bg = git_bg }, enabled = git.git_info_exists },
     {
-      provider = "git_branch", hl = { fg = hl("Identifier").fg, bg = git_bg }, icon = " "
+      provider = "git_branch", hl = { fg = C.bright_aqua, bg = git_bg }, icon = " "
     },
     {
       provider = " ",
@@ -75,9 +75,9 @@ local components = {
         return git.git_info_exists() and not git.git_diff_changed()
       end,
     },
-    { provider = "git_diff_added", hl = { fg = hl("GitSignsAdd").fg, bg = git_bg }, icon = " +" }, -- 
-    { provider = "git_diff_changed", hl = { fg = hl("GitSignsChange").fg, bg = git_bg }, icon = " ~" }, -- 柳
-    { provider = "git_diff_removed", hl = { fg = hl("GitSignsDelete").fg, bg = git_bg }, icon = " -" }, -- 
+    { provider = "git_diff_added", hl = { fg = C.bright_green, bg = git_bg }, icon = " +" }, -- 
+    { provider = "git_diff_changed", hl = { fg = C.bright_green, bg = git_bg }, icon = " ~" }, -- 柳
+    { provider = "git_diff_removed", hl = { fg = C.bright_red, bg = git_bg }, icon = " -" }, -- 
     { provider = " ", hl = { bg = git_bg }, enabled = function() return git.git_info_exists() and git.git_diff_changed() end },
     { provider = " " },
     { provider = { name = "file_info", opts = { type = "relative", file_modified_icon = "", file_readonly_icon = " " }}, icon = "" },

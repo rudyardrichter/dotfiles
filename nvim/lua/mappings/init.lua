@@ -14,22 +14,26 @@ local map_table = {
     ["<leader>db"] = {
       function()
         require("dap").toggle_breakpoint()
-      end
+      end,
+      desc = "Breakpoint",
     },
     ["<leader>dc"] = {
       function()
         require("dap").continue()
-      end
+      end,
+      desc = "Continue",
     },
     ["<leader>dn"] = {
       function()
         require("dap").step_over()
-      end
+      end,
+      desc = "Next",
     },
     ["<leader>ds"] = {
       function()
         require("dap").step_into()
-      end
+      end,
+      desc = "Step",
     },
 
     -- Explorer

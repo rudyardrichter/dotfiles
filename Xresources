@@ -4,6 +4,7 @@ Xft.antialias: false
 Xft.rgba: rgb
 Xft.hinting: true
 Xft.hintstyle: hintslight
+Xcursor.size: 16
 
 *.font: xft:Fira Sans:pixelsize=14
 
