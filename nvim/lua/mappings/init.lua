@@ -10,6 +10,9 @@ local map_table = {
     ["<leader>pS"] = {"<cmd>PackerStatus<cr>", desc = "Packer Status"},
     ["<leader>pu"] = {"<cmd>PackerUpdate<cr>", desc = "Packer Update"},
 
+    -- Session
+    ["<leader>sl"] = {"<cmd>SessionManager load_current_dir_session<cr>", desc = "Session Load"},
+
     -- Debugger
     ["<leader>db"] = {
       function()

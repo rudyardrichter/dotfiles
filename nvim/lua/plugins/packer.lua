@@ -37,7 +37,6 @@ require("packer").startup({
 
     use("L3MON4D3/LuaSnip")
     use("NvChad/nvim-colorizer.lua")
-    use("Shatur/neovim-session-manager")
     -- use "WhoIsSethDaniel/mason-tool-installer.nvim"
     use("kyazdani42/nvim-web-devicons")
     use("lervag/vimtex")
@@ -52,18 +51,36 @@ require("packer").startup({
     use("williamboman/mason-lspconfig.nvim")
     use("williamboman/nvim-lsp-installer")
 
-    use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
-
-    -- use({
-    --   "https://gitlab.com/HiPhish/resolarized.nvim",
-    --   as = "resolarized.nvim",
-    -- })
+    use({
+      "Shatur/neovim-session-manager",
+      config = function()
+        local config = require("session_manager.config")
+        require("session_manager").setup({
+          autoload_mode = config.AutoloadMode.Disabled,
+        })
+      end
+     })
 
     use({
+      "goolord/alpha-nvim",
+      requires = { 'kyazdani42/nvim-web-devicons' },
+      config = function()
+        require("plugins.configs.alpha")
+      end
+    })
+
+
+    use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+
+    use({
+      -- why is this broken in lua??
       "windwp/nvim-autopairs",
+      cond = function()
+        return vim.bo.filetype ~= "lua"  -- why doesn't this work??
+      end,
       config = function()
         require("nvim-autopairs").setup{}
-      end
+      end,
     })
 
     use({
@@ -113,6 +130,7 @@ require("packer").startup({
         require("rust-tools").setup({
           tools = {
             autoSetHints = true,
+            executor = require("rust-tools/executors").termopen,
             inlay_hints = {
               only_current_line = false,
               show_parameter_hints = false,
@@ -121,11 +139,12 @@ require("packer").startup({
             },
           },
           dap = {
-            adapter = {
-              type = "executable",
-              command = "lldb-vscode",
-              name = "rt_lldb",
-            },
+            -- adapter = {
+            --   type = "executable",
+            --   command = "lldb-vscode",
+            --   name = "rt_lldb",
+            -- },
+            adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
           },
         })
       end
@@ -184,7 +203,12 @@ require("packer").startup({
         local whichkey = require("which-key")
         whichkey.setup({})
         whichkey.register({
-          ["<leader>"] = {d = {name = "Debug"}, l = {name = "Lsp"}, p = {name = "Packer"}}
+          ["<leader>"] = {
+            d = {name = "Debug"},
+            l = {name = "Lsp"},
+            p = {name = "Packer"},
+            s = {name = "Session"},
+          }
         })
       end
     })
