@@ -25,7 +25,7 @@ vim.cmd([[
 -- For lspconfig
 local flags = {
   allow_incremental_sync = true,
-  debounce_text_changes = 200,
+  debounce_text_changes = 150,
 }
 
 local theme = "gruvbox"
@@ -204,7 +204,8 @@ require("packer").startup({
     use({
       "neovim/nvim-lspconfig",
       config = function()
-        require("lspconfig").rust_analyzer.setup({
+        local lspconfig = require("lspconfig")
+        lspconfig.rust_analyzer.setup({
           flags = flags,
           on_attach = require("aerial").on_attach,
           settings = {
@@ -217,6 +218,9 @@ require("packer").startup({
               },
             }
           }
+        })
+        lspconfig.pyright.setup({
+          flags = flags,
         })
       end
     })
