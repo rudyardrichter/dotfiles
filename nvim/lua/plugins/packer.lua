@@ -22,6 +22,7 @@ vim.cmd([[
   augroup end
 ]])
 
+-- For lspconfig
 local flags = {
   allow_incremental_sync = true,
   debounce_text_changes = 200,
@@ -50,6 +51,49 @@ require("packer").startup({
     use("tmhedberg/SimpylFold")
     use("williamboman/mason-lspconfig.nvim")
     use("williamboman/nvim-lsp-installer")
+
+    -- use("github/copilot.vim")
+    use({
+      "zbirenbaum/copilot.lua",
+      config = function()
+        vim.defer_fn(function()
+          require("copilot").setup({
+            panel = {
+              keymap = {
+                jump_next = "<Tab>",
+                jump_prev = "<S-Tab>",
+                open = "<C-l>",
+                refresh = "r",
+              },
+            },
+          })
+        end, 100)
+      end,
+    })
+    use({
+      "zbirenbaum/copilot-cmp",
+      after = { "copilot.lua" },
+      config = function()
+        require("copilot_cmp").setup()
+      end
+    })
+
+    -- seems cool but currently buggy
+    -- use({
+    --   "folke/noice.nvim",
+    --   event = "VimEnter",
+    --   config = function()
+    --     require("noice").setup()
+    --   end,
+    --   requires = {
+    --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+    --     "MunifTanjim/nui.nvim",
+    --     -- OPTIONAL:
+    --     --   `nvim-notify` is only needed, if you want to use the notification view.
+    --     --   If not available, we use `mini` as the fallback
+    --     -- "rcarriga/nvim-notify",
+    --   }
+    -- })
 
     use({
       "Shatur/neovim-session-manager",
@@ -89,8 +133,8 @@ require("packer").startup({
         local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
         local null_ls = require("null-ls")
         null_ls.setup({
-          sources = {
             null_ls.builtins.formatting.black,
+          sources = {
             null_ls.builtins.formatting.rustfmt,
             -- null_ls.builtins.formatting.lua_format.with({
             --   extra_args = {
@@ -282,7 +326,7 @@ require("packer").startup({
       config = function()
         require("plugins.configs.cmp")
       end,
-      event = "InsertEnter",
+      -- event = "InsertEnter",
       requires = {
         -- { "onsails/lspkind-nvim", module = "lspkind" },
         -- { "hrsh7th/cmp-buffer", module = "cmp_buffer" },
@@ -291,7 +335,8 @@ require("packer").startup({
         {"hrsh7th/cmp-nvim-lsp", module = "cmp_nvim_lsp", after = "nvim-cmp"},
         {"hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp"},
         {"hrsh7th/cmp-path", after = "nvim-cmp"},
-        {"saadparwaiz1/cmp_luasnip", after = "nvim-cmp"}
+        {"saadparwaiz1/cmp_luasnip", after = "nvim-cmp"},
+        {"zbirenbaum/copilot-cmp", after = "nvim-cmp"},
         -- { "hrsh7th/cmp-nvim-lua", module = "cmp_nvim_lua" },
         -- { "hrsh7th/cmp-calc", module = "cmp_calc" },
         -- { "hrsh7th/cmp-emoji", module = "cmp_emoji" },

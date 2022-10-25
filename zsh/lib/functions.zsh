@@ -28,6 +28,10 @@ function ggb() {
     git log --graph --pretty=$pretty_fmt --first-parent $(git rev-parse $(git merge-base master HEAD))..HEAD
 }
 
+function ghl() {
+    git checkout $1 && git pull
+}
+
 function union() {
     cat $1 $2 | sort | uniq
 }

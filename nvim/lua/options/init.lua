@@ -33,7 +33,6 @@ local options_table = {
     fillchars = {eob = " "}, -- Disable `~` on nonexistent lines
     ignorecase = true, -- Case insensitive searching
     laststatus = 3, -- globalstatus
-    lazyredraw = true, -- lazily redraw screen
     mouse = "a", -- Enable mouse support
     preserveindent = true, -- Preserve indent structure as much as possible
     pumheight = 10, -- Height of the pop up menu
@@ -77,7 +76,8 @@ local options_table = {
     linebreak = true,
     undofile = true,
     undolevels = 1000,
-    history = 10000
+    history = 10000,
+    lazyredraw = false,
   }
 }
 

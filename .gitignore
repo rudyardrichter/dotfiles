@@ -1,4 +1,5 @@
 .*
+nvim/spell
 zsh/lib/local.zsh
 vim/bundle
 vim/.netrwhist

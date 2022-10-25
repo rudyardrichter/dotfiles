@@ -10,6 +10,10 @@ local feedkey = function(key, mode)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
 
+-- local border = { "┏", "━", "┓", "┃", "┛", "━", "┗", "┃" }
+-- local border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
+local border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
+
 cmp.setup {
   formatting = {
     fields = {"abbr", "kind", "menu"},
@@ -60,11 +64,16 @@ cmp.setup {
     end
   },
   sources = cmp.config.sources {
-    {name = "nvim_lsp"}, {name = "nvim_lsp_signature_help"}, {name = "luasnip"}
+    {name = "copilot"},
+    {name = "nvim_lsp"},
+    {name = "nvim_lsp_signature_help"},
+    {name = "luasnip"},
   },
   window = {
     -- completion = cmp.config.window.bordered(),
     -- documentation = cmp.config.window.bordered(),
-    documentation = {border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"}}
+    -- documentation = {border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"}}
+    completion = {border = border},
+    documentation = {border = border},
   }
 }

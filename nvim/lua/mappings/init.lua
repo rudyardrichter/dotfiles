@@ -1,4 +1,9 @@
 local map_table = {
+  [""] = {
+    ["H"] = {"^"},
+    ["L"] = {"$"},
+  },
+
   n = {
     ["<cr>"] = {"<cmd>w<cr>"},
     ["<tab>"] = {"za"},
@@ -48,9 +53,7 @@ local map_table = {
 
     [";"] = {":", noremap = true},
     ["Q"] = {"<cmd>q<cr>"},
-    ["H"] = {"^", noremap = true},
     ["J"] = {"mjJ`j"},
-    ["L"] = {"$", noremap = true},
     ["Y"] = {"y$"},
 
     ["<Up>"] = {"<C-w>k", noremap = true},
@@ -200,8 +203,12 @@ local map_table = {
       desc = "Hover diagnostics"
     }
   },
-  i = {["<C-j>"] = {"<C-c><cmd>w<cr>", noremap = true}},
-  c = {["<C-l>"] = {'wildmenumode() ? "\\<Down>" : "\\<C-l>"', expr = true, noremap = true}},
+  i = {
+    ["<C-j>"] = {"<C-c><cmd>w<cr>", noremap = true}
+  },
+  c = {
+    ["<C-l>"] = {'wildmenumode() ? "\\<Down>" : "\\<C-l>"', expr = true, noremap = true}
+  },
   v = {
     [";"] = {":", noremap = true},
     ["H"] = {"^"},

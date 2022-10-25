@@ -49,6 +49,10 @@ local vi_mode_name = function()
   return mode
 end
 
+local function word_count()
+  return tostring(vim.fn.wordcount().words) .. "w "
+end
+
 local components = {
   {
     {
@@ -95,6 +99,15 @@ local components = {
   },
   {},
   {
+    {
+      provider = function(_, opts) 
+        return word_count()
+      end,
+      enabled = function()
+        local fts = {markdown = true, text = true}
+        return fts[vim.bo.filetype] ~= nil
+      end,
+    },
     { provider = { name = "file_type", opts = { filetype_icon = true, case = "lowercase" } }, enabled = has_filetype },
     { provider = " ", enabled = has_filetype },
     -- { provider = provider.lsp_progress, hl = { fg = C.light4 }, enabled = conditional.bar_width() },

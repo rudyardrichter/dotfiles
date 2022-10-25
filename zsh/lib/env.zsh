@@ -17,7 +17,7 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!.git/*
 export FZF_DEFAULT_OPTS='--reverse'
 
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-#source /home/rudyard/.local/bin/virtualenvwrapper.sh
+source /home/rudyard/.local/bin/virtualenvwrapper.sh
 export WORKON_HOME=~/.envs
 
 # nvm setup
