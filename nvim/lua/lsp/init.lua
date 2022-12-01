@@ -1,6 +1,8 @@
 local signs = {
-  {name = "DiagnosticSignError", text = ""}, {name = "DiagnosticSignWarn", text = ""},
-  {name = "DiagnosticSignHint", text = ""}, {name = "DiagnosticSignInfo", text = ""}
+  {name = "DiagnosticSignError", text = ""},
+  {name = "DiagnosticSignWarn", text = ""},
+  {name = "DiagnosticSignInfo", text = ""},
+  {name = "DiagnosticSignHint", text = ""},
 }
 for _, sign in pairs(signs) do
   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
@@ -11,8 +13,8 @@ vim.diagnostic.config({
   signs = true,
   underline = true,
   update_in_insert = false,
-  -- virtual_text = { prefix = "❯" },
-  virtual_text = false
+  virtual_text = { prefix = "❯" },
+  -- virtual_text = false
 })
 
 -- vim.cmd([[

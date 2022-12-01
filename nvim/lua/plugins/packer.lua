@@ -46,11 +46,18 @@ require("packer").startup({
     -- use("mong8se/actually.nvim")
     use("nvim-lua/popup.nvim")
     use("onsails/lspkind.nvim")
-    use("rafamadriz/friendly-snippets")
     use("rudyardrichter/pretty-fold.nvim")
     use("tmhedberg/SimpylFold")
-    use("williamboman/mason-lspconfig.nvim")
+    use("aklt/plantuml-syntax")
+
     use("williamboman/nvim-lsp-installer")
+
+    use({
+      "rafamadriz/friendly-snippets",
+      config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
+      end,
+    })
 
     -- use("github/copilot.vim")
     use({
@@ -133,9 +140,19 @@ require("packer").startup({
         local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
         local null_ls = require("null-ls")
         null_ls.setup({
-            null_ls.builtins.formatting.black,
           sources = {
             null_ls.builtins.formatting.rustfmt,
+            {
+              name = "blackd",
+              method = null_ls.methods.FORMATTING,
+              filetypes = { "python" },
+              generator = require("null-ls.helpers").formatter_factory{
+                command = "blackd-client",
+                to_stdin = true,
+              },
+            },
+            -- null_ls.builtins.formatting.black,
+            null_ls.builtins.formatting.isort,
             -- null_ls.builtins.formatting.lua_format.with({
             --   extra_args = {
             --     "--no-keep-simple-function-one-line", "--no-break-after-operator",
@@ -198,14 +215,27 @@ require("packer").startup({
       "williamboman/mason.nvim",
       config = function()
         require("mason").setup()
-      end
+      end,
+    })
+
+    use({
+      "williamboman/mason-lspconfig.nvim",
+      config = function()
+        require("mason-lspconfig").setup()
+      end,
     })
 
     use({
       "neovim/nvim-lspconfig",
       config = function()
         local lspconfig = require("lspconfig")
+        local capabilities = vim.tbl_deep_extend(
+          "force",
+          lspconfig.util.default_config.capabilities,
+          require("cmp_nvim_lsp").default_capabilities()
+        )
         lspconfig.rust_analyzer.setup({
+          capabilities = capabilities,
           flags = flags,
           on_attach = require("aerial").on_attach,
           settings = {
@@ -220,9 +250,13 @@ require("packer").startup({
           }
         })
         lspconfig.pyright.setup({
+          capabilities = capabilities,
           flags = flags,
         })
-      end
+        lspconfig.texlab.setup({
+          capabilities = capabilities,
+        })
+      end,
     })
 
     use({
@@ -249,7 +283,12 @@ require("packer").startup({
       "folke/which-key.nvim",
       config = function()
         local whichkey = require("which-key")
-        whichkey.setup({})
+        whichkey.setup({
+          window = {
+            border = "single",
+            margin = {4, 8, 4, 8}
+          },
+        })
         whichkey.register({
           ["<leader>"] = {
             d = {name = "Debug"},
@@ -268,33 +307,6 @@ require("packer").startup({
       end,
     })
 
-    -- use({
-    --   "nvim-lualine/lualine.nvim",
-    --   requires = {"kyazdani42/nvim-web-devicons", opt = true},
-    --   config = function()
-    --     local custom = require("lualine.themes.solarized_dark")
-    --     if custom.normal.b == nil then
-    --       custom.normal.b = {}
-    --     end
-    --     if custom.insert.b == nil then
-    --       custom.insert.b = {}
-    --     end
-    --     if custom.visual.b == nil then
-    --       custom.visual.b = {}
-    --     end
-    --     if custom.replace.b == nil then
-    --       custom.replace.b = {}
-    --     end
-    --     custom.normal.b.bg = vim.g.terminal_color_10
-    --     custom.insert.b.bg = vim.g.terminal_color_10
-    --     custom.visual.b.bg = vim.g.terminal_color_10
-    --     custom.replace.b.bg = vim.g.terminal_color_10
-    --     require("lualine").setup({
-    --       options = { theme = custom },
-    --     })
-    --   end
-    -- })
-
     use({
       "ellisonleao/gruvbox.nvim",
       config = function()
@@ -311,6 +323,7 @@ require("packer").startup({
             GruvboxOrangeSign = {bg = palette.dark0},
             Folded = {bg = palette.dark0},
             IncSearch = {fg = palette.dark1, bg = palette.bright_blue},
+            Normal = {bg = nil},
             Operator = {italic = false},
             Pmenu = {bg = palette.dark0},
             Search = {fg = palette.dark0, bg = palette.bright_yellow},
@@ -335,7 +348,6 @@ require("packer").startup({
         -- { "onsails/lspkind-nvim", module = "lspkind" },
         -- { "hrsh7th/cmp-buffer", module = "cmp_buffer" },
         {"hrsh7th/cmp-cmdline", after = "nvim-cmp"},
-        {"hrsh7th/cmp-nvim-lsp", after = "nvim-cmp"},
         {"hrsh7th/cmp-nvim-lsp", module = "cmp_nvim_lsp", after = "nvim-cmp"},
         {"hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp"},
         {"hrsh7th/cmp-path", after = "nvim-cmp"},

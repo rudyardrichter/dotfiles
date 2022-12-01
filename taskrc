@@ -64,3 +64,4 @@ urgency.waiting.coefficient                 = -5.0 # waiting task
 # urgency.user.tag
 #urgency.user.project.<project>.coefficient  =  5.0 # specific project
 #urgency.uda.estimate.coefficient            =  1.0 # specific UDA
+news.version=2.6.0

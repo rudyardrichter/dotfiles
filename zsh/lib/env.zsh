@@ -3,7 +3,6 @@ export GIT_EDITOR='nvim'
 export PAGER='less'
 export LESS='-R'
 export TERM=xterm-256color
-export GOPATH="/home/rudyard/go"
 export ZLE_REMOVE_SUFFIX_CHARS=""
 export USE_EMOJI='false'
 export HISTSIZE=100000
@@ -25,7 +24,6 @@ export WORKON_HOME=~/.envs
 
 #export RUST_SRC_PATH="/home/rudyard/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/"
 
-export GOROOT=/usr/local/go
 export GOPATH=~/go
 export GOBIN=~/go/bin
 

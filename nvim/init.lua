@@ -4,3 +4,23 @@ require("options")
 require("lsp")
 require("mappings")
 require("plugins")
+
+-- This fixes an issue with guibg highlight interfering with cursorline
+-- https://github.com/neovim/neovim/issues/9019
+vim.cmd[[
+function! s:CustomizeColors()
+	if has('guirunning') || has('termguicolors')
+		let cursorline_gui=''
+		let cursorline_cterm='ctermfg=white'
+	else
+		let cursorline_gui='guifg=white'
+		let cursorline_cterm=''
+	endif
+	exec 'hi CursorLine ' . cursorline_gui . ' ' . cursorline_cterm
+endfunction
+
+augroup OnColorScheme
+	autocmd!
+	autocmd ColorScheme,BufEnter,BufWinEnter * call s:CustomizeColors()
+augroup END
+]]

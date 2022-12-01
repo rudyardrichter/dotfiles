@@ -45,6 +45,8 @@ local vi_mode_name = function()
     mode = "VLINES"
   elseif mode == "BLOCK" then
     mode = "VBLOCK"
+  elseif mode == "COMMAND" then
+    mode = "COMMAND"
   end
   return mode
 end

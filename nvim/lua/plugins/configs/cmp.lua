@@ -55,7 +55,8 @@ cmp.setup {
     ["<C-S-f>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-e>"] = cmp.mapping.close(),
-    ["<CR>"] = cmp.mapping.confirm({behavior = cmp.ConfirmBehavior.Insert, select = true})
+    ["<CR>"] = cmp.mapping.confirm({behavior = cmp.ConfirmBehavior.Insert, select = false})
+    -- ["<CR>"] = nil,
   },
   preselect = require("cmp.types").cmp.PreselectMode.None,
   snippet = {
@@ -65,9 +66,10 @@ cmp.setup {
   },
   sources = cmp.config.sources {
     {name = "copilot"},
+    {name = "luasnip"},
     {name = "nvim_lsp"},
     {name = "nvim_lsp_signature_help"},
-    {name = "luasnip"},
+    {name = "omni"},
   },
   window = {
     -- completion = cmp.config.window.bordered(),

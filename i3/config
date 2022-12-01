@@ -612,7 +612,8 @@ set $gray #1d2021
 
 #                       border    background text      indicator  child_border
 client.focused          $darkblue $darkblue  $fg       $magenta   $darkblue
-client.focused_inactive $white    $white     $fg       $magenta   $gray
+#client.focused_inactive $white    $white     $fg       $magenta   $gray
+client.focused_inactive $darkblue $darkblue  $fg       $magenta   $gray
 client.unfocused        $bg2      $bg2       $fg       $magenta   $gray
 client.urgent           $darkred  $darkred   $fg       $darkred   $darkred
 
