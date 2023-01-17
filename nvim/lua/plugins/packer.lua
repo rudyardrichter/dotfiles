@@ -42,15 +42,47 @@ require("packer").startup({
     use("kyazdani42/nvim-web-devicons")
     use("lervag/vimtex")
     use("lewis6991/impatient.nvim")
-    use("mfussenegger/nvim-dap")
     -- use("mong8se/actually.nvim")
     use("nvim-lua/popup.nvim")
     use("onsails/lspkind.nvim")
-    use("rudyardrichter/pretty-fold.nvim")
     use("tmhedberg/SimpylFold")
     use("aklt/plantuml-syntax")
 
     use("williamboman/nvim-lsp-installer")
+
+    use({
+      "rudyardrichter/pretty-fold.nvim",
+      config = function()
+        require("pretty-fold").setup({
+          sections = {
+            left = {
+              'content',
+            },
+            right = {
+              ' ', 'number_of_folded_lines', ': ', 'percentage', ' ',
+              function(config) return config.fill_char:rep(3) end
+            }
+          },
+          fill_char = '·',
+          fill_left = false,
+          remove_fold_markers = true,
+          keep_indentation = true,
+          process_comment_signs = 'spaces',
+          comment_signs = {},
+          -- List of patterns that will be removed from content foldtext section.
+          stop_words = {
+            '@brief%s*', -- (for C++) Remove '@brief' and all spaces after.
+          },
+          add_close_pattern = false, -- true, 'last_line' or false
+          matchup_patterns = {
+            {  '{', '}' },
+            { '%(', ')' }, -- % to escape lua pattern char
+            { '%[', ']' }, -- % to escape lua pattern char
+          },
+          ft_ignore = { 'neorg' },
+        })
+      end
+    })
 
     use({
       "rafamadriz/friendly-snippets",
@@ -59,7 +91,6 @@ require("packer").startup({
       end,
     })
 
-    -- use("github/copilot.vim")
     use({
       "zbirenbaum/copilot.lua",
       config = function()
@@ -120,6 +151,12 @@ require("packer").startup({
       end
     })
 
+    use({
+      "mfussenegger/nvim-dap",
+      config = function()
+        require("plugins.configs.dap")
+      end,
+    })
 
     use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
 
@@ -194,7 +231,7 @@ require("packer").startup({
             executor = require("rust-tools/executors").termopen,
             inlay_hints = {
               only_current_line = false,
-              show_parameter_hints = false,
+              show_parameter_hints = true,
               parameter_hints_prefix = "",
               other_hints_prefix = ""
             },
@@ -237,14 +274,32 @@ require("packer").startup({
         lspconfig.rust_analyzer.setup({
           capabilities = capabilities,
           flags = flags,
-          on_attach = require("aerial").on_attach,
+          -- on_attach = require("aerial").on_attach,
           settings = {
             ["rust-analyzer"] = {
+              assist = {
+                importGranularity = "module",
+                importPrefix = "by_self",
+              },
               cargo = {
-                buildScripts = {enable = true}
+                buildScripts = {enable = true},
+                loadOutDirsFromCheck = true,
+              },
+              check = {
+                command = "clippy",
+              },
+              checkOnSave = {
+                allFeatures = true,
+                overrideCommand = {
+                  "cargo", "clippy", "--workspace", "--message-format=json",
+                  "--all-targets", "--all-features"
+                }
               },
               diagnostics = {
-                disabled = {"inactive-code"}
+                disabled = {"inactive-code", "unresolved-import", "macro-error", "unresolved-proc-macro"}, 
+              },
+              procMacro = {
+                enable = false,
               },
             }
           }
@@ -362,8 +417,15 @@ require("packer").startup({
     use({
       "nvim-neo-tree/neo-tree.nvim",
       requires = {{"MunifTanjim/nui.nvim", module = "nui"}},
-      setup = function()
+      config = function()
         vim.g.neo_tree_remove_legacy_commands = true
+        require("neo-tree").setup({
+          auto_close = true,
+          disable_netrw = true,
+          hijack_netrw = true,
+          open_on_tab = true,
+          update_cwd = true,
+        })
       end
     })
 

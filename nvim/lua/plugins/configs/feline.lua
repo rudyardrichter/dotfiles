@@ -55,6 +55,19 @@ local function word_count()
   return tostring(vim.fn.wordcount().words) .. "w "
 end
 
+local function any_git_changes()
+  local git_info = vim.b.gitsigns_status_dict
+  if git_info == nil then
+    return false
+  else
+    return (
+      (git_info["added"] ~= nil and git_info["added"] > 0)
+      or (git_info["changed"] ~= nil and git_info["changed"] > 0)
+      or (git_info["removed"] ~= nil and git_info["removed"] > 0)
+    )
+  end
+end
+
 local components = {
   {
     {
@@ -72,19 +85,42 @@ local components = {
     },
     { provider = " ", hl = { bg = git_bg }, enabled = git.git_info_exists },
     {
-      provider = "git_branch", hl = { fg = C.bright_aqua, bg = git_bg }, icon = " "
+      name = "git_branch",
+      provider = "git_branch",
+      short_provider = "",
+      priority = 1,
+      hl = { fg = C.bright_aqua, bg = git_bg },
+      icon = " ",
+    },
+    {
+      provider = " ",
+      short_provider = "",
+      priority = 0,
+      hl = { bg = git_bg },
+      enabled = function()
+        return git.git_info_exists() and not any_git_changes()
+      end,
+    },
+    {
+      provider = "git_diff_added",
+      hl = { fg = C.bright_green, bg = git_bg },
+      icon = " +",
+    },
+    {
+      provider = "git_diff_changed",
+      hl = { fg = C.bright_yellow, bg = git_bg },
+      icon = " ~",
+    },
+    {
+      provider = "git_diff_removed",
+      hl = { fg = C.bright_red, bg = git_bg },
+      icon = " -",
     },
     {
       provider = " ",
       hl = { bg = git_bg },
-      enabled = function()
-        return git.git_info_exists() and not git.git_diff_changed()
-      end,
+      enabled = any_git_changes,
     },
-    { provider = "git_diff_added", hl = { fg = C.bright_green, bg = git_bg }, icon = " +" }, -- 
-    { provider = "git_diff_changed", hl = { fg = C.bright_green, bg = git_bg }, icon = " ~" }, -- 柳
-    { provider = "git_diff_removed", hl = { fg = C.bright_red, bg = git_bg }, icon = " -" }, -- 
-    { provider = " ", hl = { bg = git_bg }, enabled = function() return git.git_info_exists() and git.git_diff_changed() end },
     { provider = " " },
     { provider = { name = "file_info", opts = { type = "relative", file_modified_icon = "", file_readonly_icon = " " }}, icon = "" },
     {
@@ -110,7 +146,15 @@ local components = {
         return fts[vim.bo.filetype] ~= nil
       end,
     },
-    { provider = { name = "file_type", opts = { filetype_icon = true, case = "lowercase" } }, enabled = has_filetype },
+    {
+      provider = {
+        name = "file_type",
+        opts = { filetype_icon = true, case = "lowercase" }
+      },
+      truncate_hide = true,
+      priority = 0,
+      enabled = has_filetype,
+    },
     { provider = " ", enabled = has_filetype },
     -- { provider = provider.lsp_progress, hl = { fg = C.light4 }, enabled = conditional.bar_width() },
     -- { provider = provider.lsp_client_names(true), short_provider = provider.lsp_client_names(), hl = { fg = C.light4 }, enabled = conditional.bar_width(), icon = "   " },
