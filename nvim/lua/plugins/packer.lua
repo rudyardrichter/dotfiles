@@ -47,6 +47,8 @@ require("packer").startup({
     use("onsails/lspkind.nvim")
     use("tmhedberg/SimpylFold")
     use("aklt/plantuml-syntax")
+    use("tpope/vim-fugitive")
+    use("tpope/vim-rhubarb")
 
     use("williamboman/nvim-lsp-installer")
 
@@ -163,11 +165,10 @@ require("packer").startup({
     use({
       -- why is this broken in lua??
       "windwp/nvim-autopairs",
-      cond = function()
-        return vim.bo.filetype ~= "lua"  -- why doesn't this work??
-      end,
       config = function()
-        require("nvim-autopairs").setup{}
+        require("nvim-autopairs").setup({
+          disable_filetype = { "TelescopePrompt", "lua" },
+        })
       end,
     })
 
@@ -188,7 +189,7 @@ require("packer").startup({
                 to_stdin = true,
               },
             },
-            -- null_ls.builtins.formatting.black,
+            null_ls.builtins.formatting.terraform_fmt,
             null_ls.builtins.formatting.isort,
             -- null_ls.builtins.formatting.lua_format.with({
             --   extra_args = {
@@ -308,7 +309,13 @@ require("packer").startup({
           capabilities = capabilities,
           flags = flags,
         })
+        lspconfig.terraformls.setup({
+          capabilities = capabilities,
+        })
         lspconfig.texlab.setup({
+          capabilities = capabilities,
+        })
+        lspconfig.tsserver.setup({
           capabilities = capabilities,
         })
       end,
@@ -400,17 +407,14 @@ require("packer").startup({
       end,
       -- event = "InsertEnter",
       requires = {
-        -- { "onsails/lspkind-nvim", module = "lspkind" },
-        -- { "hrsh7th/cmp-buffer", module = "cmp_buffer" },
-        {"hrsh7th/cmp-cmdline", after = "nvim-cmp"},
-        {"hrsh7th/cmp-nvim-lsp", module = "cmp_nvim_lsp", after = "nvim-cmp"},
-        {"hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp"},
-        {"hrsh7th/cmp-path", after = "nvim-cmp"},
-        {"saadparwaiz1/cmp_luasnip", after = "nvim-cmp"},
-        {"zbirenbaum/copilot-cmp", after = "nvim-cmp"},
-        -- { "hrsh7th/cmp-nvim-lua", module = "cmp_nvim_lua" },
-        -- { "hrsh7th/cmp-calc", module = "cmp_calc" },
-        -- { "hrsh7th/cmp-emoji", module = "cmp_emoji" },
+        "hrsh7th/cmp-calc",
+        "hrsh7th/cmp-cmdline",
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-nvim-lsp-signature-help",
+        "hrsh7th/cmp-omni",
+        "hrsh7th/cmp-path",
+        "saadparwaiz1/cmp_luasnip",
+        "zbirenbaum/copilot-cmp",
       }
     })
 
