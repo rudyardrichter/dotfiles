@@ -12,7 +12,20 @@ end
 
 -- local border = { "┏", "━", "┓", "┃", "┛", "━", "┗", "┃" }
 -- local border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
-local border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
+-- local border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
+
+local function border(hl_name)
+  return {
+    { "┌", hl_name },
+    { "─", hl_name },
+    { "┐", hl_name },
+    { "│", hl_name },
+    { "┘", hl_name },
+    { "─", hl_name },
+    { "└", hl_name },
+    { "│", hl_name },
+  }
+end
 
 cmp.setup {
   formatting = {
@@ -55,8 +68,8 @@ cmp.setup {
     ["<C-S-f>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-e>"] = cmp.mapping.close(),
-    ["<CR>"] = cmp.mapping.confirm({behavior = cmp.ConfirmBehavior.Insert, select = false})
-    -- ["<CR>"] = nil,
+    ["<CR>"] = cmp.mapping.confirm({behavior = cmp.ConfirmBehavior.Insert, select = false}),
+    ["<C-CR>"] = cmp.mapping.complete(),
   },
   preselect = require("cmp.types").cmp.PreselectMode.None,
   snippet = {
@@ -69,13 +82,17 @@ cmp.setup {
     {name = "luasnip"},
     {name = "nvim_lsp"},
     {name = "nvim_lsp_signature_help"},
-    {name = "omni"},
   },
   window = {
     -- completion = cmp.config.window.bordered(),
     -- documentation = cmp.config.window.bordered(),
     -- documentation = {border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"}}
-    completion = {border = border},
-    documentation = {border = border},
+    completion = {
+      border = border("CmpBorder"),
+      winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+    },
+    documentation = {
+      border = border("CmpDocBorder"),
+    },
   }
 }

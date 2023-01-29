@@ -1,3 +1,5 @@
+-- TODO: refactor with whichkey
+
 local map_table = {
   [""] = {
     ["H"] = {"^"},
@@ -89,27 +91,15 @@ local map_table = {
 
     ["<C-_>"] = {'<cmd>let @/=""<CR><C-l>', silent = true},
 
-    ["<leader>d"] = {
-      function()
-        vim.lsp.buf.definition()
-      end,
-      desc = "Definition"
-    },
     ["<leader>h"] = {"mh*`h"},
     ["<leader>rw"] = {"<cmd>%s/\\s\\+$//<CR> <cmd>nohl<CR> <cmd>w<CR>"},
 
     -- LS features
-    ["<leader>lr"] = {
-      function()
-        require("telescope.builtin").lsp_references()
-      end,
-      desc = "Search references"
-    },
     ["<leader>lR"] = {
       function()
         vim.lsp.buf.rename()
       end,
-      desc = "Rename current    symbol"
+      desc = "Rename current symbol"
     },
     ["<leader>ls"] = {
       function()
@@ -142,12 +132,6 @@ local map_table = {
       end,
       desc = "Signature help"
     },
-    ["<leader>lr"] = {
-      function()
-        vim.lsp.buf.rename()
-      end,
-      desc = "Rename current symbol"
-    },
     ["gD"] = {
       function()
         vim.lsp.buf.declaration()
@@ -160,7 +144,7 @@ local map_table = {
       end,
       desc = "Definition of current type"
     },
-    ["gI"] = {
+    ["gi"] = {
       function()
         vim.lsp.buf.implementation()
       end,
@@ -173,9 +157,7 @@ local map_table = {
       desc = "Show the definition of current symbol"
     },
     ["gr"] = {
-      function()
-        vim.lsp.buf.references()
-      end,
+      require("telescope.builtin").lsp_references,
       desc = "References of current symbol"
     },
     ["<leader>ld"] = {
@@ -232,3 +214,11 @@ for mode, maps in pairs(map_table) do
     end
   end
 end
+
+vim.cmd([[
+  augroup quickfix
+    au FileType qf nmap <silent> <buffer> <CR> <cmd>copen<CR>
+    au FileType qf nmap <silent> <buffer> <C-j> <cmd>cnext<CR>
+    au FileType qf nmap <silent> <buffer> <C-k> <cmd>cprev<CR>
+  augroup END
+]])

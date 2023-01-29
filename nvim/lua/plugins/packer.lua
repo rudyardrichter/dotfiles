@@ -30,15 +30,18 @@ local flags = {
 
 local theme = "gruvbox"
 
+local install_root_dir = vim.fn.stdpath "data" .. "/mason"
+local extension_path = install_root_dir .. "/packages/codelldb/extension/"
+local codelldb_path = extension_path .. "adapter/codelldb"
+local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
+
 require("packer").startup({
   function(use)
     use("wbthomason/packer.nvim")
-
-    use({"nvim-lua/plenary.nvim", module = "plenary"})
+    use("nvim-lua/plenary.nvim")
 
     use("L3MON4D3/LuaSnip")
     use("NvChad/nvim-colorizer.lua")
-    -- use "WhoIsSethDaniel/mason-tool-installer.nvim"
     use("kyazdani42/nvim-web-devicons")
     use("lervag/vimtex")
     use("lewis6991/impatient.nvim")
@@ -51,6 +54,17 @@ require("packer").startup({
     use("tpope/vim-rhubarb")
 
     use("williamboman/nvim-lsp-installer")
+
+    use({
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
+      config = function()
+        require("mason-tool-installer").setup({
+          ensure_installed = {"codelldb"},
+          auto_update = false,
+          run_on_start = true,
+        })
+      end,
+    })
 
     use({
       "rudyardrichter/pretty-fold.nvim",
@@ -98,6 +112,19 @@ require("packer").startup({
       config = function()
         vim.defer_fn(function()
           require("copilot").setup({
+            filetypes = {
+              ["*"] = false,
+              go = true,
+              haskell = true,
+              latex = true,
+              lua = true,
+              markdown = true,
+              python = true,
+              rust = true,
+              tex = true,
+              typescript = true,
+              yaml = true,
+            },
             panel = {
               keymap = {
                 jump_next = "<Tab>",
@@ -158,6 +185,13 @@ require("packer").startup({
       config = function()
         require("plugins.configs.dap")
       end,
+      requires = {
+        "mfussenegger/nvim-dap-python",
+        "nvim-telescope/telescope-dap.nvim",
+        "rcarriga/nvim-dap-ui",
+        "theHamsta/nvim-dap-virtual-text",
+        { "leoluz/nvim-dap-go", module = "dap-go" },
+      },
     })
 
     use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
@@ -198,6 +232,8 @@ require("packer").startup({
             --   }
             -- })
           },
+          null_ls.builtins.formatting.eslint_d,
+          null_ls.builtins.formatting.prettier,
           on_attach = function(client, bufnr)
             if client.supports_method("textDocument/formatting") then
               vim.api.nvim_clear_autocmds({group = augroup, buffer = bufnr})
@@ -351,14 +387,7 @@ require("packer").startup({
             margin = {4, 8, 4, 8}
           },
         })
-        whichkey.register({
-          ["<leader>"] = {
-            d = {name = "Debug"},
-            l = {name = "Lsp"},
-            p = {name = "Packer"},
-            s = {name = "Session"},
-          }
-        })
+        require("plugins.configs.whichkey")
       end
     })
 
@@ -428,7 +457,7 @@ require("packer").startup({
           disable_netrw = true,
           hijack_netrw = true,
           open_on_tab = true,
-          update_cwd = true,
+          update_cwd = false,
         })
       end
     })
@@ -440,6 +469,7 @@ require("packer").startup({
         require("plugins.configs.telescope")
       end
     })
+    use { "nvim-telescope/telescope-fzf-native.nvim", run = "make", cond = vim.fn.executable "make" == 1 }
 
     use({
       "nvim-treesitter/nvim-treesitter",
