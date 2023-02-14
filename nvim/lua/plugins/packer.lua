@@ -209,8 +209,8 @@ require("packer").startup({
     use({
       "jose-elias-alvarez/null-ls.nvim",
       config = function()
-        local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
         local null_ls = require("null-ls")
+        local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
         null_ls.setup({
           sources = {
             null_ls.builtins.formatting.rustfmt,
@@ -223,8 +223,8 @@ require("packer").startup({
                 to_stdin = true,
               },
             },
-            null_ls.builtins.formatting.terraform_fmt,
             null_ls.builtins.formatting.isort,
+            null_ls.builtins.formatting.terraform_fmt,
             -- null_ls.builtins.formatting.lua_format.with({
             --   extra_args = {
             --     "--no-keep-simple-function-one-line", "--no-break-after-operator",
@@ -234,6 +234,7 @@ require("packer").startup({
           },
           null_ls.builtins.formatting.eslint_d,
           null_ls.builtins.formatting.prettier,
+          null_ls.builtins.diagnostics.chktex,
           on_attach = function(client, bufnr)
             if client.supports_method("textDocument/formatting") then
               vim.api.nvim_clear_autocmds({group = augroup, buffer = bufnr})
@@ -246,7 +247,7 @@ require("packer").startup({
                 end
               })
             end
-          end
+          end,
         })
       end
     })
@@ -344,6 +345,9 @@ require("packer").startup({
         lspconfig.pyright.setup({
           capabilities = capabilities,
           flags = flags,
+          on_attach = function(client, bufnr)
+            vim.api.nvim_buf_set_option(bufnr, "formatexpr", "")
+          end,
         })
         lspconfig.terraformls.setup({
           capabilities = capabilities,
@@ -353,6 +357,11 @@ require("packer").startup({
         })
         lspconfig.tsserver.setup({
           capabilities = capabilities,
+        })
+        lspconfig.texlab.setup({
+          latexindent = {
+            ["local"] = vim.fn.stdpath("config") .. "/latexindent.yaml",
+          },
         })
       end,
     })
@@ -449,15 +458,20 @@ require("packer").startup({
 
     use({
       "nvim-neo-tree/neo-tree.nvim",
+      branch = "v2.x",
       requires = {{"MunifTanjim/nui.nvim", module = "nui"}},
       config = function()
         vim.g.neo_tree_remove_legacy_commands = true
         require("neo-tree").setup({
           auto_close = true,
+          close_if_last_window = true,
           disable_netrw = true,
           hijack_netrw = true,
           open_on_tab = true,
           update_cwd = false,
+          view = {
+            adaptive_size = true,
+          },
         })
       end
     })

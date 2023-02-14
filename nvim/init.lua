@@ -24,3 +24,7 @@ augroup OnColorScheme
 	autocmd ColorScheme,BufEnter,BufWinEnter * call s:CustomizeColors()
 augroup END
 ]]
+
+vim.cmd[[
+autocmd BufNewFile *.py 0r ~/.config/nvim/skeletons/skeleton.py
+]]

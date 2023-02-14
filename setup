@@ -50,3 +50,6 @@ python3 -m pipx ensurepath
 pipx install black[d]
 
 # cargo install blackd-client
+
+git config --global scriv.create.edit true
+git config --global scriv.create.add true
