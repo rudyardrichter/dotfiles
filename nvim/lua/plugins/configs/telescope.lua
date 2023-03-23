@@ -6,6 +6,9 @@ require("telescope").setup{
     selection_caret = "❯ ",
     path_display = { "truncate" },
     selection_strategy = "reset",
+    file_sorter = require("telescope.sorters").get_fuzzy_file,
+    file_ignore_patterns = { "node_modules" },
+    generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
     sorting_strategy = "ascending",
     layout_strategy = "horizontal",
     file_previewer = require("telescope.previewers").vim_buffer_cat.new,
@@ -24,8 +27,8 @@ require("telescope").setup{
       height = 0.80,
       preview_cutoff = 120,
     },
-    borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-    -- borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└", },
+    -- borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└", },
 
     vimgrep_arguments = {
       "rg",

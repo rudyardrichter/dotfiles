@@ -106,7 +106,7 @@ alias ggo="git log --graph --pretty=$pretty_short_fmt"
 alias ggp="git log --graph -p --pretty=$pretty_fmt"
 alias ggps="git log --graph -p --stat --pretty=$pretty_fmt"
 alias ggs="git log --graph --stat --pretty=$pretty_fmt"
-alias gl='git pull'
+alias gl='git pull --prune'
 alias glr='git pull --rebase'
 alias gm='git merge'
 alias gmm='git merge master'

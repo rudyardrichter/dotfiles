@@ -46,7 +46,6 @@ require("packer").startup({
     use("lervag/vimtex")
     use("lewis6991/impatient.nvim")
     -- use("mong8se/actually.nvim")
-    use("nvim-lua/popup.nvim")
     use("onsails/lspkind.nvim")
     use("tmhedberg/SimpylFold")
     use("aklt/plantuml-syntax")
@@ -261,6 +260,15 @@ require("packer").startup({
     })
 
     use({
+      "pwntester/octo.nvim",
+      config = function()
+        require("octo").setup({
+          timeout = 20000,
+        })
+      end
+    })
+
+    use({
       "simrat39/rust-tools.nvim",
       config = function()
         require("rust-tools").setup({
@@ -409,6 +417,8 @@ require("packer").startup({
 
     use({
       "ellisonleao/gruvbox.nvim",
+      -- TODO: remove pin once not broken
+      commit = "925b496cc02ddd7942b31a105413afd73b74bd69",
       config = function()
         local palette = require("gruvbox.palette")
         require("gruvbox").setup({
@@ -449,6 +459,7 @@ require("packer").startup({
         "hrsh7th/cmp-cmdline",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-nvim-lsp-signature-help",
+        "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-omni",
         "hrsh7th/cmp-path",
         "saadparwaiz1/cmp_luasnip",
@@ -521,13 +532,6 @@ require("packer").startup({
     use({"p00f/nvim-ts-rainbow", after = "nvim-treesitter"})
 
     use({"windwp/nvim-ts-autotag", after = "nvim-treesitter"})
-
-    use({
-      "pwntester/octo.nvim",
-      config = function()
-        require("octo").setup({})
-      end
-    })
 
     use({
       "folke/trouble.nvim",
