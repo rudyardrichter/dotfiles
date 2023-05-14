@@ -28,6 +28,9 @@ local function border(hl_name)
 end
 
 cmp.setup {
+  completion = {
+    completeopt = "menu,menuone,noinsert,noselect",
+  },
   formatting = {
     fields = {"abbr", "kind", "menu"},
     format = function(entry, vim_item)
@@ -65,10 +68,15 @@ cmp.setup {
         fallback()
       end
     end, {"i", "s"}),
+    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
     ["<C-S-f>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-e>"] = cmp.mapping.close(),
-    ["<CR>"] = cmp.mapping.confirm({behavior = cmp.ConfirmBehavior.Insert, select = false}),
+    ["<CR>"] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = false,
+    }),
+    -- ["<CR>"] = cmp.mapping.confirm(),
     ["<C-CR>"] = cmp.mapping.complete(),
   },
   preselect = require("cmp.types").cmp.PreselectMode.None,
@@ -77,11 +85,29 @@ cmp.setup {
       require("luasnip").lsp_expand(args.body)
     end
   },
+  sorting = {
+    priority_weight = 2,
+    comparators = {
+      require("copilot_cmp.comparators").prioritize,
+      -- Below is the default comparitor list and order for nvim-cmp
+      cmp.config.compare.offset,
+      -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+      cmp.config.compare.exact,
+      cmp.config.compare.score,
+      cmp.config.compare.recently_used,
+      cmp.config.compare.locality,
+      cmp.config.compare.kind,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.length,
+      cmp.config.compare.order,
+    },
+  },
   sources = cmp.config.sources {
     {name = "copilot"},
     {name = "luasnip"},
     {name = "nvim_lsp"},
     {name = "nvim_lsp_signature_help"},
+    {name = "path"},
   },
   window = {
     -- completion = cmp.config.window.bordered(),

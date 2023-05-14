@@ -39,8 +39,19 @@ require("packer").startup({
   function(use)
     use("wbthomason/packer.nvim")
     use("nvim-lua/plenary.nvim")
+    use({
+      "williamboman/mason.nvim",
+      config = function()
+        require("mason").setup()
+      end,
+    })
+    use({
+      "williamboman/mason-lspconfig.nvim",
+      config = function()
+        require("mason-lspconfig").setup()
+      end,
+    })
 
-    use("L3MON4D3/LuaSnip")
     use("NvChad/nvim-colorizer.lua")
     use("kyazdani42/nvim-web-devicons")
     use("lervag/vimtex")
@@ -51,8 +62,14 @@ require("packer").startup({
     use("aklt/plantuml-syntax")
     use("tpope/vim-fugitive")
     use("tpope/vim-rhubarb")
-
     use("williamboman/nvim-lsp-installer")
+
+    use({
+      "L3MON4D3/LuaSnip",
+      config = function()
+        require("plugins.configs.luasnip")
+      end,
+    })
 
     use({
       "WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -102,7 +119,10 @@ require("packer").startup({
     use({
       "rafamadriz/friendly-snippets",
       config = function()
-        require("luasnip.loaders.from_vscode").lazy_load()
+        require("luasnip.loaders.from_snipmate").lazy_load({
+        })
+        require("luasnip.loaders.from_vscode").lazy_load({
+        })
       end,
     })
 
@@ -132,15 +152,19 @@ require("packer").startup({
                 refresh = "r",
               },
             },
+            suggestion = { enabled = false },
           })
         end, 100)
       end,
     })
     use({
       "zbirenbaum/copilot-cmp",
-      after = { "copilot.lua" },
       config = function()
-        require("copilot_cmp").setup()
+        require("copilot_cmp").setup({
+          -- formatters = {
+          --   insert_text = require("copilot_cmp.format").remove_existing,
+          -- },
+        })
       end
     })
 
@@ -194,6 +218,25 @@ require("packer").startup({
     })
 
     use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+
+    use({
+      "nvim-neotest/neotest",
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "nvim-neotest/neotest-python",
+        "nvim-treesitter/nvim-treesitter",
+        "antoinemadec/FixCursorHold.nvim"
+      },
+      config = function()
+        require("neotest").setup({
+          adapters = {
+            require("neotest-python")({
+              dap = { justMyCode = false },
+            }),
+          },
+        })
+      end,
+    })
 
     use({
       -- why is this broken in lua??
@@ -270,6 +313,7 @@ require("packer").startup({
 
     use({
       "simrat39/rust-tools.nvim",
+      after = {"nvim-lspconfig"},
       config = function()
         require("rust-tools").setup({
           tools = {
@@ -295,21 +339,8 @@ require("packer").startup({
     })
 
     use({
-      "williamboman/mason.nvim",
-      config = function()
-        require("mason").setup()
-      end,
-    })
-
-    use({
-      "williamboman/mason-lspconfig.nvim",
-      config = function()
-        require("mason-lspconfig").setup()
-      end,
-    })
-
-    use({
       "neovim/nvim-lspconfig",
+      after = {"mason.nvim", "mason-lspconfig.nvim"},
       config = function()
         local lspconfig = require("lspconfig")
         local capabilities = vim.tbl_deep_extend(
@@ -375,7 +406,18 @@ require("packer").startup({
     })
 
     use({
+      "folke/neodev.nvim",
+      after = {"nvim-lspconfig"},
+      config = function()
+        require("neodev").setup({
+          library = { plugins = { "neotest" }, types = true },
+        })
+      end,
+    })
+
+    use({
       "tamago324/nlsp-settings.nvim",
+      after = {"nvim-lspconfig"},
       config = function()
         require("nlspsettings").setup{
           config_home = vim.fn.stdpath("config") .. "/nlsp-settings",
