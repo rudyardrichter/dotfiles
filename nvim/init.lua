@@ -1,9 +1,10 @@
+require("plugins")
+
 -- this has to go before mappings to set leader
 require("options")
 
 require("lsp")
 require("mappings")
-require("plugins")
 
 -- This fixes an issue with guibg highlight interfering with cursorline
 -- https://github.com/neovim/neovim/issues/9019

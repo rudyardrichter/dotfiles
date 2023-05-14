@@ -78,7 +78,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  #startup_mode: Windowed
+  startup_mode: Maximized
 
   # Window title
   #title: Alacritty
@@ -109,18 +109,18 @@ window:
 
 # Font configuration
 font:
-  size: 12
+  size: 14
   normal:
-    family: IosevkaTerm Nerd Font
+    family: Hack Nerd Font Mono
     style: Regular
   bold:
-    family: IosevkaTerm Nerd Font
+    family: Hack Nerd Font Mono
     style: Bold
   italic:
-    family: IosevkaTerm Nerd Font
+    family: Hack Nerd Font Mono
     style: Light Italic
   bold_italic:
-    family: IosevkaTerm Nerd Font
+    family: Hack Nerd Font Mono
     style: Bold Italic
 
   # Offset is the extra space around each character. `offset.y` can be thought
@@ -400,7 +400,7 @@ font:
 #
 # Directory the shell is started in. If this is unset, or `None`, the working
 # directory of the parent process will be used.
-#working_directory: None
+working_directory: ~/
 
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
