@@ -4,6 +4,7 @@ require("options")
 require("lsp")
 require("mappings")
 require("plugins")
+require("colors")
 
 -- This fixes an issue with guibg highlight interfering with cursorline
 -- https://github.com/neovim/neovim/issues/9019

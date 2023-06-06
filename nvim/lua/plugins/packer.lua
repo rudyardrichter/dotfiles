@@ -63,6 +63,8 @@ require("packer").startup({
     use("tpope/vim-fugitive")
     use("tpope/vim-rhubarb")
     use("williamboman/nvim-lsp-installer")
+    use("rktjmp/lush.nvim")
+    use("~/dotfiles/nvim/lua/colors/lemma")
 
     use({
       "L3MON4D3/LuaSnip",
@@ -388,6 +390,21 @@ require("packer").startup({
             vim.api.nvim_buf_set_option(bufnr, "formatexpr", "")
           end,
         })
+        lspconfig.lua_ls.setup({
+          capabilities = capabilities,
+          settings = {
+            Lua = {
+              diagnostics = {
+                global = {"vim"},
+              },
+              telemetry = {
+                enable = false,
+              },
+              workspace = {
+              },
+            },
+          },
+        })
         lspconfig.terraformls.setup({
           capabilities = capabilities,
         })
@@ -451,7 +468,7 @@ require("packer").startup({
     })
 
     use({
-      "feline-nvim/feline.nvim",
+      "freddiehaddad/feline.nvim",
       config = function()
         require("plugins.configs.feline")
       end,
@@ -547,7 +564,6 @@ require("packer").startup({
           ensure_installed = "all",
           highlight = {enable = true, additional_vim_regex_highlighting = false},
           ident = {enable = true},
-          rainbow = {enable = true, extended_mode = true},
           sync_install = false
         })
       end,

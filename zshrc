@@ -39,3 +39,5 @@ export PATH="$PATH:/home/rudyard/.local/bin"
 #unset __conda_setup
 ## <<< conda initialize <<<
 #
+
+[ -f "/home/rudyard/.ghcup/env" ] && source "/home/rudyard/.ghcup/env" # ghcup-env
