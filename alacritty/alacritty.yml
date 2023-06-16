@@ -109,19 +109,19 @@ window:
 
 # Font configuration
 font:
-  size: 14
+  size: 12
   normal:
-    family: Hack Nerd Font Mono
-    style: Regular
+    family: IosevkaTerm Nerd Font Mono
+    style: Light
   bold:
-    family: Hack Nerd Font Mono
-    style: Bold
+    family: IosevkaTerm Nerd Font Mono
+    style: Medium
   italic:
-    family: Hack Nerd Font Mono
+    family: IosevkaTerm Nerd Font Mono
     style: Light Italic
   bold_italic:
-    family: Hack Nerd Font Mono
-    style: Bold Italic
+    family: IosevkaTerm Nerd Font Mono
+    style: Medium Italic
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -379,7 +379,7 @@ font:
   #thickness: 0.15
 
 # Live config reload (changes require restart)
-#live_config_reload: true
+live_config_reload: true
 
 # Shell
 #
@@ -391,16 +391,16 @@ font:
 #   - (macOS) /bin/bash --login
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
-#shell:
-#  program: /bin/bash
-#  args:
-#    - --login
+shell:
+  program: /bin/zsh
+  args:
+    - --login
 
 # Startup directory
 #
 # Directory the shell is started in. If this is unset, or `None`, the working
 # directory of the parent process will be used.
-working_directory: ~/
+working_directory: /Users/rr
 
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true

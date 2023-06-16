@@ -12,7 +12,7 @@ export LESS_TERMCAP_us=$(printf "\e[1;31m")
 
 # ls colors & tab completion colors
 # eval `dircolors $ZSH/colors/gruvbox_dircolors`
-#eval `dircolors $ZSH/colors/dircolors.ansi-dark`
+eval `gdircolors $ZSH/colors/dircolors.ansi-dark`
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 setopt prompt_subst
@@ -33,12 +33,12 @@ git_status () {
     $(git rev-parse --verify refs/stash > /dev/null 2>&1) && _STATUS="$_STATUS%{$fg[magenta]%}•%{$reset_color%}"
     # ahead
     # 
-    $(echo "$_INDEX" | grep '^## .*ahead' &> /dev/null) && _STATUS="$_STATUS%{$fg[cyan]%}%{$reset_color%}"
+    $(echo "$_INDEX" | grep '^## .*ahead' &> /dev/null) && _STATUS="$_STATUS%{$fg[cyan]%}↑%{$reset_color%}"
     # behind
-    $(echo "$_INDEX" | grep '^## .*behind' &> /dev/null) && _STATUS="$_STATUS%{$fg[magenta]%}%{$reset_color%}"
+    $(echo "$_INDEX" | grep '^## .*behind' &> /dev/null) && _STATUS="$_STATUS%{$fg[magenta]%}↓%{$reset_color%}"
     # diverged
-    # $(echo "$_INDEX" | grep '^## .*diverged' &> /dev/null) && _STATUS="$_STATUS%{$fg_bold[red]%}⧎%{$reset_color%}"
-    $(echo "$_INDEX" | grep '^## .*diverged' &> /dev/null) && _STATUS="$_STATUS%{$fg[red]%}⧎%{$reset_color%}"
+    # $(echo "$_INDEX" | grep '^## .*diverged' &> /dev/null) && _STATUS="$_STATUS%{$fg_bold[red]%}⇋%{$reset_color%}"
+    $(echo "$_INDEX" | grep '^## .*diverged' &> /dev/null) && _STATUS="$_STATUS%{$fg[red]%}⇋%{$reset_color%}"
     echo $_STATUS
 }
 

@@ -9,6 +9,7 @@ export HISTSIZE=100000
 export SAVEHIST=$HISTSIZE
 
 export REVIEW_BASE=master
+export GPG_TTY=$(tty)
 
 export SSH_AUTH_SOCK=/Users/rr/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 
