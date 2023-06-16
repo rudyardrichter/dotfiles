@@ -1,9 +1,9 @@
-require("plugins")
-
 -- this has to go before mappings to set leader
 require("options")
 
-require("lsp")
+require("gruvbox").setup()
+-- vim.cmd("colorscheme gruvbox")
+
 require("mappings")
 
 -- This fixes an issue with guibg highlight interfering with cursorline
@@ -29,3 +29,5 @@ augroup END
 vim.cmd[[
 autocmd BufNewFile *.py 0r ~/.config/nvim/skeletons/skeleton.py
 ]]
+
+vim.cmd("syntax off")

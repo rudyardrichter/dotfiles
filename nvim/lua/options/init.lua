@@ -24,7 +24,7 @@ local options_table = {
     zipPlugin = false
   },
   opt = {
-    backspace = vim.opt.backspace + {"nostop"}, -- Don't stop backspace at insert
+    backspace = {"indent", "eol", "start", "nostop"}, -- Don't stop backspace at insert
     clipboard = "unnamedplus", -- Connection to the system clipboard
     copyindent = true, -- Copy the previous indentation on autoindenting
     cursorline = true, -- Highlight the text line of the cursor

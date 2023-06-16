@@ -10,19 +10,12 @@ export SAVEHIST=$HISTSIZE
 
 export REVIEW_BASE=master
 
+export SSH_AUTH_SOCK=/Users/rr/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!.git/*" -g "!*.pyc"'
 export FZF_DEFAULT_OPTS='--reverse'
-
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source $HOME/Library/Python/3.9/bin/virtualenvwrapper.sh
-export WORKON_HOME=~/.envs
-
-# nvm setup
-#source /usr/share/nvm/init-nvm.sh
-
-#export RUST_SRC_PATH="/home/rudyard/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/"
 
 export GOPATH=~/go
 export GOBIN=~/go/bin

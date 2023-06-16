@@ -1,5 +1,3 @@
--- TODO: refactor with whichkey
-
 local map_table = {
   [""] = {
     ["H"] = {"^"},
@@ -9,46 +7,6 @@ local map_table = {
   n = {
     ["<cr>"] = {"<cmd>w<cr>"},
     ["<tab>"] = {"za"},
-
-    -- Packer
-    ["<leader>pc"] = {"<cmd>PackerCompile<cr>", desc = "Packer Compile"},
-    ["<leader>pi"] = {"<cmd>PackerInstall<cr>", desc = "Packer Install"},
-    ["<leader>ps"] = {"<cmd>PackerSync<cr>", desc = "Packer Sync"},
-    ["<leader>pS"] = {"<cmd>PackerStatus<cr>", desc = "Packer Status"},
-    ["<leader>pu"] = {"<cmd>PackerUpdate<cr>", desc = "Packer Update"},
-
-    -- Session
-    ["<leader>sl"] = {"<cmd>SessionManager load_current_dir_session<cr>", desc = "Session Load"},
-
-    -- Debugger
-    ["<leader>db"] = {
-      function()
-        require("dap").toggle_breakpoint()
-      end,
-      desc = "Breakpoint",
-    },
-    ["<leader>dc"] = {
-      function()
-        require("dap").continue()
-      end,
-      desc = "Continue",
-    },
-    ["<leader>dn"] = {
-      function()
-        require("dap").step_over()
-      end,
-      desc = "Next",
-    },
-    ["<leader>ds"] = {
-      function()
-        require("dap").step_into()
-      end,
-      desc = "Step",
-    },
-
-    -- Explorer
-    ["<leader>e"] = {"<cmd>Neotree action=focus toggle=false<cr>", desc = "Explorer focus"},
-    ["<leader>E"] = {"<cmd>Neotree action=focus toggle=true<cr>", desc = "Explorer toggle"},
 
     ["n"] = {"nzz"},
     ["N"] = {"Nzz"},
@@ -68,26 +26,7 @@ local map_table = {
     ["<C-k>"] = {"<C-y>", noremap = true},
     ["<C-l>"] = {"<C-i>", noremap = true},
 
-    ["<C-q>"] = {"<cmd>lua require('telescope.builtin').diagnostics({ bufnr=0 })<cr>"},
-
     ["<C-z>"] = {"&foldlevel ? 'zM' :'zR'", expr = true},
-
-    ["<C-f>"] = {
-      function()
-        require("telescope.builtin").find_files()
-      end
-    },
-    ["<C-s>"] = {
-      function()
-        require("telescope.builtin").live_grep()
-        -- require("telescope.builtin").live_grep({["additional_args"] = "-i"})
-      end
-    },
-    ["<C-p>"] = {
-      function()
-        require("telescope.builtin").buffers()
-      end
-    },
 
     ["<C-_>"] = {'<cmd>let @/=""<CR><C-l>', silent = true},
 
@@ -101,13 +40,6 @@ local map_table = {
       end,
       desc = "Rename current symbol"
     },
-    ["<leader>ls"] = {
-      function()
-        require("telescope").extensions.aerial.aerial()
-      end,
-      desc = "Search symbols"
-    },
-    ["<leader>lS"] = {"<cmd>AerialToggle<cr>", desc = "Symbols outline"},
     ["K"] = {
       function()
         vim.lsp.buf.hover()
@@ -155,10 +87,6 @@ local map_table = {
         vim.lsp.buf.definition()
       end,
       desc = "Show the definition of current symbol"
-    },
-    ["gr"] = {
-      require("telescope.builtin").lsp_references,
-      desc = "References of current symbol"
     },
     ["<leader>ld"] = {
       function()
