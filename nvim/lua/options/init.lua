@@ -54,7 +54,6 @@ local options_table = {
     updatetime = 200,
     wrap = false,
     writebackup = false, -- Disable making a backup before overwriting a file
-
     autoread = true,
     completeopt = {"menuone", "noinsert", "noselect"},
     confirm = true,

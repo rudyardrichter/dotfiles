@@ -32,6 +32,7 @@ local map_table = {
 
     ["<leader>h"] = {"mh*`h"},
     ["<leader>rw"] = {"<cmd>%s/\\s\\+$//<CR> <cmd>nohl<CR> <cmd>w<CR>"},
+    ["<leader>i"] = {":Inspect<CR>"},
 
     -- LS features
     ["<leader>lR"] = {
@@ -88,7 +89,7 @@ local map_table = {
       end,
       desc = "Show the definition of current symbol"
     },
-    ["<leader>ld"] = {
+    ["<leader>d"] = {
       function()
         vim.diagnostic.open_float()
       end,
@@ -111,7 +112,22 @@ local map_table = {
         vim.diagnostic.open_float()
       end,
       desc = "Hover diagnostics"
-    }
+    },
+        ["<C-f>"] = {
+      function()
+        require("telescope.builtin").find_files()
+      end
+    },
+    ["<C-s>"] = {
+      function()
+        require("telescope.builtin").live_grep()
+      end
+    },
+    ["<C-p>"] = {
+      function()
+        require("telescope.builtin").buffers()
+      end
+    },
   },
   i = {
     ["<C-j>"] = {"<C-c><cmd>w<cr>", noremap = true}
