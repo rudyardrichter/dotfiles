@@ -20,6 +20,10 @@ function backup() {
     rm $tarball
 }
 
+function gchm() {
+    git rev-parse --quiet --verify main && git checkout main || git checkout master
+}
+
 function gclmy() {
     git clone --recursive git@github.com:rudyardrichter/$1.git
 }

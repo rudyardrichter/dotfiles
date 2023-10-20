@@ -91,9 +91,9 @@ local map_table = {
     },
     ["<leader>d"] = {
       function()
-        vim.diagnostic.open_float()
+        vim.lsp.buf.definition()
       end,
-      desc = "Hover diagnostics"
+      desc = "Show the definition of current symbol"
     },
     ["[d"] = {
       function()

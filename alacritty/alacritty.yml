@@ -723,6 +723,17 @@ key_bindings:
 - { key: Space,                 mode: Vi,         action: ToggleViMode            }
 - { key: Return, mods: Shift,   mode: Vi|~Search, action: Open                    }
 - { key: Return, mods: Shift,   mode: Vi|~Search, action: ToggleViMode            }
+# Control + e to edit filepath under cursor
+- { key: E,      mods: Control, mode: Vi|~Search, action: SemanticLeft            }
+- { key: E,      mods: Control, mode: Vi|~Search, action: ToggleNormalSelection   }
+- { key: E,      mods: Control, mode: Vi|~Search, action: SemanticRightEnd        }
+- { key: E,      mods: Control, mode: Vi|~Search, action: Copy                    }
+- { key: E,      mods: Control, mode: Vi|~Search, action: ClearSelection          }
+- { key: E,      mods: Control, mode: Vi|~Search, action: ScrollToBottom          }
+- { key: E,      mods: Control, mode: Vi|~Search, action: ToggleViMode            }
+- { key: E,      mods: Control, mode: Vi|~Search, chars: "e "                     }
+- { key: E,      mods: Control, mode: Vi|~Search, action: Paste                   }
+- { key: E,      mods: Control, mode: Vi|~Search, chars: "\x0D"                   }
   #- { key: Space,  mods: Shift|Control, mode: Vi|~Search, action: ScrollToBottom          }
   #- { key: Escape,                      mode: Vi|~Search, action: ClearSelection          }
   #- { key: I,                           mode: Vi|~Search, action: ToggleViMode            }

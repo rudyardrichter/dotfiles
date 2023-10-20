@@ -26,28 +26,17 @@ export PATH="$PATH:/home/rudyard/.local/bin"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-# this version is slow
-# __conda_setup="$('/opt/homebrew/Caskroom/miniforge/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh" ]; then
-#         . "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/opt/homebrew/Caskroom/miniforge/base/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-. "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh"
-export PATH="/opt/homebrew/Caskroom/miniforge/base/envs/default/bin:${PATH}"
-export CONDA_PREFIX='/opt/homebrew/Caskroom/miniforge/base/envs/default'
-export CONDA_SHLVL='1'
-export CONDA_DEFAULT_ENV='default'
-export CONDA_PROMPT_MODIFIER='(default) '
-export CONDA_EXE='/opt/homebrew/Caskroom/miniforge/base/bin/conda'
-export _CE_M=''
-export _CE_CONDA=''
-export CONDA_PYTHON_EXE='/opt/homebrew/Caskroom/miniforge/base/bin/python'
+__conda_setup="$('/opt/homebrew/Caskroom/miniforge/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/Caskroom/miniforge/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
 # <<< conda initialize <<<
 
 conda activate py310
@@ -55,3 +44,4 @@ source /Users/rr/ant/anthropic/config/local/zsh/zshrc
 
 # Automatically added by anthropic/install.py
 source /Users/rr/ant/anthropic/config/local/zsh/zshrc
+export USE_ANTUP=1
