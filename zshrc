@@ -42,6 +42,4 @@ unset __conda_setup
 conda activate py310
 source /Users/rr/ant/anthropic/config/local/zsh/zshrc
 
-# Automatically added by anthropic/install.py
-source /Users/rr/ant/anthropic/config/local/zsh/zshrc
-export USE_ANTUP=1
+export USE_ANTUP=
