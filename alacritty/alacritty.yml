@@ -111,16 +111,16 @@ window:
 font:
   size: 16
   normal:
-    family: IosevkaTerm Nerd Font Mono
+    family: IosevkaTerm Nerd Font
     style: Light
   bold:
-    family: IosevkaTerm Nerd Font Mono
+    family: IosevkaTerm Nerd Font
     style: Medium
   italic:
-    family: IosevkaTerm Nerd Font Mono
+    family: IosevkaTerm Nerd Font
     style: Light Italic
   bold_italic:
-    family: IosevkaTerm Nerd Font Mono
+    family: IosevkaTerm Nerd Font
     style: Medium Italic
 
   # Offset is the extra space around each character. `offset.y` can be thought

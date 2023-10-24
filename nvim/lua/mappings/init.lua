@@ -26,13 +26,15 @@ local map_table = {
     ["<C-k>"] = {"<C-y>", noremap = true},
     ["<C-l>"] = {"<C-i>", noremap = true},
 
+    ["<C-n>"] = {":set nu!<CR>"},
     ["<C-z>"] = {"&foldlevel ? 'zM' :'zR'", expr = true},
-
     ["<C-_>"] = {'<cmd>let @/=""<CR><C-l>', silent = true},
 
     ["<leader>h"] = {"mh*`h"},
     ["<leader>rw"] = {"<cmd>%s/\\s\\+$//<CR> <cmd>nohl<CR> <cmd>w<CR>"},
     ["<leader>i"] = {":Inspect<CR>"},
+
+    ["<leader>ps"] = {":PackerSync<CR>"},
 
     -- LS features
     ["<leader>lR"] = {
@@ -113,19 +115,30 @@ local map_table = {
       end,
       desc = "Hover diagnostics"
     },
-        ["<C-f>"] = {
+    ["<C-f>"] = {
       function()
         require("telescope.builtin").find_files()
       end
     },
     ["<C-s>"] = {
       function()
-        require("telescope.builtin").live_grep()
+        require("telescope.builtin").lsp_dynamic_workspace_symbols()
       end
     },
     ["<C-p>"] = {
       function()
         require("telescope.builtin").buffers()
+      end
+    },
+    -- ["<C-q>"] = {"<cmd>lua require('telescope.builtin').diagnostics({ bufnr=0 })<cr>"},
+    ["<C-q>"] = {
+      function()
+        require("telescope.builtin").diagnostics({ bufnr=0 })
+      end
+    },
+    ["<C-a>"] = {
+      function()
+        require("telescope.builtin").live_grep()
       end
     },
   },
