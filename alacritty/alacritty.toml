@@ -1,0 +1,55 @@
+import = ["/Users/rr/.config/alacritty/gruvbox.toml"]
+live_config_reload = true
+working_directory = "/Users/rr"
+
+[font]
+builtin_box_drawing = true
+size = 16
+
+[font.bold]
+family = "IosevkaTerm Nerd Font"
+style = "Medium"
+
+[font.bold_italic]
+family = "IosevkaTerm Nerd Font"
+style = "Medium Italic"
+
+[font.italic]
+family = "IosevkaTerm Nerd Font"
+style = "Light Italic"
+
+[font.normal]
+family = "IosevkaTerm Nerd Font"
+style = "Light"
+
+[keyboard]
+bindings = [
+    { key = "Space",  mods = "Control", mode = "~Search", action = "ToggleViMode" },
+    { key = "H",      mods = "Shift",   mode = "Vi",      action =  "First"       },
+    { key = "L",      mods = "Shift",   mode = "Vi",      action =  "Last"        },
+    # vi mode, shift + enter: open
+    { key = "Return", mods = "Shift",   mode =  "Vi|~Search", action =  "Open"           },
+    { key = "Return", mods = "Shift",   mode =  "Vi|~Search", action =  "ToggleViMode"   },
+    # vi mode, space: copy 
+    { key = "Space",                    mode =  "Vi|~Search", action =  "Copy"           },
+    { key = "Space",                    mode =  "Vi|~Search", action =  "ClearSelection" },
+    { key = "Space",                    mode =  "Vi|~Search", action =  "ScrollToBottom" },
+    { key = "Space",                    mode =  "Vi|~Search", action =  "ToggleViMode"   },
+    # vi mode, ctrl+e: edit file under cursor
+    { key = "e",      mods = "Control", mode = "Vi",          chars  = "e "                    },
+    { key = "e",      mods = "Control", mode = "Vi",          action = "SemanticLeftEnd"       },
+    { key = "e",      mods = "Control", mode = "Vi",          action = "ToggleNormalSelection" },
+    { key = "e",      mods = "Control", mode = "Vi",          action = "SemanticRightEnd"      },
+    { key = "e",      mods = "Control", mode = "Vi",          action = "Copy"                  },
+    { key = "e",      mods = "Control", mode = "Vi",          action = "ToggleViMode"          },
+    { key = "e",      mods = "Control", mode = "Vi",          action = "Paste"                 },
+    { key = "e",      mods = "Control", mode = "Vi",          chars  = "\r"                    },
+]
+
+[shell]
+args = ["--login"]
+program = "/bin/zsh"
+
+[window]
+decorations = "full"
+startup_mode = "Maximized"
