@@ -39,3 +39,16 @@ export PATH="$PATH:/home/rudyard/.local/bin"
 #unset __conda_setup
 ## <<< conda initialize <<<
 #
+
+# Created by `pipx` on 2023-07-03 22:41:35
+export PATH="$PATH:/Users/rudyard/.local/bin"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+
+
+if [ "$(arch)" = "arm64" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
+

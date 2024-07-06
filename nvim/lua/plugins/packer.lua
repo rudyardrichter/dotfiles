@@ -339,6 +339,12 @@ require("packer").startup({
     })
 
     use({
+      "mrcjkb/haskell-tools.nvim",
+      version = "^3",
+      ft = { 'haskell', 'lhaskell', 'cabal', 'cabalproject' },
+    })
+
+    use({
       "neovim/nvim-lspconfig",
       after = {"mason.nvim", "mason-lspconfig.nvim"},
       config = function()
@@ -348,6 +354,7 @@ require("packer").startup({
           lspconfig.util.default_config.capabilities,
           require("cmp_nvim_lsp").default_capabilities()
         )
+        lspconfig.hls.setup{}
         lspconfig.rust_analyzer.setup({
           capabilities = capabilities,
           flags = flags,

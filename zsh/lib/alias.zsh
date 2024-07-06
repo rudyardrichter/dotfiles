@@ -17,6 +17,7 @@ alias emacs='vim'
 alias map='xargs -n1'
 alias mkdir='mkdir -p'
 alias reload='source ~/.zshrc'
+alias o='open'
 alias pac='sudo pacman'
 alias pp='poetry run python'
 alias pr='poetry run'
@@ -33,6 +34,8 @@ alias copy='xclip -sel clip'
 alias isodate='date +%Y-%m-%dT%H:%M:%SZ%z'
 alias po='poetry'
 alias python=python3
+
+alias tf='terraform'
 
 # ls
 alias l='ls -A --color=auto'

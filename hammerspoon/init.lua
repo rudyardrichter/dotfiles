@@ -22,7 +22,7 @@ hs.grid.GRIDHEIGHT = 4
 -- disable animation
 hs.window.animationDuration = 0
 
-local display0 = "Color LCD"
+local display0 = ""
 local display1 = ""
 
 local headphones = ""
@@ -36,6 +36,13 @@ local keys_cmd   = {"ctrl", "alt", "cmd"   }
 local keys_shift = {"ctrl", "alt", "shift" }
 
 --------------------------------------------------------------------------------
+-- Config reloading
+
+hs.hotkey.bind(keys_shift, "R", function()
+  hs.reload()
+end)
+
+--------------------------------------------------------------------------------
 -- Applications
 
 function bindkeysLaunch(shortcut, app)
@@ -43,8 +50,7 @@ function bindkeysLaunch(shortcut, app)
 end
 
 bindkeysLaunch('d', "Dictionary")
-bindkeysLaunch('space', "iterm")
-bindkeysLaunch('c', "Google Chrome")
+bindkeysLaunch('space', "alacritty")
 
 --------------------------------------------------------------------------------
 -- Window/Grid Operations
@@ -93,7 +99,5 @@ hs.hotkey.bind(keys, 'g', hs.grid.show)
 --------------------------------------------------------------------------------
 
 -- Notify user that Hammerspoon config has loaded.
-hs.notify.new({
-    title='Hammerspoon',
-    informativeText='Config loaded'
-}):send()
+
+hs.alert.show("Hammerspoon config loaded")
